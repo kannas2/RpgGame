@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<item>
+		<name>hp_portion</name>
+		<code>1</code>
+		<value>1</value>
+		<desc>hp_portion</desc>
+		<type>1</type>
+	</item>
+	<item>
+		<name>mp_portion</name>
+		<code>2</code>
+		<value>1</value>
+		<desc>mp_portion</desc>
+		<type>1</type>
+	</item>
+</root>

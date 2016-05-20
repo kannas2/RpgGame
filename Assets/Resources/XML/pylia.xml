@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<npc>
+		<sceen>null</sceen>
+		<code>ms101</code>
+		<point>null</point>
+		<character>pylia</character>
+		<name>필리아</name>
+		<select>null</select>
+		<jump>null</jump>
+		<textcolor>null</textcolor>
+		<select_a>null</select_a>
+		<select_b>null</select_b>
+		<story>파비앙 나를 찾아와 줬구나
+너도 알다시피 지금 발렌시아 지역은 데모너스의 저주 때문에 큰 위험에 처해있어.</story>
+	</npc>
+	<npc>
+		<sceen>null</sceen>
+		<code>null</code>
+		<point>null</point>
+		<character>pylia</character>
+		<name>필리아</name>
+		<select>null</select>
+		<jump>null</jump>
+		<textcolor>null</textcolor>
+		<select_a>null</select_a>
+		<select_b>null</select_b>
+		<story>갑작스러운 추위 때문에 농작물은 죽어나가고 있고,
+이상하게도 20세 이상의 사람들은 마을 밖으로 나갈 수 없어..
+아무래도 데모너스는 상상하는 그 이상으로 강력한거 같아</story>
+	</npc>
+	<npc>
+		<sceen>null</sceen>
+		<code>null</code>
+		<point>null</point>
+		<character>pylia</character>
+		<name>필리아</name>
+		<select>null</select>
+		<jump>null</jump>
+		<textcolor>null</textcolor>
+		<select_a>null</select_a>
+		<select_b>null</select_b>
+		<story>그래서 너를 부른거야. 너라면 발렌시아를 구할 수 있다고 생각해
+하지만 피델리오 장로님을 설득해야 할꺼야. 설득해볼래?</story>
+	</npc>
+	<npc>
+		<sceen>null</sceen>
+		<code>null</code>
+		<point>null</point>
+		<character>fabien</character>
+		<name>파비앙</name>
+		<select>a</select>
+		<jump>ms102</jump>
+		<textcolor>blue</textcolor>
+		<select_a>수락</select_a>
+		<select_b>거절</select_b>
+		<story>null</story>
+	</npc>
+	<npc>
+		<sceen>null</sceen>
+		<code>null</code>
+		<point>end</point>
+		<character>null</character>
+		<name>null</name>
+		<select>null</select>
+		<jump>null</jump>
+		<textcolor>null</textcolor>
+		<select_a>null</select_a>
+		<select_b>null</select_b>
+		<story>null</story>
+	</npc>
+	<npc>
+		<sceen>null</sceen>
+		<code>ms102</code>
+		<point>ms102</point>
+		<character>pylia</character>
+		<name>필리아</name>
+		<select>null</select>
+		<jump>null</jump>
+		<textcolor>null</textcolor>
+		<select_a>null</select_a>
+		<select_b>null</select_b>
+		<story>잘생각했어!
+얼른 장로님께 가봐</story>
+	</npc>
+	<npc>
+		<sceen>null</sceen>
+		<code>null</code>
+		<point>end</point>
+		<character>null</character>
+		<name>null</name>
+		<select>null</select>
+		<jump>null</jump>
+		<textcolor>null</textcolor>
+		<select_a>null</select_a>
+		<select_b>null</select_b>
+		<story>null</story>
+	</npc>
+</root>
