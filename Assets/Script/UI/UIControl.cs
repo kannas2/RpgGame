@@ -87,8 +87,12 @@ public class UIControl : MonoBehaviour
                     if (hit.collider.tag == "NPC")
                     {
                         npc = hit.transform.GetComponent<BaseNpc>();
-                        npc.currentIndex = npc.textIndex;
-                        SetSceen(npc);
+
+                        if (이전퀘스트를 깼던가 || 이전 퀘스트가 비어있다던가)
+                        {
+                            npc.currentIndex = npc.textIndex;
+                            SetSceen(npc);
+                        }
                     }
                 }
             }

@@ -13,6 +13,8 @@ public class BaseNpc : MonoBehaviour
     {
         Shop,
     }
+    protected Transform target;
+    protected CapsuleCollider coll;
 
     protected string    npcName;
     protected Vector3   npcPostion;
@@ -31,13 +33,18 @@ public class BaseNpc : MonoBehaviour
     public bool pick          = false;
 
     //퀘스트 나중에 몇마리 잡아오라 이런거 할때 사용될변수.
-    protected string particularQwest;
-    protected int qwestScore;
+    protected int qwestValue;
 
+    //그전 NPC의 퀘스트를 완료 했는지 여부 확인할 변수.
+    protected string prevCheckQwest;
+
+    //캐릭터 애니메이션
+    protected Animator ani;
+    
     //쉐이더.
     protected Shader shader1;
     protected Shader shader2;
-    protected MeshRenderer mesh;
+    protected SkinnedMeshRenderer mesh;
 
     // npc대화 창 설정할  list
     public List<string> textStory  = new List<string>();
@@ -62,8 +69,8 @@ public class BaseNpc : MonoBehaviour
         npcImage = Resources.Load<Sprite>("NPC/" + name);
         npcType = (NpcType)type;
     }
+    
     //해당하는 NPC의 대화를 불러와야함.
-
     public virtual void Load_Story(string path)
     {
         TextAsset xml = OpenXml(path);
@@ -212,17 +219,16 @@ public class BaseNpc : MonoBehaviour
                                           // 그전에는 scereencut이 true가 되버리면 바로 off했으니까.. 안생겻던 버그인데..
                 return;
             }
-          
-            textIndex++;
             CheckQwestCode(currentqwest);
         }
     }
+    //  1회성 코드가 되버림. 초기에 잘 짜던가 구조를 잘 짰어야했는데... 시간 나면 수정해볼것.
     public void CheckQwestCode(string code)
     {
         switch(code)
         {
             case "abc":
-                if(qwestScore >= 40)
+                if(qwestValue >= 40)
                 {
 
                 }
@@ -232,6 +238,7 @@ public class BaseNpc : MonoBehaviour
                 break;
 
             default:
+                textIndex++;
                 break;
         }
     }
