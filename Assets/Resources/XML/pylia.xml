@@ -11,8 +11,9 @@
 		<textcolor>null</textcolor>
 		<select_a>null</select_a>
 		<select_b>null</select_b>
-		<story>파비앙 나를 찾아와 줬구나
-너도 알다시피 지금 발렌시아 지역은 데모너스의 저주 때문에 큰 위험에 처해있어.</story>
+		<story>파비앙 나를 찾아와 줬구나.
+너도 알다시피 지금 발렌시아 지역은
+데모너스의 저주 때문에 큰 위험에 처해있어.</story>
 	</npc>
 	<npc>
 		<sceen>null</sceen>
@@ -25,7 +26,7 @@
 		<textcolor>null</textcolor>
 		<select_a>null</select_a>
 		<select_b>null</select_b>
-		<story>갑작스러운 추위 때문에 농작물은 죽어나가고 있고,
+		<story>갑작스러운 추위때문에 농작물은 죽어나가고 있고,
 이상하게도 20세 이상의 사람들은 마을 밖으로 나갈 수 없어..
 아무래도 데모너스는 상상하는 그 이상으로 강력한거 같아</story>
 	</npc>
@@ -41,7 +42,7 @@
 		<select_a>null</select_a>
 		<select_b>null</select_b>
 		<story>그래서 너를 부른거야. 너라면 발렌시아를 구할 수 있다고 생각해
-하지만 피델리오 장로님을 설득해야 할꺼야. 설득해볼래?</story>
+하지만 피델리오 장로님을 설득해야할꺼야. 설득해볼래?</story>
 	</npc>
 	<npc>
 		<sceen>null</sceen>
@@ -80,8 +81,128 @@
 		<textcolor>null</textcolor>
 		<select_a>null</select_a>
 		<select_b>null</select_b>
-		<story>잘생각했어!
-얼른 장로님께 가봐</story>
+		<story>잘생각했어! 얼른 장로님께 가봐</story>
+	</npc>
+	<npc>
+		<sceen>null</sceen>
+		<code>null</code>
+		<point>end</point>
+		<character>null</character>
+		<name>null</name>
+		<select>null</select>
+		<jump>null</jump>
+		<textcolor>null</textcolor>
+		<select_a>null</select_a>
+		<select_b>null</select_b>
+		<story>null</story>
+	</npc>
+	<npc>
+		<sceen>null</sceen>
+		<code>ms112</code>
+		<point>null</point>
+		<character>pylia</character>
+		<name>필리아</name>
+		<select>null</select>
+		<jump>null</jump>
+		<textcolor>null</textcolor>
+		<select_a>null</select_a>
+		<select_b>null</select_b>
+		<story>파비앙 무슨일이야?</story>
+	</npc>
+	<npc>
+		<sceen>null</sceen>
+		<code>null</code>
+		<point>null</point>
+		<character>fabien</character>
+		<name>파비앙</name>
+		<select>null</select>
+		<jump>null</jump>
+		<textcolor>null</textcolor>
+		<select_a>null</select_a>
+		<select_b>null</select_b>
+		<story>(윌터와 있었 던 일을 설명한다)</story>
+	</npc>
+	<npc>
+		<sceen>null</sceen>
+		<code>null</code>
+		<point>null</point>
+		<character>pylia</character>
+		<name>필리아</name>
+		<select>null</select>
+		<jump>null</jump>
+		<textcolor>null</textcolor>
+		<select_a>null</select_a>
+		<select_b>null</select_b>
+		<story>아..그렇구나.. 내가 알기론 윌터 아저씨는
+보기와는 다르게 굉장히 까다로운 사람이야 </story>
+	</npc>
+	<npc>
+		<sceen>null</sceen>
+		<code>null</code>
+		<point>null</point>
+		<character>pylia</character>
+		<name>필리아</name>
+		<select>null</select>
+		<jump>null</jump>
+		<textcolor>null</textcolor>
+		<select_a>null</select_a>
+		<select_b>null</select_b>
+		<story>윌터 아저씨의 마음을 돌리기 위해서는
+그 전의 증표와 같은 증명으론 안될꺼야</story>
+	</npc>
+	<npc>
+		<sceen>null</sceen>
+		<code>null</code>
+		<point>null</point>
+		<character>pylia</character>
+		<name>필리아</name>
+		<select>null</select>
+		<jump>null</jump>
+		<textcolor>null</textcolor>
+		<select_a>null</select_a>
+		<select_b>null</select_b>
+		<story>음.....아!!
+혹시 수련용 맵D에 있는 드래곤을 아니?</story>
+	</npc>
+	<npc>
+		<sceen>null</sceen>
+		<code>null</code>
+		<point>null</point>
+		<character>pylia</character>
+		<name>필리아</name>
+		<select>null</select>
+		<jump>null</jump>
+		<textcolor>null</textcolor>
+		<select_a>null</select_a>
+		<select_b>null</select_b>
+		<story>갑자기 난폭해지는 바람에 출입을 막았다고 하는데..
+그 드래곤을 처치하면 윌터 아저씨도 인정해주지 않을까?</story>
+	</npc>
+	<npc>
+		<sceen>null</sceen>
+		<code>null</code>
+		<point>null</point>
+		<character>fabien</character>
+		<name>파비앙</name>
+		<select>a</select>
+		<jump>null</jump>
+		<textcolor>blue</textcolor>
+		<select_a>수락</select_a>
+		<select_b>거절</select_b>
+		<story>null</story>
+	</npc>
+	<npc>
+		<sceen>null</sceen>
+		<code>null</code>
+		<point>null</point>
+		<character>pylia</character>
+		<name>필리아</name>
+		<select>null</select>
+		<jump>null</jump>
+		<textcolor>null</textcolor>
+		<select_a>null</select_a>
+		<select_b>null</select_b>
+		<story>조심해! 드래곤은 이제껏 처치했던 몬스터와는 다를꺼야!</story>
 	</npc>
 	<npc>
 		<sceen>null</sceen>

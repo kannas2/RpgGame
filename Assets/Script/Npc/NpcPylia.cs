@@ -15,7 +15,7 @@ public class NpcPylia : BaseNpc {
         base.npcType        = 0;
         base.qwestValue      = 0;
         base.currentqwest    = null;
-        base.prevCheckQwest  = null;
+        base.prevCheckQwest  = "null";
 
         //쉐이더
         base.shader1 = Shader.Find("Outlined/Diffuse");
@@ -33,7 +33,7 @@ public class NpcPylia : BaseNpc {
         }
 
         base.coll = transform.GetComponent<CapsuleCollider>();
-        base.mesh = transform.FindChild("Material").GetComponent<SkinnedMeshRenderer>();
+        //base.mesh = transform.FindChild("Material").GetComponent<SkinnedMeshRenderer>();
         base.ani  = this.GetComponent<Animator>();
     }
 

@@ -44,7 +44,7 @@ public class QwestManager : Singleton<QwestManager>
     {
         Sprite image = (Sprite)Resources.Load("GameUI/" + qwestcode, typeof(Sprite));
         GameObject qwest = Instantiate(Resources.Load("Prefab/Qwest")) as GameObject;
-        qwest.transform.parent = parent.transform;
+        qwest.transform.SetParent(parent.transform);
         qwest.name = qwestcode;
         qwest.GetComponent<Image>().sprite = image;
 

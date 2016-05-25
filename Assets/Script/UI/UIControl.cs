@@ -4,7 +4,7 @@ using System.Text;
 using UnityEngine.UI;
 using System.Collections.Generic;
 
-public class UIControl : MonoBehaviour
+public class UIControl : Singleton<UIControl>
 {
     public Text charName;
     public Text story;
@@ -31,12 +31,8 @@ public class UIControl : MonoBehaviour
     public List<GameObject> button = new List<GameObject>();
     private float ftime;
 
-    private QwestManager qwestmanager;
-
     void Start()
     {
-        qwestmanager = QwestManager.Instance;
-
         show_UI = true;
         qwestButton.SetActive(false);
         button.Add(buttonA);
@@ -66,7 +62,7 @@ public class UIControl : MonoBehaviour
                 }
                 else if (hit2d.transform.CompareTag("QwestTitle"))
                 {
-                    qwestmanager.CompleteQwest(hit2d.transform.name);
+                    QwestManager.Instance.CompleteQwest(hit2d.transform.name);
                     Debug.Log("hit : " + hit2d.transform.name);
                 }
             }
@@ -87,8 +83,11 @@ public class UIControl : MonoBehaviour
                     if (hit.collider.tag == "NPC")
                     {
                         npc = hit.transform.GetComponent<BaseNpc>();
-
-                        if (이전퀘스트를 깼던가 || 이전 퀘스트가 비어있다던가)
+                        Debug.Log("npc bool :" + npc.prevCheckQwest);
+                        
+                        //비어있거나 true일경우에만 npc클릭이 가능하게끔 예외처리. 
+                        bool check = QwestManager.Instance.qwest.ContainsKey(npc.prevCheckQwest);
+                        if (check || npc.prevCheckQwest == "null")
                         {
                             npc.currentIndex = npc.textIndex;
                             SetSceen(npc);

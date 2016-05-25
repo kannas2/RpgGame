@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GameManager : MonoBehaviour {
-
+public class GameManager : Singleton<GameManager>
+{
 	// Use this for initialization
 	void Start () {
 	

@@ -8,7 +8,7 @@ public class NpcFidelio : BaseNpc
         GetComponent();
         
         base.npcPostion = new Vector3(256.0f, 65.0f, .0f);
-        base.npcName    = "fidelio";
+        base.npcName    = "pidellio";
         base.textSpeed  = 1.0f;
         base.textIndex  = 0;
         base.npcType    = 0;

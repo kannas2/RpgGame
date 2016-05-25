@@ -36,7 +36,7 @@ public class BaseNpc : MonoBehaviour
     protected int qwestValue;
 
     //그전 NPC의 퀘스트를 완료 했는지 여부 확인할 변수.
-    protected string prevCheckQwest;
+    public string prevCheckQwest;
 
     //캐릭터 애니메이션
     protected Animator ani;
@@ -66,7 +66,7 @@ public class BaseNpc : MonoBehaviour
         npcPostion = pos;
         this.textSpeed = _textSpeed;
         textIndex = textidx;
-        npcImage = Resources.Load<Sprite>("NPC/" + name);
+        npcImage = Resources.Load<Sprite>("NPC/Sprite" + name);
         npcType = (NpcType)type;
     }
     
@@ -144,8 +144,7 @@ public class BaseNpc : MonoBehaviour
         {
             if (character[textIndex] != null)
             {
-                //npc이미지 교체.
-                npcImage.sprite = Resources.Load<Sprite>("NPC/" + character[textIndex]) as Sprite;
+                npcImage.sprite = Resources.Load<Sprite>("NPC/Sprite/" + character[textIndex]) as Sprite;
             }
             name.text = textName[textIndex];
             tell.text = null;
@@ -176,7 +175,7 @@ public class BaseNpc : MonoBehaviour
         {
             if (character[textIndex] != null)
             {
-                npcImage.sprite = Resources.Load<Sprite>("NPC/" + character[textIndex]) as Sprite;
+                npcImage.sprite = Resources.Load<Sprite>("NPC/Sprite/" + character[textIndex]) as Sprite;
             }
             name.text = textName[textIndex];
             tell.text = textStory[textIndex];
@@ -201,13 +200,18 @@ public class BaseNpc : MonoBehaviour
                     currentIndex = FindCount(code, currentqwest);
 
                     bool key = QwestManager.Instance.qwest.ContainsKey(currentqwest); //키 값이 null거나 없을 경우 bool값 반환.
-                    if (key != true)
+                    if (!key)
                     {
                         QwestManager.Instance.qwest.Add(currentqwest, false); //키값이 없으면 추가를 하고 있으면 그냥 pass
-                        QwestManager.Instance.CreateQwest(currentqwest); //코드 추가되면서 퀘스트도 같이 생성.
+                        QwestManager.Instance.CreateQwest(currentqwest);     //코드 추가되면서 퀘스트도 같이 생성.
+                    }
+                    else //예외처리. try catch로 예외처리 할까 했는데 이게 좀더 효율적이라고 판단함.
+                    {    //오류 코드 Argument Exception : An element with the same key.
+                        Debug.Log("An element smae Key");
                     }
                 }
             }
+
             if (sceen[textIndex] == "cut")
             {
                 sceenCut = true;
@@ -215,32 +219,50 @@ public class BaseNpc : MonoBehaviour
             else if (point[textIndex] == "end")
             {
                 qwestUIState = false;
-                textIndex = currentIndex; //여기서 값을 대입해주고 밑에가서 텍스트를 넣으니까 그전 텍스트가 입력되지..
-                                          // 그전에는 scereencut이 true가 되버리면 바로 off했으니까.. 안생겻던 버그인데..
+                textIndex = currentIndex;    //여기서 값을 대입해주고 밑에가서 텍스트를 넣으니까 그전 텍스트가 입력되지..
+                CheckQwestCode(currentqwest); //문장의 끝을 만나면 코드 확인하고 예외처리 확인후 다음 문단으로 넘어갈지 확인.
                 return;
             }
-            CheckQwestCode(currentqwest);
+
+            textIndex++;
         }
     }
-    //  1회성 코드가 되버림. 초기에 잘 짜던가 구조를 잘 짰어야했는데... 시간 나면 수정해볼것.
-    public void CheckQwestCode(string code)
+    //  잘 생각해보니 이렇게 안하면 비록 1회성 코드가 되어버리지만 이렇게 하지 않으면 세부적인 조절을 할 수 없게 됨 .
+    public void CheckQwestCode(string str)
     {
-        switch(code)
+        switch(str)
         {
-            case "abc":
-                if(qwestValue >= 40)
+            case "ms104":
+                //공격 스킬 획득.  UI컨트롤에서 관리해주면 될듯.
+                Debug.Log("공격 스킬 습득");
+                break;
+
+                //필리아에게 다시 찾아갈 때 실행될 코드.
+            case "ms102":
+                if(ClearQwestCK("ms111"))
                 {
-
+                    textIndex = FindCount(code, "ms112");
+                    currentIndex = textIndex;
                 }
-                textIndex = currentIndex;
-                //퀘스트 진행창을 띄어준다던가.
+                break;
 
+            case "ms113":
+                if(ClearQwestCK(str))
+                {
+                    textIndex = FindCount(code, "ms113");
+                    currentIndex = textIndex;
+                }
                 break;
 
             default:
-                textIndex++;
                 break;
         }
+    }
+
+    public bool ClearQwestCK(string code)
+    {
+        bool key = QwestManager.Instance.qwest.ContainsKey(code);
+        return key;
     }
 
     //클릭된 것과 현재 셀렉트에 잇는 것과 같은 지. 비교 검사후 선택지 종료후
