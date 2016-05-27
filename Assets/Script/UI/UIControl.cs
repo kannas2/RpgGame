@@ -97,7 +97,7 @@ public class UIControl : Singleton<UIControl>
             }
         }
 
-        //NPC대화창이 켜져있을 경우. 퀘스트 선택중 선택창이 떳을 경우 이벤트 예외처리 할것.
+        //NPC대화창이 켜져있을 경우. 퀘스트 선택중 선택창이 떳을 경우 이벤트 예외처리 할것. 클릭에 딜레이좀 줄것 .. 너무 빨라서 더블클릭이 일어남.
         if (show_UI != true && npc != null)
         {
             if (Input.GetKeyDown(KeyCode.Mouse0))
@@ -124,8 +124,6 @@ public class UIControl : Singleton<UIControl>
                 Screen_switch();
                 npc.qwestUIState = true;
             }
-
-            Debug.Log("indextest" + npc.textIndex);
         }
         //게임 스크린 공지 텍스트.
         if (screenText.Count > 0)

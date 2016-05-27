@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Xml;
 using System.Text;
 using UnityEngine.UI;
+using System;
 
 [System.Serializable]
 
@@ -23,8 +24,9 @@ public class BaseNpc : MonoBehaviour
     public float     textSpeed;
     public int       textIndex;
     public int       currentIndex = 0;
-    protected string currentqwest;
+    public string    currentqwest;
     public string    prevqwest;
+    protected string limitedcode;
     public NpcType   npcType;
 
     public bool sceenCut      = false;
@@ -44,7 +46,7 @@ public class BaseNpc : MonoBehaviour
     //쉐이더.
     protected Shader shader1;
     protected Shader shader2;
-    protected SkinnedMeshRenderer mesh;
+    protected MeshRenderer mesh; //나중에 애니가 들어간 캐릭터 올때 SkinnedMeshRenderer로 교체할것.
 
     // npc대화 창 설정할  list
     public List<string> textStory  = new List<string>();
@@ -150,11 +152,11 @@ public class BaseNpc : MonoBehaviour
             tell.text = null;
 
             buttonA.SetActive(true);
-            Text text = buttonA.transform.FindChild("selectA").GetComponent<Text>();
+            Text text = buttonA.transform.GetComponent<Text>();
             text.text = selectA[textIndex];
 
             buttonB.SetActive(true);
-            text = buttonB.transform.FindChild("selectB").GetComponent<Text>();
+            text = buttonB.transform.GetComponent<Text>();
             text.text = selectB[textIndex];
             pick = true;
         }
@@ -186,28 +188,42 @@ public class BaseNpc : MonoBehaviour
                 if (currentqwest == null)
                 {
                     currentqwest = code[textIndex];
-                    QwestManager.Instance.qwest.Add(currentqwest, false);
+                    bool key = QwestManager.Instance.qwest.ContainsKey(currentqwest);
+                    if (!key)
+                    {
+                        QwestManager.Instance.qwest.Add(currentqwest, false);
+                    }
                 }
                 else
-                {
+                {   //limitedcode를 추가한 이유는 초기에 기초를 잘못 잡았기 때문에.. 일명 땜빵코드.. 일단 이 limitedcode는 각각 npc가 밑에서 check code에서 npc가
+                    //말을 할 수 있는 대사의 최대치를 조절해줌. 그리고 이 코드를 쓴 이유는 npc가 새로운 퀘스트 코드를 부여받을때 같은 npc에게 말을 걸면 퀘스트가 완료되
+                    //버리기 때문에 리밋코드를 추가함. 리밋코드는 계속 변경될 예정.
                     if (prevqwest != currentqwest)
                     {
-                        prevqwest = currentqwest;
-                        QwestManager.Instance.qwest[prevqwest] = true; //이전 코드 완료.
+                        if(currentqwest != limitedcode)
+                        { 
+                            prevqwest = currentqwest;
+                            QwestManager.Instance.qwest[prevqwest] = true; //이전 코드 완료.
+                        }
                     }
-
+                    Debug.Log("리미트코드 : " + limitedcode);
                     currentqwest = code[textIndex];
                     currentIndex = FindCount(code, currentqwest);
 
-                    bool key = QwestManager.Instance.qwest.ContainsKey(currentqwest); //키 값이 null거나 없을 경우 bool값 반환.
-                    if (!key)
+                    try
                     {
-                        QwestManager.Instance.qwest.Add(currentqwest, false); //키값이 없으면 추가를 하고 있으면 그냥 pass
-                        QwestManager.Instance.CreateQwest(currentqwest);     //코드 추가되면서 퀘스트도 같이 생성.
+                        bool key = QwestManager.Instance.qwest.ContainsKey(currentqwest); //키 값이 null거나 없을 경우 bool값 반환.
+                        if (!key)
+                        {
+                            QwestManager.Instance.qwest.Add(currentqwest, false); //키값이 없으면 추가를 하고 있으면 그냥 pass
+                            QwestManager.Instance.CreateQwest(currentqwest);     //코드 추가되면서 퀘스트도 같이 생성.
+                        }
+                        //예외처리. try catch로 예외처리 할까 했는데 이게 좀더 효율적이라고 판단함.
+                        //오류 코드 Argument Exception : An element with the same key.
                     }
-                    else //예외처리. try catch로 예외처리 할까 했는데 이게 좀더 효율적이라고 판단함.
-                    {    //오류 코드 Argument Exception : An element with the same key.
-                        Debug.Log("An element smae Key");
+                    catch (ArgumentException e)
+                    {
+                        Console.WriteLine("{0}: {1}", e.GetType().Name, e.Message);
                     }
                 }
             }
@@ -223,23 +239,26 @@ public class BaseNpc : MonoBehaviour
                 CheckQwestCode(currentqwest); //문장의 끝을 만나면 코드 확인하고 예외처리 확인후 다음 문단으로 넘어갈지 확인.
                 return;
             }
-
             textIndex++;
         }
     }
     //  잘 생각해보니 이렇게 안하면 비록 1회성 코드가 되어버리지만 이렇게 하지 않으면 세부적인 조절을 할 수 없게 됨 .
     public void CheckQwestCode(string str)
     {
-        switch(str)
+        switch (str)
         {
             case "ms104":
-                //공격 스킬 획득.  UI컨트롤에서 관리해주면 될듯.
-                Debug.Log("공격 스킬 습득");
+                if (ClearQwestCK("ms103"))
+                {
+                    //공격 스킬 획득.  UI컨트롤에서 관리해주면 될듯.
+                    Debug.Log("공격 스킬 습득");
+                }
+                
                 break;
 
-                //필리아에게 다시 찾아갈 때 실행될 코드.
+            //필리아에게 다시 찾아갈 때 실행될 코드.
             case "ms102":
-                if(ClearQwestCK("ms111"))
+                if (ClearQwestCK("ms111"))
                 {
                     textIndex = FindCount(code, "ms112");
                     currentIndex = textIndex;

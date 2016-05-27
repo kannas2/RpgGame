@@ -13,6 +13,7 @@ public class NpcFidelio : BaseNpc
         base.textIndex  = 0;
         base.npcType    = 0;
         base.qwestValue = 0;
+        base.limitedcode = "ms104";
 
         //쉐이더
         base.shader1 = Shader.Find("Outlined/Diffuse");
@@ -31,8 +32,8 @@ public class NpcFidelio : BaseNpc
             base.target = GameObject.Find("Player").GetComponent<Transform>();
         }
         base.coll = transform.GetComponent<CapsuleCollider>();
-        //base.mesh = transform.FindChild("Material").GetComponent<MeshRenderer>();
-        // base.ani  = this.GetComponent<Animation>();
+        base.mesh = transform.FindChild("Material").GetComponent<MeshRenderer>();
+        //base.ani  = this.GetComponent<Animation>();
     }
 
     void FixedUpdate()
@@ -41,12 +42,12 @@ public class NpcFidelio : BaseNpc
         {
             base.NpcRotTarget(transform,target.transform, 3.0f);
             coll.enabled = true;
-           // mesh.material.shader = shader1;
+            mesh.material.shader = shader1;
         }
         else
         {
             coll.enabled = false;
-           // mesh.material.shader = shader2;
+            mesh.material.shader = shader2;
         }
     }
 }
