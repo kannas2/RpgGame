@@ -37,8 +37,6 @@ public class Item_Database : MonoBehaviour {
                                  Convert.ToInt32(itemList[2].InnerXml),
                                  itemList[3].InnerXml,
                                  Convert.ToInt32(itemList[4].InnerXml)));
-
-                    Debug.Log(items[0]);
                 }
             }
             

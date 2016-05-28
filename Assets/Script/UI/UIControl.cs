@@ -18,7 +18,6 @@ public class UIControl : Singleton<UIControl>
     public GameObject qwest_UI;
     public GameObject InventoryImage;
     public GameObject qwestImage;
-    public GameObject qwestButton;
     public Camera UICamera;
 
     private BaseNpc npc;
@@ -34,7 +33,6 @@ public class UIControl : Singleton<UIControl>
     void Start()
     {
         show_UI = true;
-        qwestButton.SetActive(false);
         button.Add(buttonA);
         button.Add(buttonB);
        
@@ -106,7 +104,7 @@ public class UIControl : Singleton<UIControl>
                 {
                     if (npc.sceenCut != true)
                     {
-                        npc.StoryTelling(charImage, charName, story, buttonA, buttonB, qwestButton);
+                        npc.StoryTelling(charImage, charName, story, buttonA, buttonB);
                     }
                     else
                     {

@@ -13,22 +13,36 @@ public class BaseCharacter : MonoBehaviour
     }
 
     public string playerName;
-    public float characterExp;
-    public float characterSpeed;
-    public float characterRotSpeed;
-    public float characterHp;
-    public float characterMp;
+    public float curExp;
+    public float maxExp;
 
+    public float curHP;
+    public float maxHP;
+
+    public float curMP;
+    public float maxMP;
+
+    public float baseAttackPower;
+    public float curAttackPower;
+
+    public float baseAttackSpeed;
+    public float curAttackSpeed;
+
+    public float baseMoveSpeed;
+    public float curMoveSpeed;
+    public float rotSpeed;
+
+    public bool isDead;
 
     public BaseCharacter() { }
     public BaseCharacter(string _name, float _exp, float _speed, float _rotSpeed, float _Hp, float _Mp)
     {
         playerName = _name;
-        characterExp = _exp;
-        characterSpeed = _speed;
-        characterRotSpeed = _rotSpeed;
-        characterHp = _Hp;
-        characterMp = _Mp;
+        curExp = _exp;
+        baseMoveSpeed = _speed;
+        rotSpeed = _rotSpeed;
+        curHP = _Hp;
+        curMP = _Mp;
      }
 
     protected virtual void Character_Move() { }

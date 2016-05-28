@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 
@@ -71,18 +70,5 @@ public class QwestManager : Singleton<QwestManager>
         CompleteQwest("ms101"); //초기화면
         ActiveCompletMark();
     }
-
-    //public bool QwestAddCheck(string key)
-    //{
-    //    foreach (string str in qwest.Keys)
-    //    {
-    //        Debug.Log("코드확인");
-    //        if (qwest.ContainsKey(key))
-    //        {
-    //            return false;
-    //        }
-    //    }
-    //    return true;
-    //}
 }
 

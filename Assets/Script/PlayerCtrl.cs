@@ -6,8 +6,8 @@ public class PlayerCtrl : BaseCharacter
 {
     [SerializeField]
     private VirtualJoystick joystick;
-    [SerializeField]
-    private Inventory inventory;
+
+    public static PlayerCtrl instance; 
 
     public  Transform      hp_Image;
     private Monster        monster;
@@ -15,26 +15,45 @@ public class PlayerCtrl : BaseCharacter
 
     public CharacterState charstate;
 
-    public Animator charAnimation { get; set; }
-    public bool isDead           { get; set; }
+    public Animator anim { get; set; }
     public bool attackChk        { get; set; }
 
     private BaseCharacter player;
 
     void Awake()
     {
-        //                              name, exp, speed, rotspeed, hp, mp
-        player = new BaseCharacter("player", .0f, 3.0f, 100.0f, 100.0f, 100.0f);
-             
-        charAnimation = transform.FindChild("Query-Chan-SD_Black").FindChild("SD_QUERY_02").GetComponent<Animator>();
+        instance = this;
+        anim = transform.FindChild("Query-Chan-SD_Black").FindChild("SD_QUERY_02").GetComponent<Animator>();
         monster      = GameObject.Find("Monster").GetComponent<Monster>();
         attackBox    = attackBox.GetComponent<MeshCollider>();
     }
 
+
     void Start()
     {
+        base.playerName = "fabian";
+        base.curExp = .0f;
+        base.maxExp = .0f; // 기획서에 경험치 관련된건 없지만 .. 혹시나 해서 .
+
+        base.curHP = 100.0f;
+        base.maxHP = 100.0f;
+
+        base.curMP = 100.0f;
+        base.maxMP = 100.0f;
+
+        base.baseAttackPower = 1.0f;
+        base.curAttackPower = 10.0f;
+
+        base.baseAttackSpeed = 1.0f;
+        base.curAttackSpeed = 10.0f;
+
+        base.baseMoveSpeed = 5.0f;
+        base.curMoveSpeed = 5.0f;
+
+        base.rotSpeed = 100.0f;
+        base.isDead = false;
+
         charstate = CharacterState.Idle;
-        isDead = false;
         attackChk = false;
     }
 
@@ -47,12 +66,12 @@ public class PlayerCtrl : BaseCharacter
     protected override void Character_Move()
     {
         float vertical = joystick.Vertical();
-        float horizontal = joystick.Horizontal() * player.characterRotSpeed;
+        float horizontal = joystick.Horizontal() * base.rotSpeed;
 
         if (vertical >= 0)
-            vertical *= player.characterSpeed;
+            vertical *= base.curMoveSpeed;
         else
-            vertical *= (player.characterSpeed * 0.5f);
+            vertical *= (base.curMoveSpeed * 0.5f);
 
         vertical *= Time.deltaTime;
         horizontal *= Time.deltaTime;
@@ -62,11 +81,11 @@ public class PlayerCtrl : BaseCharacter
 
         if (vertical != 0)
         {
-            charAnimation.SetBool("isWalking", true);
+            anim.SetBool("isWalking", true);
         }
         else
         {
-            charAnimation.SetBool("isWalking", false);
+            anim.SetBool("isWalking", false);
         }
     }
 
@@ -90,7 +109,7 @@ public class PlayerCtrl : BaseCharacter
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Monster")
+        if (other.gameObject.tag == "Monster") //이거 나중에 수정할것. 몬스터가 여러마리 될경우 충돌된 몬스터  HP를 까야함.
         {
             monster.current_HP -= 10.0f;
 
@@ -103,7 +122,7 @@ public class PlayerCtrl : BaseCharacter
 
         if(other.gameObject.tag == "HP_portion")
         {
-            inventory.addItem(1);
+            Inventory.instance.addItem(1);
             Destroy(other.gameObject);
         }
     }

@@ -45,7 +45,6 @@ public class Monster : MonoBehaviour
         {
             my_target = GameObject.Find("Player").GetComponent<Transform>();
             player = GameObject.Find("Player").GetComponent<PlayerCtrl>();
-            Debug.Log("타겟");
         }
     }
 
@@ -116,7 +115,7 @@ public class Monster : MonoBehaviour
         {
             Debug.Log("충돌했습니다.");
             player.Character_Update_Hp(0.1f);
-            player.charAnimation.SetBool("isDamage", true); //일단 이런식으로 구현하고 나중에 애니메이션 함수를 플레이어 클래스에서 한개 만들고 그 클래스에서 애니메이션 처리하는것으로 지금은 급한대로.
+            player.anim.SetBool("isDamage", true); //일단 이런식으로 구현하고 나중에 애니메이션 함수를 플레이어 클래스에서 한개 만들고 그 클래스에서 애니메이션 처리하는것으로 지금은 급한대로.
 
             GameObject obj = (GameObject)Instantiate(Resources.Load("Particle/Attack")) as GameObject;
             obj.transform.parent = other.transform;

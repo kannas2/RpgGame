@@ -5,21 +5,18 @@ using System.Collections;
 
 public class VirtualJoystick : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointerDownHandler
 {
+    public VirtualJoystick instance;
+
     private Image bgImg;
     private Image joystickImg;
     private Vector3 InputVector;
-    private PlayerCtrl playerctrl;
 
     void Start()
     {
+        instance = this;
         bgImg       = GetComponent<Image>();
 
         joystickImg  = transform.FindChild("JoystickImage").GetComponent<Image>();
-
-        if (GameObject.Find("Player"))
-        {
-            playerctrl = GameObject.Find("Player").GetComponent<PlayerCtrl>();
-        }
     }
 
     public virtual void OnDrag(PointerEventData ped)
@@ -67,7 +64,6 @@ public class VirtualJoystick : MonoBehaviour, IDragHandler, IPointerUpHandler, I
 
     public void Attack_Button()
     {
-        playerctrl.charAnimation.SetBool("isAttack", true);
-        playerctrl.attackChk = true;
+        AttackSkill.instance.Attack();
     }
 }

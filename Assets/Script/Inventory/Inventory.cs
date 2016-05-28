@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class Inventory : MonoBehaviour
 {
-
+    public static Inventory instance;
     public List<GameObject> Slots = new List<GameObject>();
     public List<Item> items = new List<Item>();
 
@@ -20,6 +20,7 @@ public class Inventory : MonoBehaviour
 
     void Start()
     {
+        instance = this;
         database = GameObject.Find("ItemDatabase").GetComponent<Item_Database>();
 
         for (int i = 0; i < 3; i++)

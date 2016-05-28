@@ -1,13 +1,10 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 using System.Xml;
-using System.Text;
 using UnityEngine.UI;
 using System;
 
-[System.Serializable]
-
+[Serializable]
 public class BaseNpc : MonoBehaviour
 {
     public enum NpcType
@@ -169,7 +166,7 @@ public class BaseNpc : MonoBehaviour
     }
    
     //나중에 퀘스트를 진행할경우 특정 퀘스트 상태에서 조건검사를 거는것으로 다음문장을 실행하기 위해서는. current index를 활용하여.
-    public virtual void StoryTelling(Image npcImage, Text name, Text tell, GameObject buttonA, GameObject buttonB, GameObject qwestButton)
+    public virtual void StoryTelling(Image npcImage, Text name, Text tell, GameObject buttonA, GameObject buttonB)
     {
         Choice_peek(buttonA, buttonB, tell, name, npcImage);
 
