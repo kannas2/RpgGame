@@ -15,10 +15,8 @@ public class PlayerCtrl : BaseCharacter
 
     public CharacterState charstate;
 
-    public Animator anim { get; set; }
-    public bool attackChk        { get; set; }
-
-    private BaseCharacter player;
+    public Animator anim   { get; set; }
+    public bool attackChk  { get; set; }
 
     void Awake()
     {
@@ -27,7 +25,6 @@ public class PlayerCtrl : BaseCharacter
         monster      = GameObject.Find("Monster").GetComponent<Monster>();
         attackBox    = attackBox.GetComponent<MeshCollider>();
     }
-
 
     void Start()
     {
@@ -42,13 +39,13 @@ public class PlayerCtrl : BaseCharacter
         base.maxMP = 100.0f;
 
         base.baseAttackPower = 1.0f;
-        base.curAttackPower = 10.0f;
+        base.curAttackPower = 1.0f;
 
         base.baseAttackSpeed = 1.0f;
-        base.curAttackSpeed = 10.0f;
+        base.curAttackSpeed = 1.0f;
 
-        base.baseMoveSpeed = 5.0f;
-        base.curMoveSpeed = 5.0f;
+        base.baseMoveSpeed = 1.0f;
+        base.curMoveSpeed = 1.0f;
 
         base.rotSpeed = 100.0f;
         base.isDead = false;
@@ -60,6 +57,7 @@ public class PlayerCtrl : BaseCharacter
     void FixedUpdate()
     {
         Character_Move();
+        Character_Anim_Speed();
         attackBox.enabled = attackChk;
     }
 
@@ -124,6 +122,25 @@ public class PlayerCtrl : BaseCharacter
         {
             Inventory.instance.addItem(1);
             Destroy(other.gameObject);
+        }
+    }
+
+    //동작 스피드 컨트롤.
+    public override void Character_Anim_Speed()
+    {
+        AnimatorStateInfo stateInfo = anim.GetCurrentAnimatorStateInfo(0);
+
+        if (stateInfo.IsName("Walk"))
+        {
+            anim.speed = curMoveSpeed;
+        }
+        else if (stateInfo.IsName("Attack"))
+        {
+            anim.speed = curAttackSpeed;
+        }
+        else
+        {
+            anim.speed = 1.0f;
         }
     }
 }

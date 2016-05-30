@@ -48,4 +48,5 @@ public class BaseCharacter : MonoBehaviour
     protected virtual void Character_Move() { }
     public virtual void Character_Update_Hp(float damage) { }
     public virtual void Character_Uptate_Mp() { }
+    public virtual void Character_Anim_Speed() { }
 }

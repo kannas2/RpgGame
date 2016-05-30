@@ -99,6 +99,9 @@
     <Compile Include="Assets\Script\Skill\AttackSkill.cs" />
     <Compile Include="Assets\Script\Skill\BaseSkill.cs" />
     <Compile Include="Assets\Script\Skill\BuffSkill.cs" />
+    <Compile Include="Assets\Script\Skill\BuffState.cs" />
+    <Compile Include="Assets\Script\Skill\HasteBuff.cs" />
+    <Compile Include="Assets\Script\Skill\SmallHast.cs" />
     <Compile Include="Assets\Script\UI\UIControl.cs" />
     <Compile Include="Assets\Script\UI\UI_Billboard.cs" />
     <Compile Include="Assets\Script\UI\VirtualJoystick.cs" />
