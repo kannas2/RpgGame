@@ -32,8 +32,8 @@ public class BaseNpc : MonoBehaviour
     public bool pick          = false;
 
     //퀘스트 나중에 몇마리 잡아오라 이런거 할때 사용될변수.
-    protected int qwestValue;
-
+    public int qwestValue;
+    public int currentValue;
     //그전 NPC의 퀘스트를 완료 했는지 여부 확인할 변수.
     public string prevCheckQwest;
 
@@ -43,7 +43,7 @@ public class BaseNpc : MonoBehaviour
     //쉐이더.
     protected Shader shader1;
     protected Shader shader2;
-    protected MeshRenderer mesh; //나중에 애니가 들어간 캐릭터 올때 SkinnedMeshRenderer로 교체할것.
+    protected SkinnedMeshRenderer mesh; //나중에 애니가 들어간 캐릭터 올때 SkinnedMeshRenderer로 교체할것.
 
     // npc대화 창 설정할  list
     public List<string> textStory  = new List<string>();
@@ -53,10 +53,14 @@ public class BaseNpc : MonoBehaviour
     public List<string> character  = new List<string>();
     public List<string> select    = new List<string>();
     public List<string> jump      = new List<string>();
-    public List<string> color     = new List<string>();
     public List<string> selectA   = new List<string>();
     public List<string> selectB   = new List<string>();
     public List<string> sceen     = new List<string>();
+    public List<string> restart   = new List<string>();
+    public List<string> success   = new List<string>();
+    public List<string> clear_if  = new List<string>();
+    public List<string> int_if    = new List<string>();
+    public List<string> skill     = new List<string>();
 
     public BaseNpc() { }
     public BaseNpc(string name, Vector3 pos, float _textSpeed, int textidx, int type)
@@ -90,16 +94,20 @@ public class BaseNpc : MonoBehaviour
                     XmlNodeList list = temp.ChildNodes;
 
                     sceen.Add(list[0].InnerXml);
-                    code.Add(list[1].InnerXml);
-                    point.Add(list[2].InnerXml);
-                    character.Add(list[3].InnerXml);
-                    textName.Add(list[4].InnerXml);
-                    select.Add(list[5].InnerXml);
-                    jump.Add(list[6].InnerXml);
-                    color.Add(list[7].InnerXml);
-                    selectA.Add(list[8].InnerXml);
-                    selectB.Add(list[9].InnerXml);
-                    textStory.Add(list[10].InnerXml);
+                    restart.Add(list[1].InnerXml);
+                    code.Add(list[2].InnerXml);
+                    success.Add(list[3].InnerXml);
+                    jump.Add(list[4].InnerXml);
+                    point.Add(list[5].InnerXml);     
+                    character.Add(list[6].InnerXml);
+                    textName.Add(list[7].InnerXml);
+                    int_if.Add(list[8].InnerXml);
+                    clear_if.Add(list[9].InnerXml);
+                    select.Add(list[10].InnerXml);
+                    selectA.Add(list[11].InnerXml);
+                    selectB.Add(list[12].InnerXml);
+                    textStory.Add(list[13].InnerXml);
+                    skill.Add(list[14].InnerXml);
                 }
             }
         }
@@ -179,52 +187,59 @@ public class BaseNpc : MonoBehaviour
             name.text = textName[textIndex];
             tell.text = textStory[textIndex];
 
-            //퀘스트 코드가 바뀌거나 문장이 끝날경우.
+            //퀘스트 생성.
             if (code[textIndex] != "null")
             {
-                if (currentqwest == null)
+                currentqwest = code[textIndex];
+                bool key = QwestManager.Instance.qwest.ContainsKey(currentqwest); //키 값이 null거나 없을 경우 bool값 반환.
+                if (!key)
                 {
-                    currentqwest = code[textIndex];
-                    bool key = QwestManager.Instance.qwest.ContainsKey(currentqwest);
-                    if (!key)
-                    {
-                        QwestManager.Instance.qwest.Add(currentqwest, false);
-                    }
-                }
-                else
-                {   //limitedcode를 추가한 이유는 초기에 기초를 잘못 잡았기 때문에.. 일명 땜빵코드.. 일단 이 limitedcode는 각각 npc가 밑에서 check code에서 npc가
-                    //말을 할 수 있는 대사의 최대치를 조절해줌. 그리고 이 코드를 쓴 이유는 npc가 새로운 퀘스트 코드를 부여받을때 같은 npc에게 말을 걸면 퀘스트가 완료되
-                    //버리기 때문에 리밋코드를 추가함. 리밋코드는 계속 변경될 예정.
-                    if (prevqwest != currentqwest)
-                    {
-                        if(currentqwest != limitedcode)
-                        { 
-                            prevqwest = currentqwest;
-                            QwestManager.Instance.qwest[prevqwest] = true; //이전 코드 완료.
-                        }
-                    }
-                    Debug.Log("리미트코드 : " + limitedcode);
-                    currentqwest = code[textIndex];
-                    currentIndex = FindCount(code, currentqwest);
-
-                    try
-                    {
-                        bool key = QwestManager.Instance.qwest.ContainsKey(currentqwest); //키 값이 null거나 없을 경우 bool값 반환.
-                        if (!key)
-                        {
-                            QwestManager.Instance.qwest.Add(currentqwest, false); //키값이 없으면 추가를 하고 있으면 그냥 pass
-                            QwestManager.Instance.CreateQwest(currentqwest);     //코드 추가되면서 퀘스트도 같이 생성.
-                        }
-                        //예외처리. try catch로 예외처리 할까 했는데 이게 좀더 효율적이라고 판단함.
-                        //오류 코드 Argument Exception : An element with the same key.
-                    }
-                    catch (ArgumentException e)
-                    {
-                        Console.WriteLine("{0}: {1}", e.GetType().Name, e.Message);
-                    }
+                    QwestManager.Instance.qwest.Add(currentqwest, false);        //키값이 없으면 추가를 하고 있으면 그냥 pass
+                    QwestManager.Instance.CreateQwest(currentqwest);             //코드 추가되면서 퀘스트도 같이 생성.
                 }
             }
 
+            if(restart[textIndex] != "null")
+            {
+                currentIndex = textIndex;
+            }
+
+            if(success[textIndex] != "null")
+            {
+                QwestManager.Instance.qwest[success[textIndex]] = true;
+            }
+
+            //스킬 습득.
+            if(skill[textIndex] != "null")
+            {
+                ActiveSkill(skill[textIndex]);
+            }
+
+            //퀘스트 몬스터 잡아오는 뭐 그런거 있을 경우.
+            if(int_if[textIndex] != "null")
+            {
+                if (qwestValue >= Int32.Parse(int_if[textIndex]))
+                {
+                    textIndex = FindCount(point, jump[textIndex]);
+                    qwestValue = 0;
+                }
+                else
+                    textIndex = currentIndex;
+                return;
+            }
+
+            //특정 순간에 해당퀘스트가 클리어 되어있을 경우 jump  // end 보다 먼저 검사해야함.
+            if(clear_if[textIndex] != "null")
+            {
+                string key = clear_if[textIndex];
+                if(ClearQwestCK(key))
+                {
+                    textIndex = FindCount(point, jump[textIndex]);
+                    return;
+                }
+            }
+
+            //문장이 끝낫거나 퀘스트 씬을 강제적으로 끊을때.
             if (sceen[textIndex] == "cut")
             {
                 sceenCut = true;
@@ -232,43 +247,87 @@ public class BaseNpc : MonoBehaviour
             else if (point[textIndex] == "end")
             {
                 qwestUIState = false;
-                textIndex = currentIndex;    //여기서 값을 대입해주고 밑에가서 텍스트를 넣으니까 그전 텍스트가 입력되지..
-                CheckQwestCode(currentqwest); //문장의 끝을 만나면 코드 확인하고 예외처리 확인후 다음 문단으로 넘어갈지 확인.
+                textIndex = currentIndex;
                 return;
+
             }
             textIndex++;
         }
     }
     //  잘 생각해보니 이렇게 안하면 비록 1회성 코드가 되어버리지만 이렇게 하지 않으면 세부적인 조절을 할 수 없게 됨 .
-    public void CheckQwestCode(string str)
+    public void CheckQwestCode(string npc, string str)
     {
-        switch (str)
+        switch (npc)
         {
-            case "ms104":
-                if (ClearQwestCK("ms103"))
+            case "pylia":
                 {
-                    //공격 스킬 획득.  UI컨트롤에서 관리해주면 될듯.
-                    Debug.Log("공격 스킬 습득");
-                }
-                
-                break;
+                    switch (str)
+                    {
+                        case "ms101":
+                            QwestManager.Instance.qwest[str] = true;
+                            break;
 
-            //필리아에게 다시 찾아갈 때 실행될 코드.
-            case "ms102":
-                if (ClearQwestCK("ms111"))
-                {
-                    textIndex = FindCount(code, "ms112");
-                    currentIndex = textIndex;
+                        case "ms102":
+                            if (ClearQwestCK("ms111"))
+                            {
+                                textIndex = FindCount(code, "ms112");
+                                currentIndex = textIndex;
+                            }
+                            break;
+                    }
+                    break;
                 }
-                break;
 
-            case "ms113":
-                if(ClearQwestCK(str))
+            case "pidellio":
                 {
-                    textIndex = FindCount(code, "ms113");
-                    currentIndex = textIndex;
+                    switch(str)
+                    {
+                        case "ms103":
+                            QwestManager.Instance.qwest[str] = true;
+                            break;
+
+                        case "ms104":
+                            if (ClearQwestCK("ms112"))
+                            {
+                            }
+                            else if (ClearQwestCK("ms103"))
+                            {
+                                prevqwest = str;
+                                //공격 스킬 획득.  UI컨트롤에서 관리해주면 될듯.
+                                Debug.Log("공격 스킬 습득");
+                            }
+                            break;
+                    }
+                    break;
                 }
-                break;
+
+            case "dick":
+                {
+                    switch(str)
+                    {
+                        case "ms104":
+                            QwestManager.Instance.qwest[str] = true;
+                            break;
+
+                        case "ms105":
+                            if (currentValue >= qwestValue)
+                            {
+                                Debug.Log("수련용 증표 퀘스트 완료");
+                                //limitedcode = "ms106";                //리미트 코드 해제.
+                                textIndex = FindCount(point, "ms106");  // 인덱스 이동.
+                                currentIndex = textIndex;              // 인덱스 저장.
+                                Debug.Log("브렌디쉬 스킬 습득");
+                            }
+                            else
+                                prevqwest = str;
+                            break;
+
+                        case "ms106":
+                            prevqwest = str;
+                            break;
+                    }
+                    break;
+                }
 
             default:
                 break;
@@ -277,7 +336,12 @@ public class BaseNpc : MonoBehaviour
 
     public bool ClearQwestCK(string code)
     {
-        bool key = QwestManager.Instance.qwest.ContainsKey(code);
+        bool key = QwestManager.Instance.qwest.ContainsKey(code); 
+        if (key)
+        {
+            bool value = QwestManager.Instance.qwest[code];
+            return value;
+        }
         return key;
     }
 
@@ -309,5 +373,33 @@ public class BaseNpc : MonoBehaviour
         }
         Debug.Log("not find");
         return 0;
+    }
+
+    protected void GetComponent()
+    {
+        if (GameObject.Find("Player"))
+        {
+            target = GameObject.Find("Player").GetComponent<Transform>();
+        }
+        coll = transform.GetComponent<CapsuleCollider>();
+        mesh = transform.FindChild("Material").GetComponent<SkinnedMeshRenderer>();
+        //base.ani  = this.GetComponent<Animation>();
+    }
+
+    public void ActiveSkill(string skill)
+    {
+        switch(skill)
+        {
+            case "Attack":
+                Debug.Log("기본공격 획득");
+                break;
+
+            case "Brandish":
+                Debug.Log("브랜디시 스킬 획득");
+                break;
+
+            default:
+                break;
+        }
     }
 }

@@ -76,9 +76,6 @@ public class VirtualJoystick : MonoBehaviour, IDragHandler, IPointerUpHandler, I
             //이펙트
             //스킬 호출
             HasteBuff.instance.Buff();
-            Debug.Log(" 스킬 사용 ");
         }
-        Debug.Log("헤이스트 버튼 호출");
-        Debug.Log("ture/false : " + HasteBuff.instance.buffState);
     }
 }

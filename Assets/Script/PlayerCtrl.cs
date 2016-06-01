@@ -9,9 +9,9 @@ public class PlayerCtrl : BaseCharacter
 
     public static PlayerCtrl instance; 
 
-    public  Transform      hp_Image;
+    public  Image         hp_Image;
     private Monster        monster;
-    public  Collider       attackBox;
+    public  BoxCollider    attackBox;
 
     public CharacterState charstate;
 
@@ -21,9 +21,9 @@ public class PlayerCtrl : BaseCharacter
     void Awake()
     {
         instance = this;
-        anim = transform.FindChild("Query-Chan-SD_Black").FindChild("SD_QUERY_02").GetComponent<Animator>();
+        anim = transform.GetComponent<Animator>();
         monster      = GameObject.Find("Monster").GetComponent<Monster>();
-        attackBox    = attackBox.GetComponent<MeshCollider>();
+        attackBox    = attackBox.GetComponent<BoxCollider>();
     }
 
     void Start()
@@ -44,8 +44,8 @@ public class PlayerCtrl : BaseCharacter
         base.baseAttackSpeed = 1.0f;
         base.curAttackSpeed = 1.0f;
 
-        base.baseMoveSpeed = 1.0f;
-        base.curMoveSpeed = 1.0f;
+        base.baseMoveSpeed = 3.0f;
+        base.curMoveSpeed = 3.0f;
 
         base.rotSpeed = 100.0f;
         base.isDead = false;
@@ -58,6 +58,7 @@ public class PlayerCtrl : BaseCharacter
     {
         Character_Move();
         Character_Anim_Speed();
+        Character_Update_Hp();
         attackBox.enabled = attackChk;
     }
 
@@ -77,18 +78,29 @@ public class PlayerCtrl : BaseCharacter
         transform.Translate(0, 0, vertical);
         transform.Rotate(0, horizontal, 0);
 
+        //키보드라면 뭐 시프트를 누른상태면 Walk가 Run으로 변경되게 설정을 할수 있겠는데
+        //모바일이라서.. 걷기/뛰기 동작 둘중 하나만 설정함.
         if (vertical != 0)
-        {
-            anim.SetBool("isWalking", true);
-        }
+            anim.SetBool("Walk", true);
         else
-        {
-            anim.SetBool("isWalking", false);
-        }
+            anim.SetBool("Walk", false);
     }
 
-    public override void Character_Update_Hp(float damage)
+    public override void Character_Update_Hp()
     {
+        hp_Image.fillAmount = curHP / maxHP;
+
+        if(curHP <= 0)
+        {
+            curHP = 0;
+            Debug.Log("게임오버");
+        }
+        else if(curHP >= maxHP)
+        {
+            curHP = maxHP;
+        }
+
+        /* 서서히 피 달게 하는 방법도 있는데 음.
         if (hp_Image.transform.localScale.y >= 0)
         {
             float y_size;
@@ -103,6 +115,7 @@ public class PlayerCtrl : BaseCharacter
             hp_Image.transform.localScale = new Vector3(.0f, .0f, .0f);
             //Application.LoadLevel(5);
         }
+        */
     }
 
     void OnTriggerEnter(Collider other)
@@ -132,15 +145,11 @@ public class PlayerCtrl : BaseCharacter
 
         if (stateInfo.IsName("Walk"))
         {
-            anim.speed = curMoveSpeed;
+            anim.speed = curMoveSpeed-1;
         }
-        else if (stateInfo.IsName("Attack"))
+        else if (stateInfo.IsName("Attack01"))
         {
             anim.speed = curAttackSpeed;
-        }
-        else
-        {
-            anim.speed = 1.0f;
         }
     }
 }

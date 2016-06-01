@@ -29,7 +29,7 @@ public class BaseSkill : MonoBehaviour {
             case "Hast":
                 {
                     SmallHast.instance.buffTime = 30.0f;
-                    PlayerCtrl.instance.curMoveSpeed = 5.0f;
+                    PlayerCtrl.instance.curMoveSpeed = 6.0f;
                     yield return new WaitForSeconds(ftime);
                     PlayerCtrl.instance.curMoveSpeed = PlayerCtrl.instance.baseMoveSpeed;
                 }

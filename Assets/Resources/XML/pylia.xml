@@ -2,219 +2,335 @@
 <root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<npc>
 		<sceen>null</sceen>
-		<code>ms101</code>
+		<restart>save</restart>
+		<code>null</code>
+		<success>ms101</success>
+		<jump>null</jump>
 		<point>null</point>
 		<character>pylia</character>
 		<name>필리아</name>
+		<int_if>null</int_if>
+		<clear_if>null</clear_if>
 		<select>null</select>
-		<jump>null</jump>
-		<textcolor>null</textcolor>
 		<select_a>null</select_a>
 		<select_b>null</select_b>
 		<story>파비앙 나를 찾아와 줬구나.
 너도 알다시피 지금 발렌시아 지역은
 데모너스의 저주 때문에 큰 위험에 처해있어.</story>
+		<skill>null</skill>
 	</npc>
 	<npc>
 		<sceen>null</sceen>
+		<restart>null</restart>
 		<code>null</code>
+		<success>null</success>
+		<jump>null</jump>
 		<point>null</point>
 		<character>pylia</character>
 		<name>필리아</name>
+		<int_if>null</int_if>
+		<clear_if>null</clear_if>
 		<select>null</select>
-		<jump>null</jump>
-		<textcolor>null</textcolor>
 		<select_a>null</select_a>
 		<select_b>null</select_b>
 		<story>갑작스러운 추위때문에 농작물은 죽어나가고 있고,
 이상하게도 20세 이상의 사람들은 마을 밖으로 나갈 수 없어..
 아무래도 데모너스는 상상하는 그 이상으로 강력한거 같아</story>
+		<skill>null</skill>
 	</npc>
 	<npc>
 		<sceen>null</sceen>
+		<restart>null</restart>
 		<code>null</code>
+		<success>null</success>
+		<jump>null</jump>
 		<point>null</point>
 		<character>pylia</character>
 		<name>필리아</name>
+		<int_if>null</int_if>
+		<clear_if>null</clear_if>
 		<select>null</select>
-		<jump>null</jump>
-		<textcolor>null</textcolor>
 		<select_a>null</select_a>
 		<select_b>null</select_b>
 		<story>그래서 너를 부른거야. 너라면 발렌시아를 구할 수 있다고 생각해
 하지만 피델리오 장로님을 설득해야할꺼야. 설득해볼래?</story>
+		<skill>null</skill>
 	</npc>
 	<npc>
 		<sceen>null</sceen>
+		<restart>null</restart>
 		<code>null</code>
+		<success>null</success>
+		<jump>a</jump>
 		<point>null</point>
 		<character>fabien</character>
 		<name>파비앙</name>
+		<int_if>null</int_if>
+		<clear_if>null</clear_if>
 		<select>a</select>
-		<jump>ms102</jump>
-		<textcolor>blue</textcolor>
 		<select_a>수락</select_a>
 		<select_b>거절</select_b>
 		<story>null</story>
+		<skill>null</skill>
 	</npc>
 	<npc>
 		<sceen>null</sceen>
+		<restart>null</restart>
 		<code>null</code>
+		<success>null</success>
+		<jump>null</jump>
 		<point>end</point>
 		<character>null</character>
 		<name>null</name>
+		<int_if>null</int_if>
+		<clear_if>null</clear_if>
 		<select>null</select>
-		<jump>null</jump>
-		<textcolor>null</textcolor>
 		<select_a>null</select_a>
 		<select_b>null</select_b>
 		<story>null</story>
+		<skill>null</skill>
 	</npc>
 	<npc>
 		<sceen>null</sceen>
+		<restart>save</restart>
 		<code>ms102</code>
-		<point>ms102</point>
+		<success>null</success>
+		<jump>null</jump>
+		<point>a</point>
 		<character>pylia</character>
 		<name>필리아</name>
+		<int_if>null</int_if>
+		<clear_if>null</clear_if>
 		<select>null</select>
-		<jump>null</jump>
-		<textcolor>null</textcolor>
 		<select_a>null</select_a>
 		<select_b>null</select_b>
 		<story>잘생각했어! 얼른 장로님께 가봐</story>
+		<skill>null</skill>
 	</npc>
 	<npc>
 		<sceen>null</sceen>
+		<restart>null</restart>
 		<code>null</code>
+		<success>null</success>
+		<jump>b</jump>
 		<point>end</point>
 		<character>null</character>
 		<name>null</name>
+		<int_if>null</int_if>
+		<clear_if>ms111</clear_if>
 		<select>null</select>
-		<jump>null</jump>
-		<textcolor>null</textcolor>
 		<select_a>null</select_a>
 		<select_b>null</select_b>
 		<story>null</story>
+		<skill>null</skill>
 	</npc>
 	<npc>
 		<sceen>null</sceen>
-		<code>ms112</code>
-		<point>null</point>
+		<restart>save</restart>
+		<code>null</code>
+		<success>null</success>
+		<jump>null</jump>
+		<point>b</point>
 		<character>pylia</character>
 		<name>필리아</name>
+		<int_if>null</int_if>
+		<clear_if>null</clear_if>
 		<select>null</select>
-		<jump>null</jump>
-		<textcolor>null</textcolor>
 		<select_a>null</select_a>
 		<select_b>null</select_b>
 		<story>파비앙 무슨일이야?</story>
+		<skill>null</skill>
 	</npc>
 	<npc>
 		<sceen>null</sceen>
+		<restart>null</restart>
 		<code>null</code>
+		<success>null</success>
+		<jump>null</jump>
 		<point>null</point>
 		<character>fabien</character>
 		<name>파비앙</name>
+		<int_if>null</int_if>
+		<clear_if>null</clear_if>
 		<select>null</select>
-		<jump>null</jump>
-		<textcolor>null</textcolor>
 		<select_a>null</select_a>
 		<select_b>null</select_b>
 		<story>(윌터와 있었 던 일을 설명한다)</story>
+		<skill>null</skill>
 	</npc>
 	<npc>
 		<sceen>null</sceen>
+		<restart>null</restart>
 		<code>null</code>
+		<success>null</success>
+		<jump>null</jump>
 		<point>null</point>
 		<character>pylia</character>
 		<name>필리아</name>
+		<int_if>null</int_if>
+		<clear_if>null</clear_if>
 		<select>null</select>
-		<jump>null</jump>
-		<textcolor>null</textcolor>
 		<select_a>null</select_a>
 		<select_b>null</select_b>
 		<story>아..그렇구나.. 내가 알기론 윌터 아저씨는
 보기와는 다르게 굉장히 까다로운 사람이야 </story>
+		<skill>null</skill>
 	</npc>
 	<npc>
 		<sceen>null</sceen>
+		<restart>null</restart>
 		<code>null</code>
+		<success>null</success>
+		<jump>null</jump>
 		<point>null</point>
 		<character>pylia</character>
 		<name>필리아</name>
+		<int_if>null</int_if>
+		<clear_if>null</clear_if>
 		<select>null</select>
-		<jump>null</jump>
-		<textcolor>null</textcolor>
 		<select_a>null</select_a>
 		<select_b>null</select_b>
 		<story>윌터 아저씨의 마음을 돌리기 위해서는
 그 전의 증표와 같은 증명으론 안될꺼야</story>
+		<skill>null</skill>
 	</npc>
 	<npc>
 		<sceen>null</sceen>
+		<restart>null</restart>
 		<code>null</code>
+		<success>null</success>
+		<jump>null</jump>
 		<point>null</point>
 		<character>pylia</character>
 		<name>필리아</name>
+		<int_if>null</int_if>
+		<clear_if>null</clear_if>
 		<select>null</select>
-		<jump>null</jump>
-		<textcolor>null</textcolor>
 		<select_a>null</select_a>
 		<select_b>null</select_b>
 		<story>음.....아!!
 혹시 수련용 맵D에 있는 드래곤을 아니?</story>
+		<skill>null</skill>
 	</npc>
 	<npc>
 		<sceen>null</sceen>
+		<restart>null</restart>
 		<code>null</code>
+		<success>null</success>
+		<jump>null</jump>
 		<point>null</point>
 		<character>pylia</character>
 		<name>필리아</name>
+		<int_if>null</int_if>
+		<clear_if>null</clear_if>
 		<select>null</select>
-		<jump>null</jump>
-		<textcolor>null</textcolor>
 		<select_a>null</select_a>
 		<select_b>null</select_b>
 		<story>갑자기 난폭해지는 바람에 출입을 막았다고 하는데..
 그 드래곤을 처치하면 윌터 아저씨도 인정해주지 않을까?</story>
+		<skill>null</skill>
 	</npc>
 	<npc>
 		<sceen>null</sceen>
+		<restart>null</restart>
 		<code>null</code>
+		<success>null</success>
+		<jump>c</jump>
 		<point>null</point>
 		<character>fabien</character>
 		<name>파비앙</name>
+		<int_if>null</int_if>
+		<clear_if>null</clear_if>
 		<select>a</select>
-		<jump>null</jump>
-		<textcolor>blue</textcolor>
 		<select_a>수락</select_a>
 		<select_b>거절</select_b>
 		<story>null</story>
+		<skill>null</skill>
 	</npc>
 	<npc>
 		<sceen>null</sceen>
+		<restart>null</restart>
 		<code>null</code>
-		<point>null</point>
-		<character>pylia</character>
-		<name>필리아</name>
-		<select>null</select>
+		<success>null</success>
 		<jump>null</jump>
-		<textcolor>null</textcolor>
-		<select_a>null</select_a>
-		<select_b>null</select_b>
-		<story>조심해! 드래곤은 이제껏 처치했던 몬스터와는 다를꺼야!</story>
-	</npc>
-	<npc>
-		<sceen>null</sceen>
-		<code>null</code>
 		<point>end</point>
 		<character>null</character>
 		<name>null</name>
+		<int_if>null</int_if>
+		<clear_if>null</clear_if>
 		<select>null</select>
-		<jump>null</jump>
-		<textcolor>null</textcolor>
 		<select_a>null</select_a>
 		<select_b>null</select_b>
 		<story>null</story>
+		<skill>null</skill>
+	</npc>
+	<npc>
+		<sceen>null</sceen>
+		<restart>save</restart>
+		<code>ms112</code>
+		<success>null</success>
+		<jump>null</jump>
+		<point>c</point>
+		<character>pylia</character>
+		<name>필리아</name>
+		<int_if>null</int_if>
+		<clear_if>null</clear_if>
+		<select>null</select>
+		<select_a>null</select_a>
+		<select_b>null</select_b>
+		<story>조심해! 
+드래곤은 이제껏 처치했던 몬스터와는 다를꺼야!</story>
+		<skill>null</skill>
+	</npc>
+	<npc>
+		<sceen>null</sceen>
+		<restart>null</restart>
+		<code>null</code>
+		<success>null</success>
+		<jump>d</jump>
+		<point>end</point>
+		<character>null</character>
+		<name>null</name>
+		<int_if>null</int_if>
+		<clear_if>ms112</clear_if>
+		<select>null</select>
+		<select_a>null</select_a>
+		<select_b>null</select_b>
+		<story>null</story>
+		<skill>null</skill>
+	</npc>
+	<npc>
+		<sceen>null</sceen>
+		<restart>save</restart>
+		<code>null</code>
+		<success>null</success>
+		<jump>null</jump>
+		<point>d</point>
+		<character>pylia</character>
+		<name>필리아</name>
+		<int_if>null</int_if>
+		<clear_if>null</clear_if>
+		<select>null</select>
+		<select_a>null</select_a>
+		<select_b>null</select_b>
+		<story>너가 해낼줄 알았어 !!</story>
+		<skill>null</skill>
+	</npc>
+	<npc>
+		<sceen>null</sceen>
+		<restart>null</restart>
+		<code>null</code>
+		<success>null</success>
+		<jump>null</jump>
+		<point>end</point>
+		<character>null</character>
+		<name>null</name>
+		<int_if>null</int_if>
+		<clear_if>null</clear_if>
+		<select>null</select>
+		<select_a>null</select_a>
+		<select_b>null</select_b>
+		<story>null</story>
+		<skill>null</skill>
 	</npc>
 </root>

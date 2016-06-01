@@ -2,470 +2,712 @@
 <root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<npc>
 		<sceen>null</sceen>
-		<code>ms102</code>
+		<restart>null</restart>
+		<code>null</code>
+		<success>ms102</success>
+		<jump>null</jump>
 		<point>null</point>
 		<character>pidellio</character>
 		<name>피델리오</name>
+		<int_if>null</int_if>
+		<clear_if>null</clear_if>
 		<select>null</select>
-		<jump>null</jump>
-		<textcolor>null</textcolor>
 		<select_a>null</select_a>
 		<select_b>null</select_b>
 		<story>(관심 없는 표정으로) 파비앙 아니냐 너는?</story>
+		<skill>null</skill>
 	</npc>
 	<npc>
 		<sceen>cut</sceen>
+		<restart>null</restart>
 		<code>null</code>
+		<success>null</success>
+		<jump>null</jump>
 		<point>null</point>
 		<character>pidellio</character>
 		<name>피델리오</name>
+		<int_if>null</int_if>
+		<clear_if>null</clear_if>
 		<select>null</select>
-		<jump>null</jump>
-		<textcolor>null</textcolor>
 		<select_a>null</select_a>
 		<select_b>null</select_b>
 		<story>(다시 대화를 걸어주세요)</story>
+		<skill>null</skill>
 	</npc>
 	<npc>
 		<sceen>null</sceen>
+		<restart>save</restart>
 		<code>ms103</code>
-		<point>ms103</point>
+		<success>null</success>
+		<jump>null</jump>
+		<point>null</point>
 		<character>pidellio</character>
 		<name>피델리오</name>
+		<int_if>null</int_if>
+		<clear_if>null</clear_if>
 		<select>null</select>
-		<jump>null</jump>
-		<textcolor>null</textcolor>
 		<select_a>null</select_a>
 		<select_b>null</select_b>
 		<story>넌 파비앙이 아니냐?!
 지금은 마을 일로 바쁘니 용건이 있거든 나중에 찾아오거라.</story>
+		<skill>null</skill>
 	</npc>
 	<npc>
 		<sceen>null</sceen>
+		<restart>null</restart>
 		<code>null</code>
+		<success>null</success>
+		<jump>a</jump>
 		<point>null</point>
 		<character>fabien</character>
 		<name>파비앙</name>
+		<int_if>null</int_if>
+		<clear_if>null</clear_if>
 		<select>b</select>
-		<jump>ms103_b</jump>
-		<textcolor>blue</textcolor>
 		<select_a>네 알겠습니다.</select_a>
 		<select_b>장로님 급히 드릴 말씀이 있습니다.</select_b>
 		<story>null</story>
+		<skill>null</skill>
 	</npc>
 	<npc>
 		<sceen>null</sceen>
+		<restart>null</restart>
 		<code>null</code>
+		<success>null</success>
+		<jump>null</jump>
 		<point>end</point>
 		<character>null</character>
 		<name>null</name>
+		<int_if>null</int_if>
+		<clear_if>null</clear_if>
 		<select>null</select>
-		<jump>null</jump>
-		<textcolor>null</textcolor>
 		<select_a>null</select_a>
 		<select_b>null</select_b>
 		<story>null</story>
+		<skill>null</skill>
 	</npc>
 	<npc>
 		<sceen>null</sceen>
+		<restart>null</restart>
 		<code>null</code>
-		<point>ms103_b</point>
+		<success>null</success>
+		<jump>null</jump>
+		<point>a</point>
 		<character>pidellio</character>
 		<name>피델리오</name>
+		<int_if>null</int_if>
+		<clear_if>null</clear_if>
 		<select>null</select>
-		<jump>null</jump>
-		<textcolor>null</textcolor>
 		<select_a>null</select_a>
 		<select_b>null</select_b>
 		<story>무슨 일이길래 그렇게 진지하게 얘기하는거냐.</story>
+		<skill>null</skill>
 	</npc>
 	<npc>
 		<sceen>null</sceen>
+		<restart>null</restart>
 		<code>null</code>
+		<success>null</success>
+		<jump>b</jump>
 		<point>null</point>
 		<character>fabien</character>
 		<name>파비앙</name>
+		<int_if>null</int_if>
+		<clear_if>null</clear_if>
 		<select>a</select>
-		<jump>ms103_b_a</jump>
-		<textcolor>null</textcolor>
 		<select_a>발렌시아 마을을 구하고 싶습니다.</select_a>
 		<select_b>제가 데모너스를 처치하겠습니다.</select_b>
 		<story>null</story>
+		<skill>null</skill>
 	</npc>
 	<npc>
 		<sceen>null</sceen>
+		<restart>null</restart>
 		<code>null</code>
+		<success>null</success>
+		<jump>null</jump>
 		<point>null</point>
 		<character>pidellio</character>
 		<name>피델리오</name>
+		<int_if>null</int_if>
+		<clear_if>null</clear_if>
 		<select>null</select>
-		<jump>null</jump>
-		<textcolor>null</textcolor>
 		<select_a>null</select_a>
 		<select_b>null</select_b>
 		<story>너는 이 상황에 대해 제대로 이해하지 못한거 같군.
 말걸지 말거라.</story>
+		<skill>null</skill>
 	</npc>
 	<npc>
 		<sceen>null</sceen>
+		<restart>null</restart>
 		<code>null</code>
+		<success>null</success>
+		<jump>null</jump>
 		<point>end</point>
 		<character>null</character>
 		<name>null</name>
+		<int_if>null</int_if>
+		<clear_if>null</clear_if>
 		<select>null</select>
-		<jump>null</jump>
-		<textcolor>null</textcolor>
 		<select_a>null</select_a>
 		<select_b>null</select_b>
 		<story> null</story>
+		<skill>null</skill>
 	</npc>
 	<npc>
 		<sceen>null</sceen>
+		<restart>null</restart>
 		<code>null</code>
-		<point>ms103_b_a</point>
+		<success>null</success>
+		<jump>null</jump>
+		<point>b</point>
 		<character>pidellio</character>
 		<name>피델리오</name>
+		<int_if>null</int_if>
+		<clear_if>null</clear_if>
 		<select>null</select>
-		<jump>null</jump>
-		<textcolor>null</textcolor>
 		<select_a>null</select_a>
 		<select_b>null</select_b>
 		<story>너가?
 너가 무슨 일을 할 수 있다는 것이냐.</story>
+		<skill>null</skill>
 	</npc>
 	<npc>
 		<sceen>null</sceen>
+		<restart>null</restart>
 		<code>null</code>
+		<success>null</success>
+		<jump>c</jump>
 		<point>null</point>
 		<character>fabien</character>
 		<name>파비앙</name>
+		<int_if>null</int_if>
+		<clear_if>null</clear_if>
 		<select>a</select>
-		<jump>ms103_b_a_a</jump>
-		<textcolor>blue</textcolor>
 		<select_a>제 나이가 어리다하여 가만히 지켜만 볼 수 없다 생각합니다.</select_a>
 		<select_b>이 상황을 제가 마무리 짓겠습니다.</select_b>
 		<story>null</story>
+		<skill>null</skill>
 	</npc>
 	<npc>
 		<sceen>null</sceen>
+		<restart>null</restart>
 		<code>null</code>
+		<success>null</success>
+		<jump>null</jump>
 		<point>null</point>
 		<character>pidellio</character>
 		<name>피델리오</name>
+		<int_if>null</int_if>
+		<clear_if>null</clear_if>
 		<select>null</select>
-		<jump>null</jump>
-		<textcolor>null</textcolor>
 		<select_a>null</select_a>
 		<select_b>null</select_b>
 		<story>너는 이 상황에 대해 제대로 이해하지 못한거 같군.
 말걸지 말거라.</story>
+		<skill>null</skill>
 	</npc>
 	<npc>
 		<sceen>null</sceen>
+		<restart>null</restart>
 		<code>null</code>
+		<success>null</success>
+		<jump>null</jump>
 		<point>end</point>
 		<character>null</character>
 		<name>null</name>
+		<int_if>null</int_if>
+		<clear_if>null</clear_if>
 		<select>null</select>
-		<jump>null</jump>
-		<textcolor>null</textcolor>
 		<select_a>null</select_a>
 		<select_b>null</select_b>
 		<story>null</story>
+		<skill>null</skill>
 	</npc>
 	<npc>
 		<sceen>null</sceen>
+		<restart>null</restart>
 		<code>null</code>
-		<point>ms103_b_a_a</point>
+		<success>null</success>
+		<jump>null</jump>
+		<point>c</point>
 		<character>pidellio</character>
 		<name>피델리오</name>
+		<int_if>null</int_if>
+		<clear_if>null</clear_if>
 		<select>null</select>
-		<jump>null</jump>
-		<textcolor>null</textcolor>
 		<select_a>null</select_a>
 		<select_b>null</select_b>
 		<story>발렌시아 마을을 생각하는 마음이 기특하구나.
 너도 알다싶이 20세 이하의 마을 사람들 외에는 모두 마을을 나갈 수 없지.</story>
+		<skill>null</skill>
 	</npc>
 	<npc>
 		<sceen>null</sceen>
+		<restart>null</restart>
 		<code>null</code>
+		<success>null</success>
+		<jump>null</jump>
 		<point>null</point>
 		<character>pidellio</character>
 		<name>피델리오</name>
+		<int_if>null</int_if>
+		<clear_if>null</clear_if>
 		<select>null</select>
-		<jump>null</jump>
-		<textcolor>null</textcolor>
 		<select_a>null</select_a>
 		<select_b>null</select_b>
 		<story>나를 포함해 마을에 갇힌 신세란다.
 내가 너에게 기본적으로 공격할 수 있는 스킬을 전수해주겠다.</story>
+		<skill>Attack</skill>
 	</npc>
 	<npc>
 		<sceen>null</sceen>
+		<restart>null</restart>
 		<code>null</code>
+		<success>null</success>
+		<jump>null</jump>
 		<point>null</point>
 		<character>pidellio</character>
 		<name>피델리오</name>
+		<int_if>null</int_if>
+		<clear_if>null</clear_if>
 		<select>null</select>
-		<jump>null</jump>
-		<textcolor>null</textcolor>
 		<select_a>null</select_a>
 		<select_b>null</select_b>
 		<story>하지만 그것으론 부족할 것이야.
 일단 딕을 찾아가 보거라.</story>
+		<skill>null</skill>
 	</npc>
 	<npc>
 		<sceen>null</sceen>
+		<restart>null</restart>
 		<code>null</code>
+		<success>null</success>
+		<jump>d</jump>
 		<point>null</point>
 		<character>fabien</character>
 		<name>파비앙</name>
+		<int_if>null</int_if>
+		<clear_if>null</clear_if>
 		<select>a</select>
-		<jump>ms104</jump>
-		<textcolor>blue</textcolor>
 		<select_a>수락</select_a>
 		<select_b>거절</select_b>
 		<story>null</story>
+		<skill>null</skill>
 	</npc>
 	<npc>
 		<sceen>null</sceen>
-		<code>ms104</code>
-		<point>ms104</point>
-		<character>pidellio</character>
-		<name>피델리오</name>
-		<select>null</select>
-		<jump>null</jump>
-		<textcolor>null</textcolor>
-		<select_a>null</select_a>
-		<select_b>null</select_b>
-		<story>딕을 찾아가 보거라.</story>
-	</npc>
-	<npc>
-		<sceen>null</sceen>
+		<restart>null</restart>
 		<code>null</code>
+		<success>null</success>
+		<jump>null</jump>
 		<point>end</point>
 		<character>null</character>
 		<name>null</name>
+		<int_if>null</int_if>
+		<clear_if>null</clear_if>
 		<select>null</select>
-		<jump>null</jump>
-		<textcolor>null</textcolor>
 		<select_a>null</select_a>
 		<select_b>null</select_b>
 		<story>null</story>
+		<skill>null</skill>
 	</npc>
 	<npc>
 		<sceen>null</sceen>
-		<code>ms113</code>
-		<point>null</point>
+		<restart>save</restart>
+		<code>ms104</code>
+		<success>ms103</success>
+		<jump>null</jump>
+		<point>d</point>
 		<character>pidellio</character>
 		<name>피델리오</name>
+		<int_if>null</int_if>
+		<clear_if>null</clear_if>
 		<select>null</select>
+		<select_a>null</select_a>
+		<select_b>null</select_b>
+		<story>딕을 찾아가 보거라.</story>
+		<skill>null</skill>
+	</npc>
+	<npc>
+		<sceen>null</sceen>
+		<restart>null</restart>
+		<code>null</code>
+		<success>null</success>
+		<jump>e</jump>
+		<point>end</point>
+		<character>null</character>
+		<name>null</name>
+		<int_if>null</int_if>
+		<clear_if>ms112</clear_if>
+		<select>null</select>
+		<select_a>null</select_a>
+		<select_b>null</select_b>
+		<story>null</story>
+		<skill>null</skill>
+	</npc>
+	<npc>
+		<sceen>null</sceen>
+		<restart>save</restart>
+		<code>ms113</code>
+		<success>null</success>
 		<jump>null</jump>
-		<textcolor>null</textcolor>
+		<point>e</point>
+		<character>pidellio</character>
+		<name>피델리오</name>
+		<int_if>null</int_if>
+		<clear_if>null</clear_if>
+		<select>null</select>
 		<select_a>null</select_a>
 		<select_b>null</select_b>
 		<story>오 파비앙 드디어 왔군!
 모든 준비가 끝났는가?</story>
+		<skill>null</skill>
 	</npc>
 	<npc>
 		<sceen>null</sceen>
+		<restart>null</restart>
 		<code>null</code>
+		<success>null</success>
+		<jump>f</jump>
 		<point>null</point>
 		<character>fabien</character>
 		<name>파비앙</name>
+		<int_if>null</int_if>
+		<clear_if>null</clear_if>
 		<select>a</select>
-		<jump>null</jump>
-		<textcolor>blue</textcolor>
 		<select_a>그렇습니다 장로님!</select_a>
 		<select_b>아직 해야할 일이 있습니다.</select_b>
 		<story>null</story>
-	</npc>
-	<npc>
-		<sceen>cut</sceen>
-		<code>null</code>
-		<point>null</point>
-		<character>pidellio</character>
-		<name>피델리오</name>
-		<select>null</select>
-		<jump>null</jump>
-		<textcolor>null</textcolor>
-		<select_a>null</select_a>
-		<select_b>null</select_b>
-		<story>그렇다면 나에게 다시 말을 걸어주게나</story>
+		<skill>null</skill>
 	</npc>
 	<npc>
 		<sceen>null</sceen>
-		<code>ms114</code>
-		<point>ms114</point>
+		<restart>null</restart>
+		<code>null</code>
+		<success>null</success>
+		<jump>null</jump>
+		<point>end</point>
+		<character>null</character>
+		<name>null</name>
+		<int_if>null</int_if>
+		<clear_if>null</clear_if>
+		<select>null</select>
+		<select_a>null</select_a>
+		<select_b>null</select_b>
+		<story>null</story>
+		<skill>null</skill>
+	</npc>
+	<npc>
+		<sceen>cut</sceen>
+		<restart>null</restart>
+		<code>null</code>
+		<success>null</success>
+		<jump>null</jump>
+		<point>null</point>
 		<character>pidellio</character>
 		<name>피델리오</name>
+		<int_if>null</int_if>
+		<clear_if>null</clear_if>
 		<select>null</select>
+		<select_a>null</select_a>
+		<select_b>null</select_b>
+		<story>그렇다면 나에게 다시 말을 걸어주게나</story>
+		<skill>null</skill>
+	</npc>
+	<npc>
+		<sceen>null</sceen>
+		<restart>save</restart>
+		<code>ms114</code>
+		<success>ms113</success>
 		<jump>null</jump>
-		<textcolor>null</textcolor>
+		<point>f</point>
+		<character>pidellio</character>
+		<name>피델리오</name>
+		<int_if>null</int_if>
+		<clear_if>null</clear_if>
+		<select>null</select>
 		<select_a>null</select_a>
 		<select_b>null</select_b>
 		<story>모든 수련을 잘 마치고 돌아왔군
 드래곤을 처치했단 소리를 듣고 깜짝 놀랬지 하하하</story>
+		<skill>null</skill>
 	</npc>
 	<npc>
 		<sceen>null</sceen>
+		<restart>null</restart>
 		<code>null</code>
+		<success>null</success>
+		<jump>null</jump>
 		<point>null</point>
 		<character>pidellio</character>
 		<name>피델리오</name>
+		<int_if>null</int_if>
+		<clear_if>null</clear_if>
 		<select>null</select>
-		<jump>null</jump>
-		<textcolor>null</textcolor>
 		<select_a>null</select_a>
 		<select_b>null</select_b>
 		<story>이제 남은 관문은 하나야
 발렌시아의 평화.. 그러기 위해선 데모너스를 처치해야겠지</story>
+		<skill>null</skill>
 	</npc>
 	<npc>
 		<sceen>null</sceen>
+		<restart>null</restart>
 		<code>null</code>
+		<success>null</success>
+		<jump>null</jump>
 		<point>null</point>
 		<character>pidellio</character>
 		<name>피델리오</name>
+		<int_if>null</int_if>
+		<clear_if>null</clear_if>
 		<select>null</select>
-		<jump>null</jump>
-		<textcolor>null</textcolor>
 		<select_a>null</select_a>
 		<select_b>null</select_b>
 		<story>내 마지막 가르침일세.. 받도록 하게</story>
+		<skill>Status</skill>
 	</npc>
 	<npc>
 		<sceen>null</sceen>
+		<restart>null</restart>
 		<code>null</code>
+		<success>null</success>
+		<jump>g</jump>
 		<point>null</point>
 		<character>fabien</character>
 		<name>파비앙</name>
+		<int_if>null</int_if>
+		<clear_if>null</clear_if>
 		<select>a</select>
-		<jump>ms201</jump>
-		<textcolor>blue</textcolor>
 		<select_a>수락</select_a>
 		<select_b>거절</select_b>
 		<story>null</story>
+		<skill>null</skill>
 	</npc>
 	<npc>
 		<sceen>null</sceen>
+		<restart>null</restart>
 		<code>null</code>
+		<success>null</success>
+		<jump>null</jump>
 		<point>end</point>
 		<character>null</character>
 		<name>null</name>
+		<int_if>null</int_if>
+		<clear_if>null</clear_if>
 		<select>null</select>
-		<jump>null</jump>
-		<textcolor>null</textcolor>
 		<select_a>null</select_a>
 		<select_b>null</select_b>
 		<story>null</story>
+		<skill>null</skill>
 	</npc>
 	<npc>
 		<sceen>cut</sceen>
+		<restart>null</restart>
 		<code>null</code>
-		<point>null</point>
+		<success>null</success>
+		<jump>null</jump>
+		<point>g</point>
 		<character>pidellio</character>
 		<name>피델리오</name>
+		<int_if>null</int_if>
+		<clear_if>null</clear_if>
 		<select>null</select>
-		<jump>null</jump>
-		<textcolor>null</textcolor>
 		<select_a>null</select_a>
 		<select_b>null</select_b>
 		<story>(다시 대화를 걸어주세요)</story>
+		<skill>null</skill>
 	</npc>
 	<npc>
 		<sceen>null</sceen>
-		<code>ms201</code>
-		<point>ms201</point>
+		<restart>save</restart>
+		<code>null</code>
+		<success>null</success>
+		<jump>null</jump>
+		<point>null</point>
 		<character>pidellio</character>
 		<name>피델리오</name>
+		<int_if>null</int_if>
+		<clear_if>null</clear_if>
 		<select>null</select>
-		<jump>null</jump>
-		<textcolor>null</textcolor>
 		<select_a>null</select_a>
 		<select_b>null</select_b>
 		<story>저주때문에 우리는 너를 도와주지 못하지만..
 꼭 데모너스를 처치해 발렌시아 마을을 구해주게나</story>
+		<skill>null</skill>
 	</npc>
 	<npc>
 		<sceen>null</sceen>
+		<restart>null</restart>
 		<code>null</code>
+		<success>null</success>
+		<jump>h</jump>
 		<point>null</point>
 		<character>fabien</character>
 		<name>파비앙</name>
+		<int_if>null</int_if>
+		<clear_if>null</clear_if>
 		<select>a</select>
-		<jump>ms201</jump>
-		<textcolor>blue</textcolor>
 		<select_a>수락</select_a>
 		<select_b>거절</select_b>
 		<story>null</story>
+		<skill>null</skill>
 	</npc>
 	<npc>
 		<sceen>null</sceen>
+		<restart>null</restart>
 		<code>null</code>
-		<point>null</point>
-		<character>pidellio</character>
-		<name>피델리오</name>
-		<select>null</select>
+		<success>null</success>
 		<jump>null</jump>
-		<textcolor>null</textcolor>
-		<select_a>null</select_a>
-		<select_b>null</select_b>
-		<story>몸 조심하게나</story>
-	</npc>
-	<npc>
-		<sceen>null</sceen>
-		<code>null</code>
 		<point>end</point>
 		<character>null</character>
 		<name>null</name>
+		<int_if>null</int_if>
+		<clear_if>null</clear_if>
 		<select>null</select>
-		<jump>null</jump>
-		<textcolor>null</textcolor>
 		<select_a>null</select_a>
 		<select_b>null</select_b>
 		<story>null</story>
+		<skill>null</skill>
 	</npc>
 	<npc>
 		<sceen>null</sceen>
-		<code>null</code>
-		<point>null</point>
+		<restart>save</restart>
+		<code>ms115</code>
+		<success>ms114</success>
+		<jump>null</jump>
+		<point>h</point>
 		<character>pidellio</character>
 		<name>피델리오</name>
+		<int_if>null</int_if>
+		<clear_if>null</clear_if>
 		<select>null</select>
+		<select_a>null</select_a>
+		<select_b>null</select_b>
+		<story>몸 조심하게나</story>
+		<skill>null</skill>
+	</npc>
+	<npc>
+		<sceen>null</sceen>
+		<restart>null</restart>
+		<code>null</code>
+		<success>null</success>
+		<jump>i</jump>
+		<point>end</point>
+		<character>null</character>
+		<name>null</name>
+		<int_if>null</int_if>
+		<clear_if>ms115</clear_if>
+		<select>null</select>
+		<select_a>null</select_a>
+		<select_b>null</select_b>
+		<story>null</story>
+		<skill>null</skill>
+	</npc>
+	<npc>
+		<sceen>null</sceen>
+		<restart>save</restart>
+		<code>null</code>
+		<success>null</success>
 		<jump>null</jump>
-		<textcolor>null</textcolor>
+		<point>i</point>
+		<character>pidellio</character>
+		<name>피델리오</name>
+		<int_if>null</int_if>
+		<clear_if>null</clear_if>
+		<select>null</select>
 		<select_a>null</select_a>
 		<select_b>null</select_b>
 		<story>자네가 해낼 줄 알았어!!
 이제 발렌시아 마을은 다시 평화로워질꺼야!!</story>
+		<skill>null</skill>
 	</npc>
 	<npc>
 		<sceen>null</sceen>
+		<restart>null</restart>
 		<code>null</code>
+		<success>null</success>
+		<jump>null</jump>
 		<point>null</point>
 		<character>pidellio</character>
 		<name>피델리오</name>
+		<int_if>null</int_if>
+		<clear_if>null</clear_if>
 		<select>null</select>
-		<jump>null</jump>
-		<textcolor>null</textcolor>
 		<select_a>null</select_a>
 		<select_b>null</select_b>
 		<story>다시는 이런 일이 반복되지 않도록 하겠어
 말이 나와서 말인데.. 자네 다른 모험을 떠나보는게 어떻겠나?</story>
+		<skill>null</skill>
 	</npc>
 	<npc>
 		<sceen>null</sceen>
+		<restart>null</restart>
 		<code>null</code>
+		<success>null</success>
+		<jump>k</jump>
+		<point>null</point>
+		<character>fabien</character>
+		<name>파비앙</name>
+		<int_if>null</int_if>
+		<clear_if>null</clear_if>
+		<select>null</select>
+		<select_a>수락</select_a>
+		<select_b>거절</select_b>
+		<story>null</story>
+		<skill>null</skill>
+	</npc>
+	<npc>
+		<sceen>null</sceen>
+		<restart>null</restart>
+		<code>null</code>
+		<success>null</success>
+		<jump>null</jump>
 		<point>end</point>
 		<character>null</character>
 		<name>null</name>
+		<int_if>null</int_if>
+		<clear_if>null</clear_if>
 		<select>null</select>
-		<jump>null</jump>
-		<textcolor>null</textcolor>
 		<select_a>null</select_a>
 		<select_b>null</select_b>
 		<story>null</story>
+		<skill>null</skill>
+	</npc>
+	<npc>
+		<sceen>null</sceen>
+		<restart>null</restart>
+		<code>null</code>
+		<success>null</success>
+		<jump>null</jump>
+		<point>k</point>
+		<character>pidellio</character>
+		<name>피델리오</name>
+		<int_if>null</int_if>
+		<clear_if>null</clear_if>
+		<select>null</select>
+		<select_a>null</select_a>
+		<select_b>null</select_b>
+		<story>잘 생각해보게..</story>
+		<skill>null</skill>
+	</npc>
+	<npc>
+		<sceen>null</sceen>
+		<restart>save</restart>
+		<code>null</code>
+		<success>null</success>
+		<jump>null</jump>
+		<point>end</point>
+		<character>null</character>
+		<name>null</name>
+		<int_if>null</int_if>
+		<clear_if>null</clear_if>
+		<select>null</select>
+		<select_a>null</select_a>
+		<select_b>null</select_b>
+		<story>null</story>
+		<skill>null</skill>
 	</npc>
 </root>

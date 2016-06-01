@@ -4,9 +4,12 @@ using System.Collections.Generic;
 
 public class NpcPylia : BaseNpc {
 
+    public static NpcPylia instance;
+
 	void Start ()
     {
-        GetComponent();
+        instance = this;
+        Init();
 
         base.npcPostion     = new Vector3(256.0f, 65.0f, .0f); //나중에 지울예정 혹시몰라서 일단 대기중인변수.
         base.npcName        = "pylia";
@@ -16,7 +19,7 @@ public class NpcPylia : BaseNpc {
         base.qwestValue      = 0;
         base.currentqwest    = null;
         base.prevCheckQwest  = "null";
-        base.limitedcode = "ms102";
+        base.limitedcode   = "ms102";
 
         //쉐이더
         base.shader1 = Shader.Find("Outlined/Diffuse");
@@ -25,17 +28,9 @@ public class NpcPylia : BaseNpc {
         Load_Story(npcName);
     }
 
-    private void GetComponent()
+    private void Init()
     {
-        //나중에 >GameManager로 Loop돌릴때 그때 초기화 한번하고 돌려쓰기로 지금은 일단.
-        if (GameObject.Find("Player"))
-        {
-            base.target = GameObject.Find("Player").GetComponent<Transform>();
-        }
-
-        base.coll = transform.GetComponent<CapsuleCollider>();
-        //base.mesh = transform.FindChild("Material").GetComponent<SkinnedMeshRenderer>();
-        base.ani  = this.GetComponent<Animator>();
+        base.GetComponent();
     }
 
     void FixedUpdate()
@@ -44,12 +39,12 @@ public class NpcPylia : BaseNpc {
         {
             base.NpcRotTarget(transform, target.transform, 3.0f);
             coll.enabled = true;
-            //mesh.material.shader = shader1; 캐릭터 다 받고서 적용할 예정
+            mesh.material.shader = shader1;
         }
         else
         {
             coll.enabled = false;
-            //mesh.material.shader = shader2;
+            mesh.material.shader = shader2;
         }
     }
 }

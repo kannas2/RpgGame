@@ -41,7 +41,8 @@ public class QwestManager : Singleton<QwestManager>
     //퀘스트 목록 생성.
     public void CreateQwest(string qwestcode)
     {
-        Sprite image = (Sprite)Resources.Load("GameUI/" + qwestcode, typeof(Sprite));
+        Sprite image = (Sprite)Resources.Load("GameUI/QwestTitle/" + qwestcode, typeof(Sprite));
+        Debug.Log("image : " + image);
         GameObject qwest = Instantiate(Resources.Load("Prefab/Qwest")) as GameObject;
         qwest.transform.SetParent(parent.transform);
         qwest.name = qwestcode;

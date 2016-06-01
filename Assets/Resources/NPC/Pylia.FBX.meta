@@ -1,74 +1,76 @@
 fileFormatVersion: 2
-guid: d5821748352957a4bac00af6e9d3e0e0
-timeCreated: 1463987395
+guid: f16364043702fe9449c7f6d19544dfdf
+timeCreated: 1464747525
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
     100000: //RootNode
     100002: Bip005
-    100004: Bip005 Head
-    100006: Bip005 HeadNub
-    100008: Bip005 L Calf
-    100010: Bip005 L Clavicle
-    100012: Bip005 L Finger0
-    100014: Bip005 L Finger0Nub
-    100016: Bip005 L Foot
-    100018: Bip005 L Forearm
-    100020: Bip005 L Hand
-    100022: Bip005 L Thigh
-    100024: Bip005 L Toe0
-    100026: Bip005 L Toe0Nub
-    100028: Bip005 L UpperArm
-    100030: Bip005 Neck
-    100032: Bip005 Pelvis
-    100034: Bip005 R Calf
-    100036: Bip005 R Clavicle
-    100038: Bip005 R Finger0
-    100040: Bip005 R Finger0Nub
-    100042: Bip005 R Foot
-    100044: Bip005 R Forearm
-    100046: Bip005 R Hand
-    100048: Bip005 R Thigh
-    100050: Bip005 R Toe0
-    100052: Bip005 R Toe0Nub
-    100054: Bip005 R UpperArm
-    100056: Bip005 Spine
-    100058: Bip005 Xtra01
-    100060: Bip005 Xtra01Nub
-    100062: Box004
+    100004: Bip005 Footsteps
+    100006: Bip005 Head
+    100008: Bip005 HeadNub
+    100010: Bip005 L Calf
+    100012: Bip005 L Clavicle
+    100014: Bip005 L Finger0
+    100016: Bip005 L Finger0Nub
+    100018: Bip005 L Foot
+    100020: Bip005 L Forearm
+    100022: Bip005 L Hand
+    100024: Bip005 L Thigh
+    100026: Bip005 L Toe0
+    100028: Bip005 L Toe0Nub
+    100030: Bip005 L UpperArm
+    100032: Bip005 Neck
+    100034: Bip005 Pelvis
+    100036: Bip005 R Calf
+    100038: Bip005 R Clavicle
+    100040: Bip005 R Finger0
+    100042: Bip005 R Finger0Nub
+    100044: Bip005 R Foot
+    100046: Bip005 R Forearm
+    100048: Bip005 R Hand
+    100050: Bip005 R Thigh
+    100052: Bip005 R Toe0
+    100054: Bip005 R Toe0Nub
+    100056: Bip005 R UpperArm
+    100058: Bip005 Spine
+    100060: Bip005 Xtra01
+    100062: Bip005 Xtra01Nub
+    100064: Box004
     400000: //RootNode
     400002: Bip005
-    400004: Bip005 Head
-    400006: Bip005 HeadNub
-    400008: Bip005 L Calf
-    400010: Bip005 L Clavicle
-    400012: Bip005 L Finger0
-    400014: Bip005 L Finger0Nub
-    400016: Bip005 L Foot
-    400018: Bip005 L Forearm
-    400020: Bip005 L Hand
-    400022: Bip005 L Thigh
-    400024: Bip005 L Toe0
-    400026: Bip005 L Toe0Nub
-    400028: Bip005 L UpperArm
-    400030: Bip005 Neck
-    400032: Bip005 Pelvis
-    400034: Bip005 R Calf
-    400036: Bip005 R Clavicle
-    400038: Bip005 R Finger0
-    400040: Bip005 R Finger0Nub
-    400042: Bip005 R Foot
-    400044: Bip005 R Forearm
-    400046: Bip005 R Hand
-    400048: Bip005 R Thigh
-    400050: Bip005 R Toe0
-    400052: Bip005 R Toe0Nub
-    400054: Bip005 R UpperArm
-    400056: Bip005 Spine
-    400058: Bip005 Xtra01
-    400060: Bip005 Xtra01Nub
-    400062: Box004
+    400004: Bip005 Footsteps
+    400006: Bip005 Head
+    400008: Bip005 HeadNub
+    400010: Bip005 L Calf
+    400012: Bip005 L Clavicle
+    400014: Bip005 L Finger0
+    400016: Bip005 L Finger0Nub
+    400018: Bip005 L Foot
+    400020: Bip005 L Forearm
+    400022: Bip005 L Hand
+    400024: Bip005 L Thigh
+    400026: Bip005 L Toe0
+    400028: Bip005 L Toe0Nub
+    400030: Bip005 L UpperArm
+    400032: Bip005 Neck
+    400034: Bip005 Pelvis
+    400036: Bip005 R Calf
+    400038: Bip005 R Clavicle
+    400040: Bip005 R Finger0
+    400042: Bip005 R Finger0Nub
+    400044: Bip005 R Foot
+    400046: Bip005 R Forearm
+    400048: Bip005 R Hand
+    400050: Bip005 R Thigh
+    400052: Bip005 R Toe0
+    400054: Bip005 R Toe0Nub
+    400056: Bip005 R UpperArm
+    400058: Bip005 Spine
+    400060: Bip005 Xtra01
+    400062: Bip005 Xtra01Nub
+    400064: Box004
     4300000: Box004
     7400000: Take 001
     9500000: //RootNode

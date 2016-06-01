@@ -14,7 +14,7 @@ public class Inventory : MonoBehaviour
 
     //슬롯 스타트 지점 x,y 나중에 세부 조절이 필요함 망할 UI좌표계 
     float x = -281.0f;
-    float y =  105.0f;
+    float y = 80.0f;
 
     int slotAmount = 0;
 
