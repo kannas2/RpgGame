@@ -20,6 +20,7 @@ public class QwestManager : Singleton<QwestManager>
 
     void Start()
     {
+        qwest.Add("ms101", false);
         CreateQwest("ms101");
     }
 

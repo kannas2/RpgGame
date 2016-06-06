@@ -4,8 +4,156 @@ using UnityEngine.UI;
 
 public class Monster : MonoBehaviour
 {
-    public float monster_HP = 100.0f;
-    public float current_HP = 100.0f;
+    public float maxHP;
+    public float curHP;
+
+    public float maxMP;
+    public float curMP;
+
+    public float maxDamage;
+    public float startDamage;
+
+    public float attackDis;
+
+    public float baseAttackSpeed;
+    public float curAttackSpeed;
+
+    public float baseMoveSpeed;
+    public float curMoveSpeed;
+
+    public float rotSpeed;
+
+    public float chaseTime;
+    public float chaseCancleTime;
+
+    public bool IsDead; //false;
+
+    public Transform  myTarget { get; set; }
+    public PlayerCtrl player;
+
+    public Vector3   preMonsterPos; //몬스터 시작지점.
+    public Transform curMonsterPos; //현재 위치 이동해서의.
+    public Vector3   prevRot;      //몬스터가 원래 보고 있던 각도.
+
+    public int      monsterPatten; //몬스 특정 패턴.
+
+    public State_Machine<Monster> state;
+
+    //------------------------
+    public Image imageHPbar;
+    public Image imageMPbar;
+
+    public Text  monsterName;
+    public Animator anim;
+    public string itemPath;  //아이템 경로.
+
+    public bool attackState; //선공 여부.
+
+    public virtual void GetComponent()
+    {
+        myTarget = PlayerCtrl.instance.transform;
+        player   = PlayerCtrl.instance;
+    }
+
+    public void ResetState()
+    {
+        myTarget = PlayerCtrl.instance.transform;
+
+        //몬스터 세팅된 포지션
+        //curMonsterPos = preMonsterPos;
+        curMonsterPos.rotation = Quaternion.Euler(prevRot);
+        state.Initial_Setting (this, State_Idle.Instance);
+    }
+
+    //상태변경
+    public void ChangeState(FSM_State<Monster> _state)
+    {
+        state.ChangeState(_state);
+    }
+
+    //회전 각도 체크.
+    public bool Check_Angle()
+    {
+        if (Vector3.Dot(myTarget.position, curMonsterPos.position) >= 0.5f)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    //일정 거리내에 있는지 체크.
+    public bool Check_Range()
+    {
+        if (Vector3.Distance(myTarget.position, curMonsterPos.position) <= attackDis)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public void MonsterUpdateHP()
+    {
+        imageHPbar.fillAmount = curHP / maxHP;
+
+        if(curHP >= maxHP)
+        {
+            curHP = maxHP;
+        }
+        else if(curHP <= 0)
+        {
+            curHP = 0;
+        }
+
+        //MP가 있는 몬스터일 경우? 모르겠음 기획서에는 없음.
+        if(imageMPbar != null)
+        {
+            imageMPbar.fillAmount = curMP / maxMP;
+            if (curMP >= maxMP)
+            {
+                curMP = maxMP;
+            }
+            else if(curMP <= 0)
+            {
+                curMP = 0;
+            }
+        }
+    }
+
+    public void Create_item()
+    {
+        GameObject item = (GameObject)Instantiate(Resources.Load(itemPath), curMonsterPos.position, Quaternion.identity);
+        item.transform.position = new Vector3(curMonsterPos.position.x, curMonsterPos.position.y + 5.0f, curMonsterPos.position.z);
+    }
+
+    //이건 각자 몬스터에서 처리하는것으로.
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            Debug.Log("충돌했습니다.");
+            //player.Character_Update_Hp(0.1f);
+            PlayerCtrl.instance.curHP -= 10.0f;
+            player.anim.SetBool("isDamage", true); //일단 이런식으로 구현하고 나중에 애니메이션 함수를 플레이어 클래스에서 한개 만들고 그 클래스에서 애니메이션 처리하는것으로 지금은 급한대로.
+
+            GameObject obj = (GameObject)Instantiate(Resources.Load("Particle/Attack")) as GameObject;
+            obj.transform.parent = other.transform;
+
+            obj.transform.localPosition = other.transform.localPosition;
+            Destroy(obj, 0.7f);
+            Debug.Log("other : " + other.transform.localPosition);
+        }
+    }
+
+}
+/*
+using UnityEngine;
+using System.Collections;
+using UnityEngine.UI;
+
+public class Monster : MonoBehaviour
+{
+    public float max_HP = 100.0f;
+    public float cur_HP = 100.0f;
 
     private float attack_damage = 1.0f;
 
@@ -133,3 +281,4 @@ public class Monster : MonoBehaviour
         item.transform.position = new Vector3(transform.position.x, transform.position.y + 5.0f, transform.position.z);
     }
 }
+    */

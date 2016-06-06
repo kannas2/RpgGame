@@ -53,7 +53,8 @@
 		<select_a>null</select_a>
 		<select_b>null</select_b>
 		<story>그래서 너를 부른거야. 너라면 발렌시아를 구할 수 있다고 생각해
-하지만 피델리오 장로님을 설득해야할꺼야. 설득해볼래?</story>
+하지만 피델리오 장로님을 설득해야할꺼야.
+설득해볼래?</story>
 		<skill>null</skill>
 	</npc>
 	<npc>
@@ -95,12 +96,12 @@
 		<restart>save</restart>
 		<code>ms102</code>
 		<success>null</success>
-		<jump>null</jump>
+		<jump>b</jump>
 		<point>a</point>
 		<character>pylia</character>
 		<name>필리아</name>
 		<int_if>null</int_if>
-		<clear_if>null</clear_if>
+		<clear_if>ms111</clear_if>
 		<select>null</select>
 		<select_a>null</select_a>
 		<select_b>null</select_b>
@@ -112,12 +113,12 @@
 		<restart>null</restart>
 		<code>null</code>
 		<success>null</success>
-		<jump>b</jump>
+		<jump>null</jump>
 		<point>end</point>
 		<character>null</character>
 		<name>null</name>
 		<int_if>null</int_if>
-		<clear_if>ms111</clear_if>
+		<clear_if>null</clear_if>
 		<select>null</select>
 		<select_a>null</select_a>
 		<select_b>null</select_b>
@@ -269,12 +270,12 @@
 		<restart>save</restart>
 		<code>ms112</code>
 		<success>null</success>
-		<jump>null</jump>
+		<jump>d</jump>
 		<point>c</point>
 		<character>pylia</character>
 		<name>필리아</name>
 		<int_if>null</int_if>
-		<clear_if>null</clear_if>
+		<clear_if>ms112</clear_if>
 		<select>null</select>
 		<select_a>null</select_a>
 		<select_b>null</select_b>
@@ -287,12 +288,12 @@
 		<restart>null</restart>
 		<code>null</code>
 		<success>null</success>
-		<jump>d</jump>
+		<jump>null</jump>
 		<point>end</point>
 		<character>null</character>
 		<name>null</name>
 		<int_if>null</int_if>
-		<clear_if>ms112</clear_if>
+		<clear_if>null</clear_if>
 		<select>null</select>
 		<select_a>null</select_a>
 		<select_b>null</select_b>

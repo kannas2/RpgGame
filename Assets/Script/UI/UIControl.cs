@@ -85,7 +85,7 @@ public class UIControl : Singleton<UIControl>
                         
                         //비어있거나 true일경우에만 npc클릭이 가능하게끔 예외처리. 
                         bool check = QwestManager.Instance.qwest.ContainsKey(npc.prevCheckQwest);
-                        if (check || npc.prevCheckQwest == "null")
+                        if (check)
                         {
                             npc.currentIndex = npc.textIndex;
                             SetSceen(npc);

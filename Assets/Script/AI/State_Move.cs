@@ -4,7 +4,7 @@ using System;
 
 public class State_Move : FSM_State<Monster>
 {
-    static readonly State_Move instance = new State_Move();
+    public static readonly State_Move instance = new State_Move();
     public static State_Move Instance
     {
         get
@@ -13,93 +13,93 @@ public class State_Move : FSM_State<Monster>
         }
     }
 
-    private float reset_time = 3f;
-    private float current_time;
+    private float resetTime;
+    private float currentTime;
 
-    private Vector3 _dir;
-    private Vector3 _nordir;
+    private Vector3 dir;
+    private Vector3 nordir;
     private float distance;
 
     static State_Move() { }
     private State_Move() { }
 
-    public override void EnterState(Monster _monster)
+    public override void EnterState(Monster monster)
     {
-        current_time = reset_time;
+        resetTime = 3.0f;
+        currentTime = resetTime;
     }
 
-    public override void UpdateState(Monster _monster)
+    public override void UpdateState(Monster monster)
     {
-        if (_monster.current_HP <= 0)
+        if (monster.curHP <= 0)
         {
-            _monster.ChangeState(State_Die.Instance);
+            monster.ChangeState(State_Die.Instance);
         }
 
-        if (_monster.my_target != null)
+        if (monster.myTarget != null)
         {
-            if (!_monster.Check_Range())
+            if (!monster.Check_Range())
             {
-                _monster.chase_time += Time.deltaTime;
-                if (_monster.chase_time >= _monster.chase_cancle_time)
+                monster.chaseTime += Time.deltaTime;
+                if (monster.chaseTime >= monster.chaseCancleTime)
                 {
-                    _monster.my_target = null;
-                    _monster.chase_time = .0f;
+                    monster.myTarget = null;
+                    monster.chaseTime = .0f;
                     return;
                 }
 
                 //회전각 (플레이어가 있는 방향을 정규화시켜서 설정)
-                _dir = _monster.my_target.position - _monster.transform.position;
-                _nordir = _dir.normalized;
+                dir = monster.myTarget.position - monster.curMonsterPos.position;
+                nordir = dir.normalized;
 
-                Quaternion angle = Quaternion.LookRotation(_nordir);
-                _monster.transform.rotation = angle;
+                Quaternion angle = Quaternion.LookRotation(nordir);
+                monster.curMonsterPos.rotation = angle;
 
                 //방향은 위에서 설정했으니 앞으로 가기만 하면됨.
-                Vector3 pos = _monster.transform.position;
-                pos += _monster.transform.forward * Time.smoothDeltaTime * _monster.move_speed;
-                _monster.transform.position = pos;
+                Vector3 pos = monster.curMonsterPos.position;
+                pos += monster.curMonsterPos.forward * Time.smoothDeltaTime * monster.curMoveSpeed;
+                monster.curMonsterPos.position = pos;
 
-                _monster.ani.CrossFade("walk");
+                monster.anim.SetTrigger("walk"); //애니메이션 수정 해야할것.,
             }
             else
             {
-                _monster.ChangeState(State_Attack.Instance);
+                monster.ChangeState(State_Attack.Instance);
             }
         }
         else
         {
             //몇초이내에 원래의 자리로 못돌아갈경우 다시 몬스터를 세팅.
-            Monster_Reset(_monster);
+            Monster_Reset(monster);
         }
     }
 
-    public void Monster_Reset(Monster _monster)
+    public void Monster_Reset(Monster monster)
     {
         //거리 계산
-        distance = Vector3.Distance(_monster.transform.position, _monster.set_monster_pos);
+        distance = Vector3.Distance(monster.curMonsterPos.position, monster.preMonsterPos);
         
         //방향
-        _dir = _monster.set_monster_pos - _monster.transform.position;
-        _nordir = _dir.normalized;
+        dir = monster.preMonsterPos - monster.curMonsterPos.position;
+        nordir = dir.normalized;
 
-        _monster.transform.rotation = Quaternion.LookRotation(_nordir);
+        monster.curMonsterPos.rotation = Quaternion.LookRotation(nordir);
 
         if (distance >= 0.1f)
         {
-            Vector3 pos = _monster.transform.position;
-            pos += _monster.transform.forward * Time.smoothDeltaTime * 4.0f;
-            _monster.transform.position = pos;
+            Vector3 pos = monster.curMonsterPos.position;
+            pos += monster.curMonsterPos.forward * Time.smoothDeltaTime * 4.0f;
+            monster.curMonsterPos.position = pos;
 
-            _monster.ani.CrossFade("walk");
+            monster.anim.SetTrigger("walk");
         }
         else
         {
-            _monster.ResetState();
+            monster.ResetState();
         }
-        Debug.Log("제자리로 이동.");
     }
 
-    public override void ExitState(Monster _monster)
+    public override void ExitState(Monster monster)
     {
         Debug.Log("State_Move 종료");
     }

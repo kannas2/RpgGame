@@ -7,16 +7,20 @@ public class BaseSkill : MonoBehaviour {
     //캐릭터 스킬에 필요한 것들...
     //쿨타임, 버프 시간, 버프 맥스시간,버프(힐, 이동속도), 공격속도, 데미지,  
     public float buffTime;
-    public float buffLimitTime;
-    public float buffCoolTime;
-    public float curbuffCoolTime;
+    public float coolTime;
+    public float curCoolTime;
+
     public float healValue;
     public float speedValue;
-    public bool  buffState;
+    public bool  skillState;
     public Image button;
+    public Text  time;
 
     public float attackSpeed;
     public float damageValue;
+
+    public Transform effectPos;
+    protected string effectpath;
 
     public virtual void Heal() { }
     public virtual void Attack() { }
@@ -30,25 +34,45 @@ public class BaseSkill : MonoBehaviour {
                 {
                     SmallHast.instance.buffTime = 30.0f;
                     PlayerCtrl.instance.curMoveSpeed = 6.0f;
+                    PlayerCtrl.instance.run = true;
                     yield return new WaitForSeconds(ftime);
+                    PlayerCtrl.instance.run = false;
                     PlayerCtrl.instance.curMoveSpeed = PlayerCtrl.instance.baseMoveSpeed;
                 }
                 break;
         }
     }
     
-    public void CoolTime()
+    public void PaticleEffect()
+    {
+        GameObject obj = (GameObject)Instantiate(Resources.Load(effectpath)) as GameObject; //공격 스킬마다 파티클 달라지게 할 예정.
+        obj.transform.parent = effectPos.transform;
+
+        obj.transform.localPosition = effectPos.transform.localPosition;
+        Destroy(obj, 0.7f);
+    }
+
+    public void CoolTime(Text time)
     {
         //쿨타임이 60초인데 0보다 작거나 같아지면 스킬을 사용할수 있게 설정.
-        if (curbuffCoolTime <= .0f)
+        if (curCoolTime <= .0f)
         {
-            buffState = true;
-            curbuffCoolTime = .0f;
+            skillState = true;
+            curCoolTime = .0f;
+            time.text = null;
         }
-        else if (curbuffCoolTime >= .0f)// 0보다 클경우 값을 1초씩 감산. 스킬을 사용못함.
+        else if (curCoolTime >= .0f)// 0보다 클경우 값을 1초씩 감산. 스킬을 사용못함.
         {
-            curbuffCoolTime -= 1.0f * Time.deltaTime;
-            buffState = false;
+            curCoolTime -= 1.0f * Time.deltaTime;
+            skillState = false;
+            int value = (int) curCoolTime;
+            time.text = value.ToString();
         }
+    }
+
+    public void GetComponent()
+    {
+        button = transform.GetComponent<Image>();
+        time = transform.FindChild("Time").GetComponent<Text>();
     }
 }

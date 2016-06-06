@@ -318,12 +318,12 @@
 		<restart>save</restart>
 		<code>ms104</code>
 		<success>ms103</success>
-		<jump>null</jump>
+		<jump>e</jump>
 		<point>d</point>
 		<character>pidellio</character>
 		<name>피델리오</name>
 		<int_if>null</int_if>
-		<clear_if>null</clear_if>
+		<clear_if>ms112</clear_if>
 		<select>null</select>
 		<select_a>null</select_a>
 		<select_b>null</select_b>
@@ -335,12 +335,12 @@
 		<restart>null</restart>
 		<code>null</code>
 		<success>null</success>
-		<jump>e</jump>
+		<jump>null</jump>
 		<point>end</point>
 		<character>null</character>
 		<name>null</name>
 		<int_if>null</int_if>
-		<clear_if>ms112</clear_if>
+		<clear_if>null</clear_if>
 		<select>null</select>
 		<select_a>null</select_a>
 		<select_b>null</select_b>
@@ -577,12 +577,12 @@
 		<restart>save</restart>
 		<code>ms115</code>
 		<success>ms114</success>
-		<jump>null</jump>
+		<jump>i</jump>
 		<point>h</point>
 		<character>pidellio</character>
 		<name>피델리오</name>
 		<int_if>null</int_if>
-		<clear_if>null</clear_if>
+		<clear_if>ms115</clear_if>
 		<select>null</select>
 		<select_a>null</select_a>
 		<select_b>null</select_b>
@@ -594,12 +594,12 @@
 		<restart>null</restart>
 		<code>null</code>
 		<success>null</success>
-		<jump>i</jump>
+		<jump>null</jump>
 		<point>end</point>
 		<character>null</character>
 		<name>null</name>
 		<int_if>null</int_if>
-		<clear_if>ms115</clear_if>
+		<clear_if>null</clear_if>
 		<select>null</select>
 		<select_a>null</select_a>
 		<select_b>null</select_b>

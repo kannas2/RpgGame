@@ -5,33 +5,32 @@ using System;
 public class State_Machine <t>
 {
     private t Owner;
-    private FSM_State<t> Current_State;
-    private FSM_State<t> Previous_State;
+    private FSM_State<t> CurrentState;
+    private FSM_State<t> PreviousState;
 
     public void Awake()
     {
-        Current_State = null;
-        Previous_State = null;
+        CurrentState = null;
+        PreviousState = null;
     }
 
     public void ChangeState(FSM_State<t> _NewState)
     {
-        if(_NewState == Current_State)
+        if(_NewState == CurrentState)
         {
             return;
         }
-        //이전 상태를 저장.
-        Previous_State = Current_State;
+        PreviousState = CurrentState;
 
-        if(Current_State != null)
+        if(CurrentState != null)
         {
-            Current_State.ExitState(Owner);
+            CurrentState.ExitState(Owner);
         }
-        Current_State = _NewState;
+        CurrentState = _NewState;
 
-        if(Current_State != null)
+        if(CurrentState != null)
         {
-            Current_State.EnterState(Owner);
+            CurrentState.EnterState(Owner);
         }
     }
 
@@ -43,16 +42,16 @@ public class State_Machine <t>
 
     public void Update()
     {
-        if(Current_State != null)
+        if(CurrentState != null)
         {
-            Current_State.UpdateState(Owner);
+            CurrentState.UpdateState(Owner);
         }
     }
     public void StateRevert()
     {
-        if(Previous_State != null)
+        if(PreviousState != null)
         {
-            ChangeState(Previous_State);
+            ChangeState(PreviousState);
         }
     }
 }

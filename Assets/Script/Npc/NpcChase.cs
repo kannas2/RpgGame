@@ -17,8 +17,7 @@ public class NpcChase : BaseNpc {
         base.npcType = 0;
         base.qwestValue = 40;       //잡아올 몬스터 값.
         base.currentValue = 40;       //지금은 테스트중이니 이미 잡은걸로.
-        base.prevCheckQwest = "ms107";   // 이전 퀘스트를 완료해야지만 클릭이가능.
-        base.limitedcode = "ms109";   // 특정 퀘스트 코드 리미트. 계속 변동됨
+        base.prevCheckQwest = "ms108";   // 이전 퀘스트를 완료해야지만 클릭이가능.
 
         //쉐이더
         base.shader1 = Shader.Find("Outlined/Diffuse");

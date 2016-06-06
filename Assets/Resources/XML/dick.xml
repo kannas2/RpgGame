@@ -110,7 +110,7 @@
 		<code>null</code>
 		<success>null</success>
 		<jump>null</jump>
-		<point>null</point>
+		<point>end</point>
 		<character>null</character>
 		<name>null</name>
 		<int_if>null</int_if>
@@ -159,7 +159,7 @@
 		<sceen>null</sceen>
 		<restart>save</restart>
 		<code>null</code>
-		<success>ms105</success>
+		<success>null</success>
 		<jump>null</jump>
 		<point>b</point>
 		<character>dick</character>
@@ -196,7 +196,7 @@
 		<sceen>null</sceen>
 		<restart>null</restart>
 		<code>null</code>
-		<success>null</success>
+		<success>ms105</success>
 		<jump>null</jump>
 		<point>null</point>
 		<character>dick</character>

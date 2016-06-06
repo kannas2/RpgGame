@@ -16,9 +16,7 @@ public class NpcDick : BaseNpc
         base.textIndex      = 0;
         base.npcType        = 0;
         base.qwestValue     = 20;       //잡아올 몬스터 값.
-        base.currentValue   = 0;       //지금은 테스트중이니 이미 잡은걸로.
-        base.prevCheckQwest = "ms103";   // 이전 퀘스트를 완료해야지만 클릭이가능.
-        base.limitedcode    = "ms106";   // 특정 퀘스트 코드 리미트. 계속 변동됨
+        base.prevCheckQwest = "ms104";   //퀘스트를 받아야만 클릭이 가능.
 
         //쉐이더
         base.shader1 = Shader.Find("Outlined/Diffuse");

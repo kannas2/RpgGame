@@ -32,6 +32,7 @@ public class BaseCharacter : MonoBehaviour
     public float curMoveSpeed;
     public float rotSpeed;
 
+    public bool run;
     public bool isDead;
 
     public BaseCharacter() { }
@@ -46,7 +47,6 @@ public class BaseCharacter : MonoBehaviour
      }
 
     protected virtual void Character_Move() { }
-    public virtual void Character_Update_Hp() { }
-    public virtual void Character_Uptate_Mp() { }
+    public virtual void Character_Update_State() { }
     public virtual void Character_Anim_Speed() { }
 }

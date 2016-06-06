@@ -22,8 +22,6 @@ public class BaseNpc : MonoBehaviour
     public int       textIndex;
     public int       currentIndex = 0;
     public string    currentqwest;
-    public string    prevqwest;
-    protected string limitedcode;
     public NpcType   npcType;
 
     public bool sceenCut      = false;
@@ -215,17 +213,17 @@ public class BaseNpc : MonoBehaviour
                 ActiveSkill(skill[textIndex]);
             }
 
-            //퀘스트 몬스터 잡아오는 뭐 그런거 있을 경우.
+            //퀘스트 몬스터 잡아오는 뭐 그런거 있을 경우. 지금은 테스트중이니까 숫자가 있는데 나중에는 퀘스트 수락하고 벨류값 초기화 해줄것 !! 0으로 초기화를 해줘야함 꼭!!
             if(int_if[textIndex] != "null")
             {
                 if (qwestValue >= Int32.Parse(int_if[textIndex]))
                 {
                     textIndex = FindCount(point, jump[textIndex]);
                     qwestValue = 0;
+                    return;
                 }
                 else
-                    textIndex = currentIndex;
-                return;
+                    currentIndex = textIndex;
             }
 
             //특정 순간에 해당퀘스트가 클리어 되어있을 경우 jump  // end 보다 먼저 검사해야함.
@@ -252,85 +250,6 @@ public class BaseNpc : MonoBehaviour
 
             }
             textIndex++;
-        }
-    }
-    //  잘 생각해보니 이렇게 안하면 비록 1회성 코드가 되어버리지만 이렇게 하지 않으면 세부적인 조절을 할 수 없게 됨 .
-    public void CheckQwestCode(string npc, string str)
-    {
-        switch (npc)
-        {
-            case "pylia":
-                {
-                    switch (str)
-                    {
-                        case "ms101":
-                            QwestManager.Instance.qwest[str] = true;
-                            break;
-
-                        case "ms102":
-                            if (ClearQwestCK("ms111"))
-                            {
-                                textIndex = FindCount(code, "ms112");
-                                currentIndex = textIndex;
-                            }
-                            break;
-                    }
-                    break;
-                }
-
-            case "pidellio":
-                {
-                    switch(str)
-                    {
-                        case "ms103":
-                            QwestManager.Instance.qwest[str] = true;
-                            break;
-
-                        case "ms104":
-                            if (ClearQwestCK("ms112"))
-                            {
-                            }
-                            else if (ClearQwestCK("ms103"))
-                            {
-                                prevqwest = str;
-                                //공격 스킬 획득.  UI컨트롤에서 관리해주면 될듯.
-                                Debug.Log("공격 스킬 습득");
-                            }
-                            break;
-                    }
-                    break;
-                }
-
-            case "dick":
-                {
-                    switch(str)
-                    {
-                        case "ms104":
-                            QwestManager.Instance.qwest[str] = true;
-                            break;
-
-                        case "ms105":
-                            if (currentValue >= qwestValue)
-                            {
-                                Debug.Log("수련용 증표 퀘스트 완료");
-                                //limitedcode = "ms106";                //리미트 코드 해제.
-                                textIndex = FindCount(point, "ms106");  // 인덱스 이동.
-                                currentIndex = textIndex;              // 인덱스 저장.
-                                Debug.Log("브렌디쉬 스킬 습득");
-                            }
-                            else
-                                prevqwest = str;
-                            break;
-
-                        case "ms106":
-                            prevqwest = str;
-                            break;
-                    }
-                    break;
-                }
-
-            default:
-                break;
         }
     }
 
@@ -396,6 +315,14 @@ public class BaseNpc : MonoBehaviour
 
             case "Brandish":
                 Debug.Log("브랜디시 스킬 획득");
+                break;
+
+            case "Heal":
+                Debug.Log("힐 스킬 습득.");
+                break;
+
+            case "RaisingSword":
+                Debug.Log("레이징 스워드 스킬 습득");
                 break;
 
             default:

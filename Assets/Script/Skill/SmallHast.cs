@@ -9,7 +9,7 @@ public class SmallHast : BuffState {
 	void Start ()
     {
         instance = this;
-        base.buffname = "GameUI/use";
+        base.buffname = "GameUI/Interface/shast";
         base.buffImage = transform.GetComponent<Image>();
         base.buffTime = 0;
         buffImage.sprite = Resources.Load(buffname, typeof(Sprite)) as Sprite;

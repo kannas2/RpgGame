@@ -18,8 +18,7 @@ public class NpcPylia : BaseNpc {
         base.npcType        = 0;
         base.qwestValue      = 0;
         base.currentqwest    = null;
-        base.prevCheckQwest  = "null";
-        base.limitedcode   = "ms102";
+        base.prevCheckQwest  = "ms101";
 
         //쉐이더
         base.shader1 = Shader.Find("Outlined/Diffuse");

@@ -4,7 +4,7 @@ using System;
 
 public class State_Idle : FSM_State<Monster>
 {
-    static readonly State_Idle instance = new State_Idle();
+    public static readonly State_Idle instance = new State_Idle();
     public static State_Idle Instance
     {
         get
@@ -13,20 +13,21 @@ public class State_Idle : FSM_State<Monster>
         }
     }
 
-    public override void EnterState(Monster _monster)
+    public override void EnterState(Monster monster)
     {
+        Debug.Log("기본 상태");
     }
 
-    public override void UpdateState(Monster _monster)
+    public override void UpdateState(Monster monster)
     {
-        if(_monster.Check_Range())
+        if(monster.Check_Range()) //거리.
         {
-            _monster.ChangeState(State_Move.Instance);
+            monster.ChangeState(State_Move.Instance);
         }
-        _monster.ani.CrossFade("idle");
+        monster.anim.SetTrigger("idle");
     }
 
-    public override void ExitState(Monster _monster)
+    public override void ExitState(Monster monster)
     {
     }
 }

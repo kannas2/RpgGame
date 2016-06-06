@@ -62,20 +62,24 @@ public class VirtualJoystick : MonoBehaviour, IDragHandler, IPointerUpHandler, I
             return Input.GetAxis("Vertical");
     }
 
+    //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ스킬 호출ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ//
     public void Attack_Button()
     {
         AttackSkill.instance.Attack();
     }
 
+    public void HealSkill()
+    {
+        Heal.instance.Buff();
+    }
+
+    public void BranDish()
+    {
+        Brandish.instance.Attack();
+    }
+
     public void HastSkill_Button()
     {
-        if (HasteBuff.instance.buffState != false)
-        {
-            HasteBuff.instance.buffState = false;
-            //모션
-            //이펙트
-            //스킬 호출
-            HasteBuff.instance.Buff();
-        }
+        HasteBuff.instance.Buff();
     }
 }

@@ -14,7 +14,6 @@ public class NpcFidelio : BaseNpc
         base.npcType    = 0;
         base.qwestValue = 0;
         base.prevCheckQwest = "ms101";
-        base.limitedcode = "ms104";
 
         //쉐이더
         base.shader1 = Shader.Find("Outlined/Diffuse");
