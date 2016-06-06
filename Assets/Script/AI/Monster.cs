@@ -14,6 +14,7 @@ public class Monster : MonoBehaviour
     public float startDamage;
 
     public float attackDis;
+    public float checkDis;
 
     public float baseAttackSpeed;
     public float curAttackSpeed;
@@ -43,22 +44,33 @@ public class Monster : MonoBehaviour
     public Image imageHPbar;
     public Image imageMPbar;
 
-    public Text  monsterName;
-    public Animator anim;
-    public string itemPath;  //아이템 경로.
+    public Text     monsterName;
+    public Animator  anim;
+    public string   itemPath;  //아이템 경로.
 
-    public bool attackState; //선공 여부.
+    public bool attackState;       //선공 여부.
+    public SphereCollider checkbox; //공격 할때마다 on.
+
+    public Rigidbody body;
 
     public virtual void GetComponent()
     {
         myTarget = PlayerCtrl.instance.transform;
         player   = PlayerCtrl.instance;
+        anim     = transform.GetComponent<Animator>();
+        checkbox = transform.GetComponent<SphereCollider>();
+        body     = transform.GetComponent<Rigidbody>();
+        monsterName = transform.FindChild("UI").Find("Name").GetComponent<Text>();
+
+        if (state == null)
+        {
+            state = new State_Machine<Monster>();
+        }
     }
 
     public void ResetState()
     {
         myTarget = PlayerCtrl.instance.transform;
-
         //몬스터 세팅된 포지션
         //curMonsterPos = preMonsterPos;
         curMonsterPos.rotation = Quaternion.Euler(prevRot);
@@ -74,7 +86,7 @@ public class Monster : MonoBehaviour
     //회전 각도 체크.
     public bool Check_Angle()
     {
-        if (Vector3.Dot(myTarget.position, curMonsterPos.position) >= 0.5f)
+        if (Vector3.Dot(myTarget.position, curMonsterPos.position) >= 1.5f)
         {
             return true;
         }
@@ -82,13 +94,11 @@ public class Monster : MonoBehaviour
     }
 
     //일정 거리내에 있는지 체크.
-    public bool Check_Range()
+    public float CheckRange()
     {
-        if (Vector3.Distance(myTarget.position, curMonsterPos.position) <= attackDis)
-        {
-            return true;
-        }
-        return false;
+        float dis = Vector3.Distance(myTarget.position, curMonsterPos.position);
+
+        return dis;
     }
 
     public void MonsterUpdateHP()
@@ -125,25 +135,23 @@ public class Monster : MonoBehaviour
         item.transform.position = new Vector3(curMonsterPos.position.x, curMonsterPos.position.y + 5.0f, curMonsterPos.position.z);
     }
 
-    //이건 각자 몬스터에서 처리하는것으로.
-    void OnTriggerEnter(Collider other)
+    //attack box on/off;
+    public IEnumerator AttackCheckTime()
     {
-        if (other.gameObject.tag == "Player")
-        {
-            Debug.Log("충돌했습니다.");
-            //player.Character_Update_Hp(0.1f);
-            PlayerCtrl.instance.curHP -= 10.0f;
-            player.anim.SetBool("isDamage", true); //일단 이런식으로 구현하고 나중에 애니메이션 함수를 플레이어 클래스에서 한개 만들고 그 클래스에서 애니메이션 처리하는것으로 지금은 급한대로.
-
-            GameObject obj = (GameObject)Instantiate(Resources.Load("Particle/Attack")) as GameObject;
-            obj.transform.parent = other.transform;
-
-            obj.transform.localPosition = other.transform.localPosition;
-            Destroy(obj, 0.7f);
-            Debug.Log("other : " + other.transform.localPosition);
-        }
+        checkbox.enabled = false;
+        yield return new WaitForSeconds(curAttackSpeed);
+        checkbox.enabled = true;
     }
 
+    public void OnDamage()
+    {
+        //몬스터가 공격받은 현재의 반대 방향을 구해야함. 근데 몬스터 특성상 그냥 서있는 상태의 반대방향만 구하면 될거같..
+        Vector3 dir = myTarget.position - curMonsterPos.position;
+        dir = dir.normalized;
+
+        body.AddForce(-dir * 10, ForceMode.Impulse);
+        Debug.Log("충돌함");
+    }
 }
 /*
 using UnityEngine;

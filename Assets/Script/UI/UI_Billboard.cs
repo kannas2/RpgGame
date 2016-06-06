@@ -12,6 +12,6 @@ public class UI_Billboard : MonoBehaviour {
 
     void Update ()
     {
-        transform.LookAt(transform.position + my_camera.transform.rotation * Vector3.back, my_camera.transform.rotation * Vector3.up);
+        transform.LookAt(transform.position + my_camera.transform.rotation * Vector3.forward, my_camera.transform.rotation * Vector3.up);
 	}
 }

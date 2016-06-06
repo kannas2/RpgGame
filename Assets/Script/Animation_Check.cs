@@ -26,7 +26,7 @@ public class Animation_Check : MonoBehaviour
         else Debug.Log("Need Animator File");
         //if (_attackSnd != null && _publicAudio != null) _publicAudio.PlayOneShot(_attackSnd);
         //else Debug.Log("Need AudioSource File or Attack Audio Clip");
-        player.attackChk = false;
+        //player.attackChk = false;
     }
 
     void DamageDone()

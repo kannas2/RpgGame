@@ -5,11 +5,11 @@ public class MonsterBunny : Monster {
 
 	void Start ()
     {
-        base.curHP = 150;
-        base.maxHP = 150;
+        base.curHP = 150.0f;
+        base.maxHP = 150.0f;
 
         base.startDamage = 20.0f;
-        base.maxDamage = 25;
+        base.maxDamage = 25.0f;
 
         base.baseAttackSpeed = 1.0f;
         base.curAttackSpeed = 1.0f;
@@ -26,27 +26,38 @@ public class MonsterBunny : Monster {
         base.preMonsterPos = transform.position; //시작위치.
         base.curMonsterPos = transform;
 
-        base.attackDis = 2.5f;
+        base.attackDis = 0.9f; //플레이어 공격 거리  
+        base.checkDis = 2.5f;  //플레이어 인식 거리. 
         base.IsDead = false;
 
-        base.itemPath = "Prefab/DropItem";
-
-        if (state == null)
-        {
-            base.state = new State_Machine<Monster>();
-        }
-
         base.GetComponent();
-        base.anim = transform.GetComponent<Animator>();
-
         base.ResetState();
-	}
+
+        //Getcomponent이후.
+        base.monsterName.text = "래피";
+        base.itemPath = "Prefab/DropItem";
+    }
 	
-	// Update is called once per frame
 	void FixedUpdate()
     {
-        curMonsterPos = transform; //몬스터의 현재 위치.
+        //curMonsterPos = transform; //몬스터의 현재 위치.
         state.Update();
         //base.MonsterUpdateHP();
 	}
+
+    //물리적 충돌X
+    void OnTriggerEnter(Collider coll)
+    {
+        if (coll.gameObject.CompareTag("Player"))
+        {
+            Debug.Log("플레이어 공격중");
+            //타격 이펙트 생성,
+            StartCoroutine(base.AttackCheckTime());
+        }
+
+        //if(coll.gameObject.CompareTag("Sword"))
+        //{
+        //    base.OnDamage(coll.)
+        //}
+    }
 }

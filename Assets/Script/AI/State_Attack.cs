@@ -19,7 +19,6 @@ public class State_Attack : FSM_State<Monster>
 
     public override void EnterState(Monster monster)
     {
-        Debug.Log("어택 시작");
         if (monster.myTarget == null)
         {
             return;
@@ -35,7 +34,7 @@ public class State_Attack : FSM_State<Monster>
         }
 
         attackTimer += Time.deltaTime;
-        if(!monster.player.isDead && monster.Check_Range() && monster.Check_Angle()) //나중에 외적Angle 아니다 싶으면 빼는걸로.
+        if(!monster.player.isDead && monster.CheckRange() <= monster.attackDis && monster.Check_Angle()) //나중에 외적Angle 아니다 싶으면 빼는걸로.
         {
             if(attackTimer >= monster.curAttackSpeed)
             {
@@ -58,6 +57,5 @@ public class State_Attack : FSM_State<Monster>
 
     public override void ExitState(Monster monster)
     {
-        Debug.Log("State_Attack_out");
     }
 }

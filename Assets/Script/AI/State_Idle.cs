@@ -15,12 +15,11 @@ public class State_Idle : FSM_State<Monster>
 
     public override void EnterState(Monster monster)
     {
-        Debug.Log("기본 상태");
     }
 
     public override void UpdateState(Monster monster)
     {
-        if(monster.Check_Range()) //거리.
+        if(monster.CheckRange() <= monster.checkDis) //거리.
         {
             monster.ChangeState(State_Move.Instance);
         }

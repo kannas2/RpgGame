@@ -38,7 +38,7 @@ public class State_Move : FSM_State<Monster>
 
         if (monster.myTarget != null)
         {
-            if (!monster.Check_Range())
+            if (monster.CheckRange() >= monster.attackDis)
             {
                 monster.chaseTime += Time.deltaTime;
                 if (monster.chaseTime >= monster.chaseCancleTime)
@@ -101,6 +101,5 @@ public class State_Move : FSM_State<Monster>
 
     public override void ExitState(Monster monster)
     {
-        Debug.Log("State_Move 종료");
     }
 }

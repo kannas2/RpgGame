@@ -126,14 +126,18 @@
     <Compile Include="Assets\Editor\ImageEffects\SunShaftsEditor.cs" />
     <Compile Include="Assets\Editor\ImageEffects\TonemappingEditor.cs" />
     <Compile Include="Assets\Editor\ImageEffects\VignetteAndChromaticAberrationEditor.cs" />
+    <Compile Include="Assets\MagicArsenal\KunaiEditor\Editor\KunaiEditor.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Cute Angel\Read me.txt" />
     <None Include="Assets\FX Quest\!Quick start walkthrough.txt" />
     <None Include="Assets\FX Quest\Readme.txt" />
     <None Include="Assets\Forest Bunny\Read me.txt" />
     <None Include="Assets\GE Common Assets\Readme.txt" />
     <None Include="Assets\GUI Animator\GUI Animator FREE\!How to.txt" />
     <None Include="Assets\GUI Animator\GUI Animator FREE\Readme.txt" />
+    <None Include="Assets\MagicArsenal\KunaiEditor\Editor\Readme.txt" />
+    <None Include="Assets\MagicArsenal\MagicArsenal - ReadMe.txt" />
     <None Include="Assets\Resources\XML\ItemList.xml" />
     <None Include="Assets\Resources\XML\chase.xml" />
     <None Include="Assets\Resources\XML\dick.xml" />

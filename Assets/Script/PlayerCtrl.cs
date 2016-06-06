@@ -6,26 +6,26 @@ public class PlayerCtrl : BaseCharacter
 {
     [SerializeField]
     private VirtualJoystick joystick;
-   
-    public static PlayerCtrl instance; 
 
-    public  Image         hp_Image;
-    public  Image         mp_Image;
-    private Monster        monster;
-    public  BoxCollider    attackBox;
+    public static PlayerCtrl instance;
+
+    public Image hp_Image;
+    public Image mp_Image;
+    private Monster monster;
+    public BoxCollider attackBox;
     public Transform buffEffectpos;
 
     public CharacterState charstate;
 
-    public Animator anim   { get; set; }
-    public bool attackChk  { get; set; }
+    public Animator anim { get; set; }
+    public bool attackChk { get; set; }
 
     void Awake()
     {
         instance = this;
         anim = transform.GetComponent<Animator>();
         //monster      = GameObject.Find("Monster").GetComponent<Monster>();
-        attackBox    = attackBox.GetComponent<BoxCollider>();
+        attackBox = attackBox.GetComponent<BoxCollider>();
     }
 
     void Start()
@@ -95,21 +95,21 @@ public class PlayerCtrl : BaseCharacter
         hp_Image.fillAmount = curHP / maxHP;
         mp_Image.fillAmount = curMP / maxMP;
 
-        if(curHP <= 0)
+        if (curHP <= 0)
         {
             curHP = 0;
             Debug.Log("게임오버");
         }
-        else if(curHP >= maxHP)
+        else if (curHP >= maxHP)
         {
             curHP = maxHP;
         }
 
-        if(curMP <= 0)
+        if (curMP <= 0)
         {
             curMP = 0;
         }
-        else if(curMP >= maxMP)
+        else if (curMP >= maxMP)
         {
             curMP = maxMP;
         }
@@ -146,13 +146,13 @@ public class PlayerCtrl : BaseCharacter
         {
             anim.speed = baseMoveSpeed;
         }
-        else if(stateInfo.IsName("Run"))
+        else if (stateInfo.IsName("Run"))
         {
             anim.speed = 2.0f;
         }
 
         //기본상태
-        if(stateInfo.IsName("Idle"))
+        if (stateInfo.IsName("Idle"))
         {
             anim.speed = 1.0f;
         }
@@ -163,9 +163,23 @@ public class PlayerCtrl : BaseCharacter
             anim.speed = curAttackSpeed;
         }
 
-        if(stateInfo.IsName("Brandish"))
+        if (stateInfo.IsName("Brandish"))
         {
             anim.speed = Brandish.instance.attackSpeed;
         }
+    }
+
+    void OnTriggerEnter(Collider coll)
+    {
+        if(coll.gameObject.CompareTag("Monster"))
+        {
+            //몬스터 체력 -
+            //충돌 일어난 지점 파티클 생성
+        }
+    }
+
+    void OnTriggerExit()
+    {
+        attackChk = false;
     }
 }

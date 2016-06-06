@@ -98,9 +98,21 @@
     <Compile Include="Assets\GUI Animator\GUI Animator FREE\Demo (CSharp)\Scripts\GA_FREE_DemoPlaySound.cs" />
     <Compile Include="Assets\GUI Animator\GUI Animator FREE\Demo (CSharp)\Scripts\GA_FREE_OpenOtherScene.cs" />
     <Compile Include="Assets\GUI Animator\GUI Animator FREE\Demo Basic (CSharp)\Scripts\GUIAnimatorFREEDemo.cs" />
+    <Compile Include="Assets\MagicArsenal\InteractiveDemo\Scripts\ButtonScript.cs" />
+    <Compile Include="Assets\MagicArsenal\InteractiveDemo\Scripts\DragMouseOrbit.cs" />
+    <Compile Include="Assets\MagicArsenal\InteractiveDemo\Scripts\FireProjectile.cs" />
+    <Compile Include="Assets\MagicArsenal\InteractiveDemo\Scripts\LoadSceneOnClick.cs" />
+    <Compile Include="Assets\MagicArsenal\InteractiveDemo\Scripts\Projectile.cs" />
+    <Compile Include="Assets\MagicArsenal\InteractiveDemo\Scripts\ProjectileScript.cs" />
+    <Compile Include="Assets\MagicArsenal\InteractiveDemo\Scripts\loopScript.cs" />
+    <Compile Include="Assets\MagicArsenal\InteractiveDemo\Standard Assets\Character Controllers\Sources\Scripts\MouseLook.cs" />
+    <Compile Include="Assets\MagicArsenal\KunaiEditor\KunaiRotation.cs" />
+    <Compile Include="Assets\MagicArsenal\Scripts\lightScript.cs" />
+    <Compile Include="Assets\MagicArsenal\Scripts\lightScriptLong.cs" />
     <Compile Include="Assets\Scene\TestScripts.cs" />
     <Compile Include="Assets\Script\AI\FSM_State.cs" />
     <Compile Include="Assets\Script\AI\Monster.cs" />
+    <Compile Include="Assets\Script\AI\MonsterAngel.cs" />
     <Compile Include="Assets\Script\AI\MonsterBunny.cs" />
     <Compile Include="Assets\Script\AI\State_Attack.cs" />
     <Compile Include="Assets\Script\AI\State_Die.cs" />
@@ -139,12 +151,15 @@
     <Compile Include="Assets\Toon Environment Pack\Water (Basic)\Scripts\WaterBasic.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Cute Angel\Read me.txt" />
     <None Include="Assets\FX Quest\!Quick start walkthrough.txt" />
     <None Include="Assets\FX Quest\Readme.txt" />
     <None Include="Assets\Forest Bunny\Read me.txt" />
     <None Include="Assets\GE Common Assets\Readme.txt" />
     <None Include="Assets\GUI Animator\GUI Animator FREE\!How to.txt" />
     <None Include="Assets\GUI Animator\GUI Animator FREE\Readme.txt" />
+    <None Include="Assets\MagicArsenal\KunaiEditor\Editor\Readme.txt" />
+    <None Include="Assets\MagicArsenal\MagicArsenal - ReadMe.txt" />
     <None Include="Assets\Resources\XML\ItemList.xml" />
     <None Include="Assets\Resources\XML\chase.xml" />
     <None Include="Assets\Resources\XML\dick.xml" />
