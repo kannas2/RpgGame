@@ -48,12 +48,17 @@ public class MonsterBunny : Monster {
     //물리적 충돌X
     void OnTriggerEnter(Collider coll)
     {
-        if (coll.gameObject.CompareTag("Player"))
+        //검에 맞았을경우.
+        if (coll.gameObject.CompareTag("Sword"))
         {
-            Debug.Log("플레이어 공격중");
             //타격 이펙트 생성,
-            StartCoroutine(base.AttackCheckTime());
+            base.OnDamage();
         }
+
+        //if(coll.gameObject.CompareTag("Player"))
+        //{ 
+        //    StartCoroutine(base.AttackCheckTime());
+        //}
 
         //if(coll.gameObject.CompareTag("Sword"))
         //{

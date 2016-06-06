@@ -136,7 +136,7 @@ public class PlayerCtrl : BaseCharacter
         }
     }
     */
-    //동작 스피드 컨트롤. anim.Play("animname",speed,streamtime);
+    //동작 스피드 컨트롤. anim.Play("animname",speed,streamtime);  //지금 임의로 애니메이터에서 속도 설정해놨음. 나중에 수정할것
     public override void Character_Anim_Speed()
     {
         AnimatorStateInfo stateInfo = anim.GetCurrentAnimatorStateInfo(0);
@@ -171,10 +171,16 @@ public class PlayerCtrl : BaseCharacter
 
     void OnTriggerEnter(Collider coll)
     {
+        //몬스터에게 맞은경우.
         if(coll.gameObject.CompareTag("Monster"))
         {
-            //몬스터 체력 -
-            //충돌 일어난 지점 파티클 생성
+            //캐릭터 체력 -
+            //파티클 생성
+            curHP -= 5.0f; //나중에 충돌체 몬스터의 공격데미지를 얻어와서 깔꺼임.
+            anim.SetTrigger("TakeDamage");
+            GameObject obj = (GameObject)Instantiate(Resources.Load("Particle/MonsterAttack")) as GameObject;
+            obj.transform.position = transform.position;
+            Destroy(obj, 0.5f);
         }
     }
 

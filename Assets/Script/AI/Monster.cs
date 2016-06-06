@@ -145,12 +145,17 @@ public class Monster : MonoBehaviour
 
     public void OnDamage()
     {
+        Debug.Log("몬스터 데미지 입음");
+        anim.SetTrigger("takeDamage");
+        GameObject obj = (GameObject)Instantiate(Resources.Load("Particle/BaseAttack")) as GameObject;
+        obj.transform.position = transform.position;
+        Destroy(obj, 0.5f);
         //몬스터가 공격받은 현재의 반대 방향을 구해야함. 근데 몬스터 특성상 그냥 서있는 상태의 반대방향만 구하면 될거같..
-        Vector3 dir = myTarget.position - curMonsterPos.position;
-        dir = dir.normalized;
+        //Vector3 dir = myTarget.position - curMonsterPos.position;
+        //dir = dir.normalized;
 
-        body.AddForce(-dir * 10, ForceMode.Impulse);
-        Debug.Log("충돌함");
+        //body.AddForce(-dir * 10, ForceMode.Impulse);
+        //Debug.Log("충돌함");
     }
 }
 /*
