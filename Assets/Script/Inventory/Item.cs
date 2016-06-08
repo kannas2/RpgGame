@@ -14,9 +14,10 @@ public class Item
     public string itemName;
     public int itemID;
     public int itemValue;
-    public string itemDesc;
 
     public Sprite itemIcon;
+    public Sprite itemDesc;
+
     public ItemType itemType;
 
     //아이템 이름, id, 개수, 약어, 타입
@@ -26,8 +27,8 @@ public class Item
         itemName = name;
         itemID = id;
         itemValue = value;
-        itemDesc = desc;
-        itemIcon = Resources.Load<Sprite>("Item_icons/" + name);
+        itemDesc = Resources.Load<Sprite>("ItemSpriteImage/ItemContent/" + name);
+        itemIcon = Resources.Load<Sprite>("ItemSpriteImage/" + name);
         itemType = (ItemType)type;
     }
 }

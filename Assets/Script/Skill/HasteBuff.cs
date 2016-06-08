@@ -15,6 +15,7 @@ public class HasteBuff : BaseSkill {
         base.speedValue    = 5.0f;
         base.skillState    = true;
         base.effectpath = "Prefab/Skill/Hest";
+        base.useMp = 15.0f;
 
         base.GetComponent();
     }
@@ -27,10 +28,10 @@ public class HasteBuff : BaseSkill {
 
     public override void Buff()
     {
-        if (skillState != false)
+        if (skillState != false && player.curMP >= useMp)
         {
             curCoolTime = 60.0f;
-
+            player.curMP -= base.useMp;
             base.PaticleEffect();
             PlayerCtrl.instance.anim.SetTrigger("CastSpell");
             StartCoroutine(base.Buffwait("Hast", buffTime));

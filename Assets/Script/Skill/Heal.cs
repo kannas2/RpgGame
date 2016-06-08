@@ -13,6 +13,7 @@ public class Heal : BaseSkill {
         base.healValue   = 20.0f;
         base.skillState  = true;
         base.effectpath  = "Prefab/Skill/Heal";
+        base.useMp = 20.0f;
 
         base.GetComponent();
 
@@ -26,10 +27,11 @@ public class Heal : BaseSkill {
 
     public override void Buff()
     {
-        if (skillState != false)
+        if (skillState != false && player.curMP >= useMp)
         {
             curCoolTime = 45.0f;
 
+            player.curMP -= useMp;
             base.PaticleEffect(); //파티클 추후 조정예정.
             PlayerCtrl.instance.anim.SetTrigger("CastSpell"); //모션
             PlayerCtrl.instance.curHP += healValue;

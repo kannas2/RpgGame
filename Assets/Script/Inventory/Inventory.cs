@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class Inventory : MonoBehaviour
     public  GameObject slots;
     private Item_Database database;
     public GameObject invenimage;
+    public GameObject itemDesc;
 
     //슬롯 스타트 지점 x,y 나중에 세부 조절이 필요함 망할 UI좌표계 
     float x = -281.0f;
@@ -22,7 +24,7 @@ public class Inventory : MonoBehaviour
     {
         instance = this;
         database = GameObject.Find("ItemDatabase").GetComponent<Item_Database>();
-
+        
         for (int i = 0; i < 3; i++)
         {
             for (int k = 0; k < 7; k++)
@@ -53,9 +55,20 @@ public class Inventory : MonoBehaviour
         invenimage.SetActive(false);
         //아이템 생성 할때 
         //addItem(1);
-        //addItem(2);
-        //addItem(2);
-        //addItem(1);
+    }
+    public void ItemDescOff()
+    {
+        if(itemDesc.activeSelf)
+        {
+            itemDesc.SetActive(false);
+        }
+    }
+
+    public void ItemDescContent(int slotNum)
+    {
+        itemDesc.SetActive(true);
+        itemDesc.transform.FindChild("icon").GetComponent<Image>().sprite = items[slotNum].itemIcon;
+        itemDesc.transform.FindChild("desc").GetComponent<Image>().sprite = items[slotNum].itemDesc;
     }
 
     //나중에 아이템 코드를 string 형식으로 바꾸던가 .. 지금처럼 그냥 숫자를 쓰던가.
@@ -69,6 +82,8 @@ public class Inventory : MonoBehaviour
                 addItemAtEmptySlot(item, id);
                 break;
             }
+            else
+                Debug.Log("not find Item");
         }
     }
 

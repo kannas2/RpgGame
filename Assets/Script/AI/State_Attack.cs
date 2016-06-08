@@ -12,7 +12,7 @@ public class State_Attack : FSM_State<Monster>
         }
     }
 
-    private float attackTimer;
+    //private float attackTimer;
     
     static State_Attack() { }
     private State_Attack() { }
@@ -23,7 +23,8 @@ public class State_Attack : FSM_State<Monster>
         {
             return;
         }
-        attackTimer = monster.curAttackSpeed;
+        monster.attackTimer = .0f;
+        monster.attack = true;
     }
 
     public override void UpdateState(Monster monster)
@@ -33,18 +34,15 @@ public class State_Attack : FSM_State<Monster>
             monster.ChangeState(State_Die.Instance);
         }
 
-        attackTimer += Time.deltaTime;
+        monster.attackTimer += 1.0f * Time.deltaTime;
         if(!monster.player.isDead && monster.CheckRange() <= monster.attackDis && monster.Check_Angle()) //나중에 외적Angle 아니다 싶으면 빼는걸로.
         {
-            if(attackTimer >= monster.curAttackSpeed)
+            if(monster.attackTimer >= monster.curAttackSpeed)
             {
                 //데미지
-                //Debug.Log("플레이어 데미지 입힘");
-                //_monster.player.Char_Update_HP(0.2f);
-
-                //몬스터 애니메이션
                 monster.anim.SetTrigger("attack");
-                attackTimer = .0f;
+
+                monster.attackTimer = .0f;
                 monster.chaseTime = .0f;
             }
         }

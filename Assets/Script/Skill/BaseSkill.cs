@@ -9,6 +9,7 @@ public class BaseSkill : MonoBehaviour {
     public float buffTime;
     public float coolTime;
     public float curCoolTime;
+    public float useMp;
 
     public float healValue;
     public float speedValue;
@@ -17,10 +18,14 @@ public class BaseSkill : MonoBehaviour {
     public Text  time;
 
     public float attackSpeed;
-    public float damageValue;
+
+    public int minDamage;
+    public int maxDamage;
 
     public Transform effectPos;
     protected string effectpath;
+
+    public PlayerCtrl player;
 
     public virtual void Heal() { }
     public virtual void Attack() { }
@@ -33,11 +38,11 @@ public class BaseSkill : MonoBehaviour {
             case "Hast":
                 {
                     SmallHast.instance.buffTime = 30.0f;
-                    PlayerCtrl.instance.curMoveSpeed = 6.0f;
-                    PlayerCtrl.instance.run = true;
+                    player.curMoveSpeed = 6.0f;
+                    player.run = true;
                     yield return new WaitForSeconds(ftime);
-                    PlayerCtrl.instance.run = false;
-                    PlayerCtrl.instance.curMoveSpeed = PlayerCtrl.instance.baseMoveSpeed;
+                    player.run = false;
+                    player.curMoveSpeed = player.baseMoveSpeed;
                 }
                 break;
         }
@@ -74,5 +79,12 @@ public class BaseSkill : MonoBehaviour {
     {
         button = transform.GetComponent<Image>();
         time = transform.FindChild("Time").GetComponent<Text>();
+        player = PlayerCtrl.instance;
+    }
+
+    public int RandomDamage(int min, int max)
+    {
+        int rand = Random.Range(min, max);
+        return rand;
     }
 }

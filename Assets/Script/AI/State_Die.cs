@@ -21,17 +21,16 @@ public class State_Die : FSM_State<Monster>
         count = 2.0f;
         time = .0f;
 
+        monster.checkbox.enabled = false;
         monster.anim.SetTrigger("die");
-        //죽음
         monster.IsDead = true;
-        //아이템생성
         monster.Create_item();
     }
 
     public override void UpdateState(Monster monster)
     {
         time += Time.deltaTime;
-        //서서히 사라지게끔 설정.
+        
         if (time >= 2.0f)
         {
             monster.gameObject.SetActive(false);

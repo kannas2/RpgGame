@@ -10,8 +10,8 @@ public class Monster : MonoBehaviour
     public float maxMP;
     public float curMP;
 
-    public float maxDamage;
-    public float startDamage;
+    public int maxDamage;
+    public int minDamage;
 
     public float attackDis;
     public float checkDis;
@@ -29,14 +29,14 @@ public class Monster : MonoBehaviour
 
     public bool IsDead; //false;
 
-    public Transform  myTarget { get; set; }
+    public Transform myTarget { get; set; }
     public PlayerCtrl player;
 
-    public Vector3   preMonsterPos; //몬스터 시작지점.
+    public Vector3 preMonsterPos; //몬스터 시작지점.
     public Transform curMonsterPos; //현재 위치 이동해서의.
-    public Vector3   prevRot;      //몬스터가 원래 보고 있던 각도.
+    public Vector3 prevRot;      //몬스터가 원래 보고 있던 각도.
 
-    public int      monsterPatten; //몬스 특정 패턴.
+    public int monsterPatten; //몬스 특정 패턴.
 
     public State_Machine<Monster> state;
 
@@ -44,23 +44,28 @@ public class Monster : MonoBehaviour
     public Image imageHPbar;
     public Image imageMPbar;
 
-    public Text     monsterName;
-    public Animator  anim;
-    public string   itemPath;  //아이템 경로.
+    public Text monsterName;
+    public Text takeDamage;
+    public Animator anim;
+    public string itemPath;  //아이템 경로.
 
     public bool attackState;       //선공 여부.
-    public SphereCollider checkbox; //공격 할때마다 on.
+    public SphereCollider checkbox;
+    public bool attack; //공격이 가능한 상태인지.
+    public string itemName;
 
+    public float attackTimer;
     public Rigidbody body;
 
     public virtual void GetComponent()
     {
         myTarget = PlayerCtrl.instance.transform;
-        player   = PlayerCtrl.instance;
-        anim     = transform.GetComponent<Animator>();
-        checkbox = transform.GetComponent<SphereCollider>();
-        body     = transform.GetComponent<Rigidbody>();
+        player = PlayerCtrl.instance;
+        anim = transform.GetComponent<Animator>();
+        //checkbox = transform.GetComponent<SphereCollider>(); //드래그 해서 직접 넣었음.
+        body = transform.GetComponent<Rigidbody>();
         monsterName = transform.FindChild("UI").Find("Name").GetComponent<Text>();
+        takeDamage = transform.FindChild("UI").Find("Damage").GetComponent<Text>();
 
         if (state == null)
         {
@@ -70,11 +75,9 @@ public class Monster : MonoBehaviour
 
     public void ResetState()
     {
-        myTarget = PlayerCtrl.instance.transform;
-        //몬스터 세팅된 포지션
-        //curMonsterPos = preMonsterPos;
+        myTarget = player.transform;
         curMonsterPos.rotation = Quaternion.Euler(prevRot);
-        state.Initial_Setting (this, State_Idle.Instance);
+        state.Initial_Setting(this, State_Idle.Instance);
     }
 
     //상태변경
@@ -105,24 +108,24 @@ public class Monster : MonoBehaviour
     {
         imageHPbar.fillAmount = curHP / maxHP;
 
-        if(curHP >= maxHP)
+        if (curHP >= maxHP)
         {
             curHP = maxHP;
         }
-        else if(curHP <= 0)
+        else if (curHP <= 0)
         {
             curHP = 0;
         }
 
         //MP가 있는 몬스터일 경우? 모르겠음 기획서에는 없음.
-        if(imageMPbar != null)
+        if (imageMPbar != null)
         {
             imageMPbar.fillAmount = curMP / maxMP;
             if (curMP >= maxMP)
             {
                 curMP = maxMP;
             }
-            else if(curMP <= 0)
+            else if (curMP <= 0)
             {
                 curMP = 0;
             }
@@ -133,30 +136,77 @@ public class Monster : MonoBehaviour
     {
         GameObject item = (GameObject)Instantiate(Resources.Load(itemPath), curMonsterPos.position, Quaternion.identity);
         item.transform.position = new Vector3(curMonsterPos.position.x, curMonsterPos.position.y + 5.0f, curMonsterPos.position.z);
+        item.name = itemName;
     }
 
-    //attack box on/off;
+    public void DamageAni(string text)
+    {
+        GameObject damage = Instantiate(Resources.Load("Prefab/Damage")) as GameObject;
+        RectTransform rect = damage.GetComponent<RectTransform>();
+        damage.transform.SetParent(transform.Find("UI"));
+
+        rect.transform.localPosition = monsterName.transform.localPosition;
+        rect.transform.localScale = monsterName.transform.localScale;
+
+        Text damageValue = damage.GetComponent<Text>();
+        damageValue.text = text;
+
+        damage.GetComponent<Animator>().SetTrigger("Hit");
+        Destroy(damage, 1.0f);
+    }
+
+    //attack box on/off; 사용 안할 예정 삭제 예정.
     public IEnumerator AttackCheckTime()
     {
-        checkbox.enabled = false;
+        attack = false;
         yield return new WaitForSeconds(curAttackSpeed);
-        checkbox.enabled = true;
+        attack = true;
     }
 
-    public void OnDamage()
+    public void OnDamage(float damage)
     {
-        Debug.Log("몬스터 데미지 입음");
-        anim.SetTrigger("takeDamage");
+        Debug.Log("맞음");
+        curHP -= damage;
+        //anim.SetTrigger("takeDamage"); 공격 state 에서 onDamage가 true라면 공격모션대신 피격 모션 실행하고 false 하는 방식으로? 
         GameObject obj = (GameObject)Instantiate(Resources.Load("Particle/BaseAttack")) as GameObject;
         obj.transform.position = transform.position;
         Destroy(obj, 0.5f);
-        //몬스터가 공격받은 현재의 반대 방향을 구해야함. 근데 몬스터 특성상 그냥 서있는 상태의 반대방향만 구하면 될거같..
-        //Vector3 dir = myTarget.position - curMonsterPos.position;
-        //dir = dir.normalized;
 
-        //body.AddForce(-dir * 10, ForceMode.Impulse);
-        //Debug.Log("충돌함");
+        int value = (int)damage; 
+        DamageAni(value.ToString());
     }
+
+    public int RandomDamage(int min, int max)
+    {
+        int rand = Random.Range(min, max);
+        return rand;
+    }
+
+    public void TriggerEnter(Collider coll)
+    {
+        //검에 맞았을경우.
+        if (coll.gameObject.CompareTag("Sword"))
+        {
+            //타격 이펙트 생성,
+            OnDamage(player.curAttackPower);
+        }
+
+        if (coll.gameObject.CompareTag("Player")&& attack) //어택스테이트에서 attack true해주면 될듯. 초반에.
+        {
+            attack = false;
+            player.OnDamage(RandomDamage(minDamage, maxDamage));
+            //StartCoroutine(AttackCheckTime());
+        }
+    }
+
+    /*
+       //몬스터가 공격받은 현재의 반대 방향을 구해야함. 근데 몬스터 특성상 그냥 서있는 상태의 반대방향만 구하면 될거같..
+       //Vector3 dir = myTarget.position - curMonsterPos.position;
+       //dir = dir.normalized;
+
+       //body.AddForce(-dir * 10, ForceMode.Impulse);
+       //Debug.Log("충돌함");
+       */
 }
 /*
 using UnityEngine;

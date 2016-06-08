@@ -27,6 +27,8 @@ public class State_Move : FSM_State<Monster>
     {
         resetTime = 3.0f;
         currentTime = resetTime;
+        //이동중에는 공격이 안되게.
+        monster.attack = false;
     }
 
     public override void UpdateState(Monster monster)

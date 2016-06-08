@@ -22,8 +22,8 @@ public class BaseCharacter : MonoBehaviour
     public float curMP;
     public float maxMP;
 
-    public float baseAttackPower;
-    public float curAttackPower;
+    public int   baseAttackPower;
+    public int   curAttackPower;
 
     public float baseAttackSpeed;
     public float curAttackSpeed;

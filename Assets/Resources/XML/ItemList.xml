@@ -1,17 +1,38 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<item>
-		<name>hp_portion</name>
+		<name>medalA</name>
 		<code>1</code>
 		<value>1</value>
-		<desc>hp_portion</desc>
-		<type>1</type>
+		<desc>medalA</desc>
+		<type>2</type>
 	</item>
 	<item>
-		<name>mp_portion</name>
+		<name>medalB</name>
 		<code>2</code>
 		<value>1</value>
-		<desc>mp_portion</desc>
-		<type>1</type>
+		<desc>medalB</desc>
+		<type>2</type>
+	</item>
+	<item>
+		<name>medalC</name>
+		<code>3</code>
+		<value>1</value>
+		<desc>medalC</desc>
+		<type>2</type>
+	</item>
+	<item>
+		<name>dragonHorn</name>
+		<code>4</code>
+		<value>1</value>
+		<desc>dragonHorn</desc>
+		<type>2</type>
+	</item>
+	<item>
+		<name>soul</name>
+		<code>5</code>
+		<value>1</value>
+		<desc>soul</desc>
+		<type>2</type>
 	</item>
 </root>

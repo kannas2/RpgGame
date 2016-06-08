@@ -13,8 +13,12 @@ public class Brandish : BaseSkill {
         base.coolTime    = 2.0f;
         base.curCoolTime =  .0f;
         base.attackSpeed = 2.0f;
-        base.damageValue = 10.0f;
+
+        base.minDamage = 40;
+        base.maxDamage = 60;
+
         base.skillState  = true;
+        base.useMp = 10.0f;
 
         base.GetComponent();
 	}
@@ -28,11 +32,14 @@ public class Brandish : BaseSkill {
     //데미지를 어떻게 전달 할 것인가.
     public override void Attack()
     {
-        if (skillState != false)
+        if (skillState != false && player.curMP >= base.useMp)
         {
             curCoolTime = 2.0f;
-            PlayerCtrl.instance.curAttackPower = damageValue; //데미지.
-            PlayerCtrl.instance.anim.SetTrigger("Brandish");
+            player.curMP -= useMp;
+            player.curAttackPower = base.RandomDamage(minDamage,maxDamage); //데미지.
+            player.anim.SetTrigger("Brandish");
+            //PlayerCtrl.instance.attackChk = true;
+            StartCoroutine(PlayerCtrl.instance.AttackCount(2));
         }
     }
 }

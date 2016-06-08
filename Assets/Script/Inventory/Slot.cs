@@ -5,12 +5,11 @@ using UnityEngine.EventSystems;
 
 public class Slot : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler
 {
-
-    public Item item;
-    Image itemImage;
-    public int slotNumber;
-    Inventory inventory;
-    Text itemValue;
+    public Item      item;
+    public Image     itemImage;
+    public int       slotNumber;
+    public Inventory  inventory;
+    public Text      itemValue;
 
     void Start()
     {
@@ -20,7 +19,7 @@ public class Slot : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (inventory.items[slotNumber].itemName != null)
         {
@@ -40,13 +39,17 @@ public class Slot : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler
         }
     }
 
-public void OnPointerDown(PointerEventData data)
-{
-    Debug.Log(transform.name);
-}
+    public void OnPointerDown(PointerEventData data)
+    {
+        if (itemImage.sprite != null)
+        {
+            inventory.ItemDescContent(slotNumber);
+        }
+        Debug.Log(transform.name);
+    }
 
-public void OnPointerEnter(PointerEventData data)
-{
-    Debug.Log("Tool TIp test");
-}
+    public void OnPointerEnter(PointerEventData data)
+    {
+        Debug.Log("Tool TIp test");
+    }
 }

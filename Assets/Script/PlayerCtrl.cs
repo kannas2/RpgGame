@@ -11,7 +11,7 @@ public class PlayerCtrl : BaseCharacter
 
     public Image hp_Image;
     public Image mp_Image;
-    private Monster monster;
+    //private Monster monster;
     public BoxCollider attackBox;
     public Transform buffEffectpos;
 
@@ -40,8 +40,8 @@ public class PlayerCtrl : BaseCharacter
         base.curMP = 100.0f;
         base.maxMP = 100.0f;
 
-        base.baseAttackPower = 1.0f;
-        base.curAttackPower = 1.0f;
+        base.baseAttackPower = 5;
+        base.curAttackPower = 5;
 
         base.baseAttackSpeed = 1.0f;
         base.curAttackSpeed = 1.0f;
@@ -169,23 +169,91 @@ public class PlayerCtrl : BaseCharacter
         }
     }
 
+    public void OnDamage(int damage)
+    {
+        curHP -= damage;
+
+        GameObject obj = (GameObject)Instantiate(Resources.Load("Particle/MonsterAttack")) as GameObject;
+        anim.SetTrigger("TakeDamage");
+        obj.transform.position = transform.position;
+        Destroy(obj, 0.5f);
+    }
+
     void OnTriggerEnter(Collider coll)
     {
-        //몬스터에게 맞은경우.
-        if(coll.gameObject.CompareTag("Monster"))
+        //몬스터에게 맞은경우. 지금 시간이 없어서 이런식으로 하는데 나중에는 아이템을 획득시 인벤토리 쪽으로 보내서 어떤 아이템인가 확인후 추가하는 방식으로.
+        if(coll.gameObject.CompareTag("Item"))
         {
-            //캐릭터 체력 -
-            //파티클 생성
-            curHP -= 5.0f; //나중에 충돌체 몬스터의 공격데미지를 얻어와서 깔꺼임.
-            anim.SetTrigger("TakeDamage");
-            GameObject obj = (GameObject)Instantiate(Resources.Load("Particle/MonsterAttack")) as GameObject;
-            obj.transform.position = transform.position;
-            Destroy(obj, 0.5f);
+            switch(coll.gameObject.transform.name)
+            {
+                case "medalA":
+                    {
+                        coll.GetComponent<BoxCollider>().enabled = false;
+                        Inventory.instance.addItem(1);
+                        Destroy(coll.gameObject);
+                    }
+                    break;
+
+                case "medalB":
+                    {
+                        coll.GetComponent<BoxCollider>().enabled = false;
+                        Inventory.instance.addItem(2);
+                        Destroy(coll.gameObject);
+                    }
+                    break;
+                    
+                case "medalC":
+                    {
+                        coll.GetComponent<BoxCollider>().enabled = false;
+                        Inventory.instance.addItem(3);
+                        Destroy(coll.gameObject);
+                    }
+                    break;
+
+                case "dragonHorn":
+                    {
+                        coll.GetComponent<BoxCollider>().enabled = false;
+                        Inventory.instance.addItem(4);
+                        Destroy(coll.gameObject);
+                    }
+                    break;
+
+                case "soul":
+                    {
+                        coll.GetComponent<BoxCollider>().enabled = false;
+                        Inventory.instance.addItem(5);
+                        Destroy(coll.gameObject);
+                    }
+                    break;
+
+                default:
+                    Debug.Log("해당 아이템이 없습니다.");
+                    break;
+            }
+
+            ////캐릭터 체력 -
+            ////파티클 생성
+            //curHP -= 5.0f; //나중에 충돌체 몬스터의 공격데미지를 얻어와서 깔꺼임.
+            //anim.SetTrigger("TakeDamage");
+            //GameObject obj = (GameObject)Instantiate(Resources.Load("Particle/MonsterAttack")) as GameObject;
+            //obj.transform.position = transform.position;
+            //Destroy(obj, 0.5f);
         }
     }
 
-    void OnTriggerExit()
+    //collider를 몇번 껏다 킬껀지 공격할때 Enter로 충돌 판정을 하는데 Enter는 처음에만 충돌 체크를 하기 떄문에.
+    public IEnumerator AttackCount(int cnt)
     {
-        attackChk = false;
+        for(int num=0; num< cnt; num++)
+        {
+            attackChk = true;
+            yield return new WaitForSeconds(0.2f);
+            attackChk = false;
+        }
     }
+
+    //void OnTriggerExit()
+    //{
+    //    attackChk = false;
+    //}
 }

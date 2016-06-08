@@ -109,7 +109,6 @@
     <Compile Include="Assets\MagicArsenal\KunaiEditor\KunaiRotation.cs" />
     <Compile Include="Assets\MagicArsenal\Scripts\lightScript.cs" />
     <Compile Include="Assets\MagicArsenal\Scripts\lightScriptLong.cs" />
-    <Compile Include="Assets\Scene\TestScripts.cs" />
     <Compile Include="Assets\Script\AI\FSM_State.cs" />
     <Compile Include="Assets\Script\AI\Monster.cs" />
     <Compile Include="Assets\Script\AI\MonsterAngel.cs" />
@@ -124,6 +123,7 @@
     <Compile Include="Assets\Script\GameManager.cs" />
     <Compile Include="Assets\Script\Inventory\Inventory.cs" />
     <Compile Include="Assets\Script\Inventory\Item.cs" />
+    <Compile Include="Assets\Script\Inventory\ItemMove.cs" />
     <Compile Include="Assets\Script\Inventory\Item_Database.cs" />
     <Compile Include="Assets\Script\Inventory\Slot.cs" />
     <Compile Include="Assets\Script\MainScreenEvent.cs" />

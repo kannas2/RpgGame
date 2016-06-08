@@ -9,12 +9,18 @@ public class AttackSkill : BaseSkill
     {
         instance = this;
         base.attackSpeed = 1.0f;
-        base.damageValue = 1.0f;
+
+        base.minDamage = 20;
+        base.maxDamage = 30;
+
+        base.player = PlayerCtrl.instance;
 	}
 
     public override void Attack()
     {
-        PlayerCtrl.instance.anim.SetTrigger("Attack");
-        PlayerCtrl.instance.attackChk = true;
+        player.curMP += 2;
+        player.curAttackPower = base.RandomDamage(minDamage, maxDamage);
+        player.anim.SetTrigger("Attack");
+        StartCoroutine(player.AttackCount(1));
     }
 }
