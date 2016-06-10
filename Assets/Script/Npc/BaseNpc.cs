@@ -74,12 +74,13 @@ public class BaseNpc : MonoBehaviour
     //해당하는 NPC의 대화를 불러와야함.
     public virtual void Load_Story(string path)
     {
-        TextAsset xml = OpenXml(path);
+        TextAsset xml = (TextAsset)Resources.Load("XML/" + path, typeof(TextAsset));
+        //TextAsset xml = OpenXml(path);
 
         if (xml != null)
         {
             XmlDocument xmlDoc = new XmlDocument();
-            xmlDoc.LoadXml(xml.ToString());
+            xmlDoc.LoadXml(xml.text);
             XmlNode root = xmlDoc.DocumentElement;
 
             if(root.HasChildNodes)

@@ -33,7 +33,8 @@ public class HasteBuff : BaseSkill {
             curCoolTime = 60.0f;
             player.curMP -= base.useMp;
             base.PaticleEffect();
-            PlayerCtrl.instance.anim.SetTrigger("CastSpell");
+            //player.anim.SetTrigger("CastSpell");
+            player.anim.Play("CastSpell");
             StartCoroutine(base.Buffwait("Hast", buffTime));
         }
     }

@@ -4,6 +4,13 @@ using UnityEngine.UI;
 
 public class Monster : MonoBehaviour
 {
+    public enum MonsterType
+    {
+        Weak,
+        Strong,
+        Boss,
+    }
+
     public float maxHP;
     public float curHP;
 
@@ -12,6 +19,17 @@ public class Monster : MonoBehaviour
 
     public int maxDamage;
     public int minDamage;
+
+    //ㅡㅡㅡㅡ정예, 보스 한테만 사용될 변수 ㅡㅡㅡㅡ
+
+    public int minSkllDamage;
+    public int maxSkillDamage;
+
+    public int   projectileCNT;         //날릴 구체 개수.
+    public float projectAttackTimer;     //원거리공격. 
+    public float projecttileAttackSpeed; //구체 생성 시간 간격.
+
+   //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 
     public float attackDis;
     public float checkDis;
@@ -56,6 +74,8 @@ public class Monster : MonoBehaviour
 
     public float attackTimer;
     public Rigidbody body;
+
+    public MonsterType type;
 
     public virtual void GetComponent()
     {
@@ -130,6 +150,13 @@ public class Monster : MonoBehaviour
                 curMP = 0;
             }
         }
+    }
+
+    public void PlayerLook()
+    {
+        Vector3 dir = (myTarget.position - transform.position).normalized;
+        Quaternion lookRotation = Quaternion.LookRotation(dir);
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * curMoveSpeed);
     }
 
     public void Create_item()

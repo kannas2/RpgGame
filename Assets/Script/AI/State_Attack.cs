@@ -12,8 +12,6 @@ public class State_Attack : FSM_State<Monster>
         }
     }
 
-    //private float attackTimer;
-    
     static State_Attack() { }
     private State_Attack() { }
 
@@ -23,6 +21,7 @@ public class State_Attack : FSM_State<Monster>
         {
             return;
         }
+
         monster.attackTimer = .0f;
         monster.attack = true;
     }
@@ -46,10 +45,16 @@ public class State_Attack : FSM_State<Monster>
                 monster.chaseTime = .0f;
             }
         }
-        else
+        else if(monster.type == Monster.MonsterType.Strong || 
+               monster.type == Monster.MonsterType.Boss && monster.curHP <= 200.0f )
         {
             //이동
-            monster.ChangeState(State_Move.Instance);
+            //다른 곳으로 이동 원거리 공격 할 만한 곳으로. 그 이동하는 상태 스크립트에서 1~3 정도 rand돌려서 방향 잡아서 그곳으로 이동시키고 그다음 ProejctAttack으로 change.
+            //나중에 특정 보스만이 취할수 있는 행동을 할때 일시적인 확률로 본체 힐을 할 수 있게 본체힐을 한 후에 그전 행동으로 돌아가는 StateRevert() 를 호출할것.
+        }
+        else
+        {
+            monster.ChangeState(State_Move.instance);
         }
     }
 

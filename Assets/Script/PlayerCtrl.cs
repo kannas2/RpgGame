@@ -11,7 +11,7 @@ public class PlayerCtrl : BaseCharacter
 
     public Image hp_Image;
     public Image mp_Image;
-    //private Monster monster;
+
     public BoxCollider attackBox;
     public Transform buffEffectpos;
 
@@ -24,7 +24,6 @@ public class PlayerCtrl : BaseCharacter
     {
         instance = this;
         anim = transform.GetComponent<Animator>();
-        //monster      = GameObject.Find("Monster").GetComponent<Monster>();
         attackBox = attackBox.GetComponent<BoxCollider>();
     }
 
@@ -46,8 +45,8 @@ public class PlayerCtrl : BaseCharacter
         base.baseAttackSpeed = 1.0f;
         base.curAttackSpeed = 1.0f;
 
-        base.baseMoveSpeed = 3.0f;
-        base.curMoveSpeed = 3.0f;
+        base.baseMoveSpeed = 5.0f;
+        base.curMoveSpeed = 5.0f;
 
         base.rotSpeed = 100.0f;
         base.isDead = false;
@@ -174,7 +173,8 @@ public class PlayerCtrl : BaseCharacter
         curHP -= damage;
 
         GameObject obj = (GameObject)Instantiate(Resources.Load("Particle/MonsterAttack")) as GameObject;
-        anim.SetTrigger("TakeDamage");
+        //anim.SetTrigger("TakeDamage");
+        anim.Play("TakeDamage");
         obj.transform.position = transform.position;
         Destroy(obj, 0.5f);
     }

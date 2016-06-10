@@ -14,24 +14,30 @@ public class VirtualJoystick : MonoBehaviour, IDragHandler, IPointerUpHandler, I
     void Start()
     {
         instance = this;
-        bgImg       = GetComponent<Image>();
 
+        bgImg       = GetComponent<Image>();
         joystickImg  = transform.FindChild("JoystickImage").GetComponent<Image>();
+        InputVector  = Vector3.zero;
     }
 
     public virtual void OnDrag(PointerEventData ped)
     {
-        Vector2 pos;
+        Vector2 pos = Vector2.zero;
         if(RectTransformUtility.ScreenPointToLocalPointInRectangle(bgImg.rectTransform, ped.position, ped.pressEventCamera, out pos))
         {
             pos.x = (pos.x / bgImg.rectTransform.sizeDelta.x);
             pos.y = (pos.y / bgImg.rectTransform.sizeDelta.y);
 
-            InputVector = new Vector3(pos.x * 2 + 1, 0, pos.y * 2 - 1);
+            float x = (bgImg.rectTransform.pivot.x == 1) ? pos.x * 2 + 1 : pos.x * 2 - 1;
+            float y = (bgImg.rectTransform.pivot.y == 1) ? pos.y * 2 + 1 : pos.y * 2 - 1;
+
+            InputVector = new Vector3(x, 0, y);
             InputVector = (InputVector.magnitude > 1.0f) ? InputVector.normalized : InputVector;
 
+            //InputVector = new Vector3(pos.x * 2 + 1, 0, pos.y * 2 - 1);
+
             joystickImg.rectTransform.anchoredPosition = new Vector3(InputVector.x * (bgImg.rectTransform.sizeDelta.x / 3),
-                                                                     InputVector.z * (bgImg.rectTransform.sizeDelta.y / 3));
+                                                              InputVector.z * (bgImg.rectTransform.sizeDelta.y / 3));
         }
     }
 

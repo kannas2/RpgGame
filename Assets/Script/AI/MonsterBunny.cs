@@ -38,13 +38,13 @@ public class MonsterBunny : Monster {
         base.monsterName.text = "래 피";
         base.itemPath = "Prefab/Item/medalC";
         base.itemName = "medalC";
+        base.type = MonsterType.Weak;
 
         base.attackTimer = .0f;
     }
 	
 	void FixedUpdate()
     {
-        Debug.Log("gameobject Name : " + gameObject.transform.name);
         state.Update();
         base.MonsterUpdateHP();
 	}

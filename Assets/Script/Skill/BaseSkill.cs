@@ -38,7 +38,7 @@ public class BaseSkill : MonoBehaviour {
             case "Hast":
                 {
                     SmallHast.instance.buffTime = 30.0f;
-                    player.curMoveSpeed = 6.0f;
+                    player.curMoveSpeed += 5.0f;
                     player.run = true;
                     yield return new WaitForSeconds(ftime);
                     player.run = false;
