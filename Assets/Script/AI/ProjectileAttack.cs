@@ -38,6 +38,7 @@ public class ProjectileAttack : FSM_State<Monster>
     {
         if(monster.curHP <= 0)
         {
+            monster.anim.SetBool("Fly Idle", false);
             monster.ChangeState(State_Die.instance);
         }
         
@@ -52,18 +53,16 @@ public class ProjectileAttack : FSM_State<Monster>
                 monster.anim.SetTrigger("Fly Projectile Attack");
 
                 //원거리 공격 구체 생성. 
-                monster.CreateBullet("Prefab/FireBullet", 1.0f);
+                monster.CreateBullet(monster.projectilePath, 1.0f);
                 monster.projectAttackTimer = .0f;
                 monster.chaseTime = .0f;
                 monster.projectileCNT++; //공격 카운트
             }
         }
-        else //생성된 구체가 5개 이상이거나 플레이어가 죽었거나.
+        else if(monster.projectAttackTimer >=1.5f && monster.projectileCNT >= 5)
         {
             monster.anim.SetBool("Fly Idle", false);
             monster.ChangeState(State_Move.instance);
-            //다른 행동으로 전환 ex ) monster.ChangeState(State_Move.instance);
-            //혹은 구체 발사하는 지점이 공중이라면 FlyMove FlyMove에서 일정거리 도달하면 StateMOve로 전환.
         }
     }
 

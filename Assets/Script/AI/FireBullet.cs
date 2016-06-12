@@ -9,7 +9,7 @@ public class FireBullet : Bullet
         base.bulletSpeed = 5.0f;
         base.BulletGetComponent();
 
-        base.boomPaticlePath = "";
+        base.boomPaticlePath = "Prefab/GroundExplode";
     }
 
     void Update()

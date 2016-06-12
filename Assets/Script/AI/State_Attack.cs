@@ -28,7 +28,6 @@ public class State_Attack : FSM_State<Monster>
         if(monster.stateInfo.IsName("Walk"))
         {
             monster.anim.SetBool("Walk", false);
-            Debug.Log("워크 정정");
         }
     }
 
@@ -41,8 +40,9 @@ public class State_Attack : FSM_State<Monster>
 
         monster.attackTimer += 1.0f * Time.deltaTime;
         monster.projecttileCoolTime += 1.0f * Time.deltaTime;
-
+        monster.healCoolTime += 1.0f * Time.deltaTime;
         monster.PlayerLook();
+
         if (!monster.player.isDead && monster.CheckRange() <= monster.attackDis && monster.Check_Angle())
         {
             if (monster.attackTimer >= monster.curAttackSpeed)
@@ -54,11 +54,21 @@ public class State_Attack : FSM_State<Monster>
                 monster.chaseTime = .0f;
                 monster.attack = true;
             }
-            else if (monster.type == Monster.MonsterType.Strong && monster.curHP <= 200.0f && monster.projecttileCoolTime >= 20)
+
+            if(monster.type == Monster.MonsterType.Boss && monster.healCoolTime >= 10.0f)
             {
-                monster.projecttileCoolTime = .0f;
-                monster.ChangeState(ProjectileMove.instance);
-                //나중에 특정 보스만이 취할수 있는 행동을 할때 일시적인 확률로 본체 힐을 할 수 있게 본체힐을 한 후에 그전 행동으로 돌아가는 StateRevert() 를 호출할것.
+                monster.healCoolTime = .0f;
+                monster.MosnterHeal();
+            }
+
+            if (monster.type == Monster.MonsterType.Strong || monster.type == Monster.MonsterType.Boss)
+            {
+                if (monster.curHP <= 200.0f && monster.projecttileCoolTime >= 20)
+                {
+                    monster.projecttileCoolTime = .0f;
+                    monster.ChangeState(ProjectileMove.instance);
+                    //나중에 특정 보스만이 취할수 있는 행동을 할때 일시적인 확률로 본체 힐을 할 수 있게 본체힐을 한 후에 그전 행동으로 돌아가는 StateRevert() 를 호출할것.
+                }
             }
         }
         else

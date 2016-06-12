@@ -116,6 +116,8 @@
     <Compile Include="Assets\Script\AI\MonsterAngel.cs" />
     <Compile Include="Assets\Script\AI\MonsterBunny.cs" />
     <Compile Include="Assets\Script\AI\MonsterDragon.cs" />
+    <Compile Include="Assets\Script\AI\MonsterLich.cs" />
+    <Compile Include="Assets\Script\AI\PoisonBullet.cs" />
     <Compile Include="Assets\Script\AI\ProjectileAttack.cs" />
     <Compile Include="Assets\Script\AI\ProjectileMove.cs" />
     <Compile Include="Assets\Script\AI\State_Attack.cs" />
@@ -163,6 +165,7 @@
     <None Include="Assets\GE Common Assets\Readme.txt" />
     <None Include="Assets\GUI Animator\GUI Animator FREE\!How to.txt" />
     <None Include="Assets\GUI Animator\GUI Animator FREE\Readme.txt" />
+    <None Include="Assets\Lich\Read me.txt" />
     <None Include="Assets\MagicArsenal\KunaiEditor\Editor\Readme.txt" />
     <None Include="Assets\MagicArsenal\MagicArsenal - ReadMe.txt" />
     <None Include="Assets\Resources\XML\ItemList.xml" />

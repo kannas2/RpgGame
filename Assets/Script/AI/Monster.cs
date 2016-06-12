@@ -29,6 +29,8 @@ public class Monster : MonoBehaviour
     public float projectAttackTimer;     //원거리공격. 
     public float projecttileAttackSpeed;  //구체 생성 시간 간격.
     public float projecttileCoolTime;
+    public string projectilePath;
+    public float healCoolTime;
 
     public Transform ProjectilePos;       //발사 지점.
     public Vector3[] pivotPos;
@@ -69,7 +71,9 @@ public class Monster : MonoBehaviour
     public string itemPath;  //아이템 경로.
 
     public bool attackState;       //선공 여부.
-    public SphereCollider checkbox;
+    public bool prevattackState;
+
+    public SphereCollider[] checkbox;
     public bool attack; //공격이 가능한 상태인지.
     public string itemName;
 
@@ -98,6 +102,11 @@ public class Monster : MonoBehaviour
 
     public void ResetState()
     {
+        curHP = maxHP;
+        attackTimer = .0f;
+        projecttileCoolTime = .0f;
+        attackState = prevattackState;
+
         myTarget = player.transform;
         transform.rotation = Quaternion.Euler(prevRot);
         state.Initial_Setting(this, State_Idle.Instance);
@@ -217,6 +226,20 @@ public class Monster : MonoBehaviour
         Destroy(damage, 1.0f);
     }
 
+    //몬스터가 Attack일 경우에만 사용되는 함수.
+    public void MosnterHeal()
+    {
+        //모션 전환
+        anim.SetTrigger("Heal");
+        //파티클 생성
+        GameObject heal = Instantiate(Resources.Load("Prefab/LifeEnchant")) as GameObject;
+        heal.transform.position = transform.position;
+        //몬스터 체력 회복
+        curHP += 100;
+        //파티클 삭제
+        Destroy(heal.gameObject, 1.5f);
+    }
+
     //attack box on/off; 사용 안할 예정 삭제 예정.
     //public IEnumerator AttackCheckTime()
     //{
@@ -272,6 +295,7 @@ public class Monster : MonoBehaviour
         if (coll.gameObject.CompareTag("Sword"))
         {
             //타격 이펙트 생성,
+            attackState = true;
             OnDamage(player.curAttackPower);
         }
 

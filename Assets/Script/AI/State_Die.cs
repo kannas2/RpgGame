@@ -17,7 +17,10 @@ public class State_Die : FSM_State<Monster>
     {
         monster.dieTime = .0f;
 
-        monster.checkbox.enabled = false;
+        for (int i = 0; i < monster.checkbox.Length; i++)
+        {
+            monster.checkbox[i].enabled = false;
+        }
         monster.anim.SetTrigger("Die");
         monster.IsDead = true;
         monster.Create_item();

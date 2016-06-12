@@ -22,7 +22,6 @@ public class MonsterAngel : Monster {
         base.chaseTime = .0f;
         base.chaseCancleTime = 5.0f;
 
-        base.attackState = false;
         base.preMonsterPos = transform.position;
 
         base.attackDis = 0.9f;
@@ -32,7 +31,10 @@ public class MonsterAngel : Monster {
         base.GetComponent();
         base.ResetState();
 
+        base.attackState = false;
+        base.prevattackState = false;
         base.attack = false;
+
         base.monsterName.text = "아가사";
         base.itemPath = "Prefab/Item/medalA";
         base.itemName = "medalA";

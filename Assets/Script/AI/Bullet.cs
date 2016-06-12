@@ -10,11 +10,14 @@ public class Bullet : MonoBehaviour
     public Rigidbody body;
 
     public string boomPaticlePath;
+
     public float boomDis;
     public float bulletSpeed;
+    public bool  boom;
 
     public void BulletGetComponent()
     {
+        boom = false;
         box = GetComponent<BoxCollider>();
         body = GetComponent<Rigidbody>();
         body.isKinematic = true;
@@ -32,8 +35,15 @@ public class Bullet : MonoBehaviour
         else
         {
             //펑
-            Debug.Log("펑");
-            Destroy(transform.gameObject, 0.5f);
+            if(boom == false)
+            {
+                boom = true;
+                GameObject damage = Instantiate(Resources.Load(boomPaticlePath)) as GameObject;
+                damage.transform.SetParent(transform);
+                damage.transform.position = transform.position;
+                Destroy(damage.gameObject, 3.0f);
+                Destroy(transform.gameObject, 1.0f);
+            }
         }
     }
 

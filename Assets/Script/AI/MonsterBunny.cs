@@ -22,7 +22,6 @@ public class MonsterBunny : Monster {
         base.chaseTime = .0f;
         base.chaseCancleTime = 5.0f;
 
-        base.attackState = false;
         base.preMonsterPos = transform.position; //시작위치.
 
         base.attackDis = 0.9f; //플레이어 공격 거리  
@@ -34,6 +33,9 @@ public class MonsterBunny : Monster {
 
         //Getcomponent이후.
         base.attack= false;
+        base.attackState = false; //비선공.
+        base.prevattackState = false;
+ 
         base.monsterName.text = "래 피";
         base.itemPath = "Prefab/Item/medalC";
         base.itemName = "medalC";
@@ -45,8 +47,11 @@ public class MonsterBunny : Monster {
 	
 	void FixedUpdate()
     {
-        state.Update();
-        base.MonsterUpdateHP();
+        if (attackState == true)
+        {
+            state.Update();
+            base.MonsterUpdateHP();
+        }
 	}
 
     //물리적 충돌X

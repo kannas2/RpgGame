@@ -25,7 +25,6 @@ public class MonsterDragon : Monster {
         base.chaseTime = .0f;
         base.chaseCancleTime = 20.0f;
 
-        base.attackState = true;
         base.preMonsterPos = transform.position;
 
         base.attackDis = 3.1f; //나중에 보고 조절할것.
@@ -39,6 +38,7 @@ public class MonsterDragon : Monster {
         base.monsterName.text = "드 래 곤";
         base.itemPath = "Prefab/Item/dragonHorn";
         base.itemName = "dragonHorn";
+        base.projectilePath = "Prefab/FireBullet";
         base.type = MonsterType.Strong;
 
         base.attackTimer = .0f;
@@ -54,6 +54,8 @@ public class MonsterDragon : Monster {
         base.dieTime = .0f;
         base.projecttileCoolTime = 20.0f;
 
+        base.attackState = true; //선공.
+        base.prevattackState = true;
     }
 	
 	void FixedUpdate()
