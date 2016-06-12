@@ -24,7 +24,6 @@ public class MonsterAngel : Monster {
 
         base.attackState = false;
         base.preMonsterPos = transform.position;
-        base.curMonsterPos = transform;
 
         base.attackDis = 0.9f;
         base.checkDis = 2.5f;
@@ -33,12 +32,13 @@ public class MonsterAngel : Monster {
         base.GetComponent();
         base.ResetState();
 
-        base.attack = true;
+        base.attack = false;
         base.monsterName.text = "아가사";
         base.itemPath = "Prefab/Item/medalA";
         base.itemName = "medalA";
 
         base.attackTimer = .0f;
+        base.dieTime = .0f;
     }
 	
 	void FixedUpdate()

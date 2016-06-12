@@ -97,7 +97,6 @@ public class PlayerCtrl : BaseCharacter
         if (curHP <= 0)
         {
             curHP = 0;
-            Debug.Log("게임오버");
         }
         else if (curHP >= maxHP)
         {

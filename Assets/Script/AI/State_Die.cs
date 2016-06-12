@@ -13,28 +13,24 @@ public class State_Die : FSM_State<Monster>
         }
     }
 
-    public float count;
-    public float time;
-
     public override void EnterState(Monster monster)
     {
-        count = 2.0f;
-        time = .0f;
+        monster.dieTime = .0f;
 
         monster.checkbox.enabled = false;
-        monster.anim.SetTrigger("die");
+        monster.anim.SetTrigger("Die");
         monster.IsDead = true;
         monster.Create_item();
     }
 
     public override void UpdateState(Monster monster)
     {
-        time += Time.deltaTime;
+        monster.dieTime += Time.deltaTime;
         
-        if (time >= 2.0f)
+        if (monster.dieTime >= 5.0f)
         {
-            monster.gameObject.SetActive(false);
-            time = .0f;
+            monster.dieTime = .0f;
+            monster.MonsterDie();
         }
             
     }

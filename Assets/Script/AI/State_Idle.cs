@@ -19,11 +19,12 @@ public class State_Idle : FSM_State<Monster>
 
     public override void UpdateState(Monster monster)
     {
-        if(monster.CheckRange() <= monster.checkDis) //거리.
+        monster.anim.SetTrigger("Idle");
+
+        if (monster.CheckRange() <= monster.checkDis) //거리.
         {
             monster.ChangeState(State_Move.Instance);
         }
-        monster.anim.SetTrigger("idle");
     }
 
     public override void ExitState(Monster monster)

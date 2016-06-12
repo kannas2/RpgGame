@@ -24,7 +24,6 @@ public class MonsterBunny : Monster {
 
         base.attackState = false;
         base.preMonsterPos = transform.position; //시작위치.
-        base.curMonsterPos = transform;
 
         base.attackDis = 0.9f; //플레이어 공격 거리  
         base.checkDis = 2.5f;  //플레이어 인식 거리. 
@@ -38,9 +37,10 @@ public class MonsterBunny : Monster {
         base.monsterName.text = "래 피";
         base.itemPath = "Prefab/Item/medalC";
         base.itemName = "medalC";
-        base.type = MonsterType.Weak;
 
+        base.type = MonsterType.Weak;
         base.attackTimer = .0f;
+        base.dieTime = .0f;
     }
 	
 	void FixedUpdate()

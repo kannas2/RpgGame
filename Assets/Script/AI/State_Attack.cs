@@ -21,9 +21,15 @@ public class State_Attack : FSM_State<Monster>
         {
             return;
         }
-
         monster.attackTimer = .0f;
-        monster.attack = true;
+
+        //몬스터 Walk가 혹시 플레이중이라면 끄는off.
+        monster.stateInfo = monster.anim.GetCurrentAnimatorStateInfo(0);
+        if(monster.stateInfo.IsName("Walk"))
+        {
+            monster.anim.SetBool("Walk", false);
+            Debug.Log("워크 정정");
+        }
     }
 
     public override void UpdateState(Monster monster)
@@ -34,23 +40,26 @@ public class State_Attack : FSM_State<Monster>
         }
 
         monster.attackTimer += 1.0f * Time.deltaTime;
-        if(!monster.player.isDead && monster.CheckRange() <= monster.attackDis && monster.Check_Angle()) //나중에 외적Angle 아니다 싶으면 빼는걸로.
+        monster.projecttileCoolTime += 1.0f * Time.deltaTime;
+
+        monster.PlayerLook();
+        if (!monster.player.isDead && monster.CheckRange() <= monster.attackDis && monster.Check_Angle())
         {
-            if(monster.attackTimer >= monster.curAttackSpeed)
+            if (monster.attackTimer >= monster.curAttackSpeed)
             {
                 //데미지
-                monster.anim.SetTrigger("attack");
+                monster.anim.SetTrigger("Attack");
 
                 monster.attackTimer = .0f;
                 monster.chaseTime = .0f;
+                monster.attack = true;
             }
-        }
-        else if(monster.type == Monster.MonsterType.Strong || 
-               monster.type == Monster.MonsterType.Boss && monster.curHP <= 200.0f )
-        {
-            //이동
-            //다른 곳으로 이동 원거리 공격 할 만한 곳으로. 그 이동하는 상태 스크립트에서 1~3 정도 rand돌려서 방향 잡아서 그곳으로 이동시키고 그다음 ProejctAttack으로 change.
-            //나중에 특정 보스만이 취할수 있는 행동을 할때 일시적인 확률로 본체 힐을 할 수 있게 본체힐을 한 후에 그전 행동으로 돌아가는 StateRevert() 를 호출할것.
+            else if (monster.type == Monster.MonsterType.Strong && monster.curHP <= 200.0f && monster.projecttileCoolTime >= 20)
+            {
+                monster.projecttileCoolTime = .0f;
+                monster.ChangeState(ProjectileMove.instance);
+                //나중에 특정 보스만이 취할수 있는 행동을 할때 일시적인 확률로 본체 힐을 할 수 있게 본체힐을 한 후에 그전 행동으로 돌아가는 StateRevert() 를 호출할것.
+            }
         }
         else
         {
@@ -60,5 +69,6 @@ public class State_Attack : FSM_State<Monster>
 
     public override void ExitState(Monster monster)
     {
+        //monster.attack = false;
     }
 }

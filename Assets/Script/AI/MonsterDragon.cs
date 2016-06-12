@@ -23,36 +23,44 @@ public class MonsterDragon : Monster {
         base.rotSpeed = 100.0f;
 
         base.chaseTime = .0f;
-        base.chaseCancleTime = 8.0f;
+        base.chaseCancleTime = 20.0f;
 
         base.attackState = true;
         base.preMonsterPos = transform.position;
-        base.curMonsterPos = transform;
 
-        base.attackDis = 1.0f; //나중에 보고 조절할것.
-        base.checkDis = 3.0f;
+        base.attackDis = 3.1f; //나중에 보고 조절할것.
+        base.checkDis = 5.0f;
         base.IsDead = false;
 
         base.GetComponent();
         base.ResetState();
 
         base.attack = false;
-        base.monsterName.text = "드래곤";
+        base.monsterName.text = "드 래 곤";
         base.itemPath = "Prefab/Item/dragonHorn";
         base.itemName = "dragonHorn";
         base.type = MonsterType.Strong;
 
         base.attackTimer = .0f;
 
-        base.projectileCNT = 5;
-        base.projecttileAttackSpeed = 2.0f;
+        base.projectileCNT = 0;
+        base.projecttileAttackSpeed = 3.0f;
         base.projectAttackTimer = .0f;
-	}
+
+        base.pivotPos = new Vector3[] { new Vector3(7.454f, 2.154f, 33.4f),
+                                     new Vector3(11.66f, 3.0f,  42.89f),
+                                     new Vector3(20.66f, 2.04f, 35.23f)
+                                   };
+        base.dieTime = .0f;
+        base.projecttileCoolTime = 20.0f;
+
+    }
 	
 	void FixedUpdate()
     {
         state.Update();
         base.MonsterUpdateHP();
+        transform.GetComponent<BoxCollider>().enabled = !base.IsDead;   // 드래곤이랑 리치만 이렇게.
 	}
 
     //물리적 충돌X

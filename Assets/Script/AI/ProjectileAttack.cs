@@ -17,6 +17,7 @@ public class ProjectileAttack : FSM_State<Monster>
             return instance;
         }
     }
+    private int attackCNT;
 
     public override void EnterState(Monster monster)
     {
@@ -27,8 +28,12 @@ public class ProjectileAttack : FSM_State<Monster>
         }
 
         monster.projectAttackTimer = .0f;
-    }
+        monster.projectileCNT = 0;
+        attackCNT = 5;
 
+        //몬스터가 공격하는 횟수도 랜덤으로 할까 ex) monster.randattack = Random(min, max); 나중에 물어보고..결정 하는걸로..
+    }
+    
     public override void UpdateState(Monster monster)
     {
         if(monster.curHP <= 0)
@@ -38,18 +43,25 @@ public class ProjectileAttack : FSM_State<Monster>
         
         monster.projectAttackTimer += 1.0f * Time.deltaTime;
 
-         if(monster.projectAttackTimer >= monster.projecttileAttackSpeed
-            && !monster.player.isDead)
+        if(!monster.player.isDead && monster.projectileCNT < attackCNT)
         {
-            // 캐릭터의 방향으로 전환 다른 때는 상관없는데 이건 특정장소로 이동하고나서 공격하는거라 Look 해줘야함.
             monster.PlayerLook();
+            if (monster.projectAttackTimer >= monster.projecttileAttackSpeed && monster.Check_Angle())
+            {
+                // 캐릭터의 방향으로 전환 다른 때는 상관없는데 이건 특정장소로 이동하고나서 공격하는거라 Look 해줘야함.
+                monster.anim.SetTrigger("Fly Projectile Attack");
 
+                //원거리 공격 구체 생성. 
+                monster.CreateBullet("Prefab/FireBullet", 1.0f);
+                monster.projectAttackTimer = .0f;
                 monster.chaseTime = .0f;
-                //원거리 공격 구체 생성. 구체는 생성될때 플레이어의 초기 위치를 딱 한번 대입받고
-                // 해당위치로 이동 한다. 지면에 혹은 일정거리 이상 날라갈 시에 터지는 파티클 생성후 삭제
+                monster.projectileCNT++; //공격 카운트
+            }
         }
-        else //생성된 구체가 5개 이상이라면
+        else //생성된 구체가 5개 이상이거나 플레이어가 죽었거나.
         {
+            monster.anim.SetBool("Fly Idle", false);
+            monster.ChangeState(State_Move.instance);
             //다른 행동으로 전환 ex ) monster.ChangeState(State_Move.instance);
             //혹은 구체 발사하는 지점이 공중이라면 FlyMove FlyMove에서 일정거리 도달하면 StateMOve로 전환.
         }
@@ -57,6 +69,6 @@ public class ProjectileAttack : FSM_State<Monster>
 
     public override void ExitState(Monster monster)
     {
-
+        monster.anim.SetBool("Fly Idle", false);
     }
 }

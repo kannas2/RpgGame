@@ -33,7 +33,7 @@ public class Bullet : MonoBehaviour
         {
             //펑
             Debug.Log("펑");
-            Destroy(transform.gameObject, 1.0f);
+            Destroy(transform.gameObject, 0.5f);
         }
     }
 

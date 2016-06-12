@@ -27,7 +27,11 @@ public class Monster : MonoBehaviour
 
     public int   projectileCNT;         //날릴 구체 개수.
     public float projectAttackTimer;     //원거리공격. 
-    public float projecttileAttackSpeed; //구체 생성 시간 간격.
+    public float projecttileAttackSpeed;  //구체 생성 시간 간격.
+    public float projecttileCoolTime;
+
+    public Transform ProjectilePos;       //발사 지점.
+    public Vector3[] pivotPos;
 
    //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 
@@ -51,10 +55,7 @@ public class Monster : MonoBehaviour
     public PlayerCtrl player;
 
     public Vector3 preMonsterPos; //몬스터 시작지점.
-    public Transform curMonsterPos; //현재 위치 이동해서의.
     public Vector3 prevRot;      //몬스터가 원래 보고 있던 각도.
-
-    public int monsterPatten; //몬스 특정 패턴.
 
     public State_Machine<Monster> state;
 
@@ -76,6 +77,8 @@ public class Monster : MonoBehaviour
     public Rigidbody body;
 
     public MonsterType type;
+    public float dieTime;
+    public AnimatorStateInfo stateInfo;
 
     public virtual void GetComponent()
     {
@@ -96,7 +99,7 @@ public class Monster : MonoBehaviour
     public void ResetState()
     {
         myTarget = player.transform;
-        curMonsterPos.rotation = Quaternion.Euler(prevRot);
+        transform.rotation = Quaternion.Euler(prevRot);
         state.Initial_Setting(this, State_Idle.Instance);
     }
 
@@ -109,7 +112,7 @@ public class Monster : MonoBehaviour
     //회전 각도 체크.
     public bool Check_Angle()
     {
-        if (Vector3.Dot(myTarget.position, curMonsterPos.position) >= 1.5f)
+        if (Vector3.Dot(myTarget.position, transform.position) >= 1.5f)
         {
             return true;
         }
@@ -119,7 +122,7 @@ public class Monster : MonoBehaviour
     //일정 거리내에 있는지 체크.
     public float CheckRange()
     {
-        float dis = Vector3.Distance(myTarget.position, curMonsterPos.position);
+        float dis = Vector3.Distance(myTarget.position, transform.position);
 
         return dis;
     }
@@ -152,6 +155,38 @@ public class Monster : MonoBehaviour
         }
     }
 
+    public void MonsterMove(Vector3 target)
+    {
+        Vector3 dir = target - transform.position;
+        Vector3 nordir = dir.normalized;
+
+        Quaternion angle = Quaternion.LookRotation(nordir);
+        transform.rotation = angle;
+
+        Vector3 pos = transform.position;
+        pos += transform.forward * Time.smoothDeltaTime * curMoveSpeed;
+        transform.position = pos;
+    }
+
+    public void MonsterMoveReset()
+    {
+
+        float distance = Vector3.Distance(preMonsterPos, transform.position);
+        if (distance >= 0.1f)
+        {
+            MonsterMove(preMonsterPos);
+        }
+        else
+        {
+            ResetState();
+        }
+    }
+
+    public void MonsterDie()
+    {
+        Destroy(transform.gameObject);
+    }
+
     public void PlayerLook()
     {
         Vector3 dir = (myTarget.position - transform.position).normalized;
@@ -161,8 +196,8 @@ public class Monster : MonoBehaviour
 
     public void Create_item()
     {
-        GameObject item = (GameObject)Instantiate(Resources.Load(itemPath), curMonsterPos.position, Quaternion.identity);
-        item.transform.position = new Vector3(curMonsterPos.position.x, curMonsterPos.position.y + 5.0f, curMonsterPos.position.z);
+        GameObject item = (GameObject)Instantiate(Resources.Load(itemPath), transform.position, Quaternion.identity);
+        item.transform.position = new Vector3(transform.position.x, transform.position.y + 6.0f, transform.position.z);
         item.name = itemName;
     }
 
@@ -183,16 +218,38 @@ public class Monster : MonoBehaviour
     }
 
     //attack box on/off; 사용 안할 예정 삭제 예정.
-    public IEnumerator AttackCheckTime()
+    //public IEnumerator AttackCheckTime()
+    //{
+    //    attack = false;
+    //    yield return new WaitForSeconds(curAttackSpeed);
+    //    attack = true;
+    //}
+    public void CreateBullet(string bulletPath, float sec)
     {
-        attack = false;
-        yield return new WaitForSeconds(curAttackSpeed);
-        attack = true;
+        StartCoroutine(BulletAttack(bulletPath, sec));
+    }
+
+    public IEnumerator BulletAttack(string bulletPath,float sec)
+    {
+        yield return new WaitForSeconds(sec);
+        //나중에 파이어볼 생성하면서 플레이어 위치 발? 부분에 빨간색 발판? 같은 느낌 같은거 생성되게끔.
+        GameObject bullet = (GameObject)Instantiate(Resources.Load(bulletPath)) as GameObject;
+        bullet.transform.position = CurrentPos();
+    }
+
+    //이 함수를 만든 이유는 Trasnform을 얻어오면 Transform 같은경우는 동적으로 계속 변경되는데
+    //Vector3는 변동이 되지 않고 그때 당시 딱 그 위치만을 대입받기 때문에.
+    //이것은 예전 몬스터가 공격을 못할경우 이전 위치로 되돌아가는데 그 되돌아가야 할 위치를
+    //Transform 으로 받았는데 돌아갈 위치가 자꾸 변동되는것을 보고 그때 알게 된.
+    public Vector3 CurrentPos()
+    {
+        Vector3 currentPos = ProjectilePos.position ;
+
+        return currentPos;
     }
 
     public void OnDamage(float damage)
     {
-        Debug.Log("맞음");
         curHP -= damage;
         //anim.SetTrigger("takeDamage"); 공격 state 에서 onDamage가 true라면 공격모션대신 피격 모션 실행하고 false 하는 방식으로? 
         GameObject obj = (GameObject)Instantiate(Resources.Load("Particle/BaseAttack")) as GameObject;
@@ -218,7 +275,7 @@ public class Monster : MonoBehaviour
             OnDamage(player.curAttackPower);
         }
 
-        if (coll.gameObject.CompareTag("Player")&& attack) //어택스테이트에서 attack true해주면 될듯. 초반에.
+        if (coll.gameObject.CompareTag("Player") && attack) //어택스테이트에서 attack true해주면 될듯. 초반에.
         {
             attack = false;
             player.OnDamage(RandomDamage(minDamage, maxDamage));
@@ -235,140 +292,3 @@ public class Monster : MonoBehaviour
        //Debug.Log("충돌함");
        */
 }
-/*
-using UnityEngine;
-using System.Collections;
-using UnityEngine.UI;
-
-public class Monster : MonoBehaviour
-{
-    public float max_HP = 100.0f;
-    public float cur_HP = 100.0f;
-
-    private float attack_damage = 1.0f;
-
-    public float Attack_Range = 2.5f;
-    public float attack_speed = 1.5f;
-    public float move_speed = 2.5f;
-    public float rot_speed = 100f;
-
-    public Animation ani = null;
-    public State_Machine<Monster> state = null;
-
-    public float chase_time = .0f;
-    public float chase_cancle_time = 5.0f;
-
-    public bool IsDead = false;
-
-    public Transform my_target { get; set; }
-    public PlayerCtrl player { get; set; }
-
-    public Vector3 set_monster_pos;
-    public Vector3 prev_rot;
-
-    public Slider HP_bar;
-
-    private void Awake()
-    {
-        set_monster_pos = new Vector3(.0f, 1.1f, -2.72f);
-        prev_rot = new Vector3(.0f, .0f, .0f);
-
-        //애니메이션 컴포넌트 가져오기
-        ani = this.GetComponent<Animation>();
-
-        //초기설정
-        ResetState();
-
-        if (GameObject.Find("Player"))
-        {
-            my_target = GameObject.Find("Player").GetComponent<Transform>();
-            player = GameObject.Find("Player").GetComponent<PlayerCtrl>();
-        }
-    }
-
-    private void Update()
-    {
-        //상태 업데이트
-        state.Update();
-        //체력바 업데이트
-        Monster_Update_HP();
-    }
-
-    void HP_Bar_Update()
-    {
-
-    }
-
-    public void ResetState()
-    {
-        if (state == null)
-        {
-            state = new State_Machine<Monster>();
-        }
-
-        my_target = GameObject.Find("Player").GetComponent<Transform>();
-
-        //몬스터 세팅된 포지션
-        transform.position = set_monster_pos;
-        transform.rotation = Quaternion.Euler(prev_rot);
-
-        state.Initial_Setting(this, State_Idle.Instance);
-    }
-
-    //상태변경
-    public void ChangeState(FSM_State<Monster> _state)
-    {
-        state.ChangeState(_state);
-    }
-
-    //회전 각도 체크.
-    public bool Check_Angle()
-    {
-        if (Vector3.Dot(my_target.transform.position, transform.position) >= 0.5f)
-        {
-            return true;
-        }
-        return false;
-    }
-
-    //일정 거리내에 있는지 체크.
-    public bool Check_Range()
-    {
-        if (Vector3.Distance(my_target.transform.position, transform.position) <= Attack_Range)
-        {
-            return true;
-        }
-        return false;
-    }
-
-    public void Monster_Update_HP()
-    {
-        float fHp = (float)current_HP / (float)monster_HP;
-        HP_bar.value = fHp;
-    }
-
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "Player")
-        {
-            Debug.Log("충돌했습니다.");
-            //player.Character_Update_Hp(0.1f);
-            PlayerCtrl.instance.curHP -= 10.0f;
-            player.anim.SetBool("isDamage", true); //일단 이런식으로 구현하고 나중에 애니메이션 함수를 플레이어 클래스에서 한개 만들고 그 클래스에서 애니메이션 처리하는것으로 지금은 급한대로.
-
-            GameObject obj = (GameObject)Instantiate(Resources.Load("Particle/Attack")) as GameObject;
-            obj.transform.parent = other.transform;
-
-            obj.transform.localPosition = other.transform.localPosition;
-            Destroy(obj, 0.7f);
-            Debug.Log("other : " + other.transform.localPosition);
-        }
-    }
-
-    public void Create_item()
-    {
-        GameObject item = (GameObject)Instantiate(Resources.Load("Prefab/DropItem"), transform.position, Quaternion.identity);
-        item.transform.position = new Vector3(transform.position.x, transform.position.y + 5.0f, transform.position.z);
-    }
-}
-    */
