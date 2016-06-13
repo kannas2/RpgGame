@@ -19,7 +19,7 @@ public class Brandish : BaseSkill {
 
         base.skillState  = true;
         base.useMp = 10.0f;
-
+        base.swordeffectpath = "Prefab/Skill/FireSlash";
         base.GetComponent();
 	}
 
@@ -34,11 +34,11 @@ public class Brandish : BaseSkill {
     {
         if (skillState != false && player.curMP >= base.useMp)
         {
-            curCoolTime = 2.0f;
+            curCoolTime = 4.0f;
             player.curMP -= useMp;
             player.curAttackPower = base.RandomDamage(minDamage,maxDamage); //데미지.
             player.anim.SetTrigger("Brandish");
-            //PlayerCtrl.instance.attackChk = true;
+            StartCoroutine(SwordEffect(0.3f, 2));
             StartCoroutine(PlayerCtrl.instance.AttackCount(2));
         }
     }

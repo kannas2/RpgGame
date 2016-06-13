@@ -16,14 +16,20 @@ public class BaseSkill : MonoBehaviour {
     public bool  skillState;
     public Image button;
     public Text  time;
+    public bool boosterAttack;
 
     public float attackSpeed;
 
     public int minDamage;
     public int maxDamage;
 
-    public Transform effectPos;
-    protected string effectpath;
+    public Transform topBuffeffectPos;
+    public Transform bottomBuffeffectPos;
+
+    protected string buffeffectpath;
+
+    public Transform swordeffectPos;
+    protected string swordeffectpath;
 
     public PlayerCtrl player;
 
@@ -47,14 +53,26 @@ public class BaseSkill : MonoBehaviour {
                 break;
         }
     }
-    
-    public void PaticleEffect()
+    public IEnumerator SwordEffect(float sec, int loop)
     {
-        GameObject obj = (GameObject)Instantiate(Resources.Load(effectpath)) as GameObject; //공격 스킬마다 파티클 달라지게 할 예정.
-        obj.transform.parent = effectPos.transform;
+        for (int i = 0; i < loop; i++)
+        {
+            GameObject obj = (GameObject)Instantiate(Resources.Load(swordeffectpath)) as GameObject;
+            Transform pos = player.transform.FindChild("swordeffectpos").transform;
+            obj.transform.position = pos.transform.position;
+            obj.transform.rotation = pos.rotation;
+            Destroy(obj, 0.8f);
+            yield return new WaitForSeconds(sec);
+        }
+    }
 
-        obj.transform.localPosition = effectPos.transform.localPosition;
-        Destroy(obj, 0.7f);
+    //하단과 상단에 이펙트가 생성되기 때문에 Transform pos;
+    public void PaticleEffect(Transform pos, float desSec)
+    {
+        GameObject obj = (GameObject)Instantiate(Resources.Load(buffeffectpath)) as GameObject; //공격 스킬마다 파티클 달라지게 할 예정.
+        obj.transform.parent = pos.transform;
+        obj.transform.localPosition = pos.transform.localPosition;
+        Destroy(obj, desSec);
     }
 
     public void CoolTime(Text time)
@@ -71,7 +89,10 @@ public class BaseSkill : MonoBehaviour {
             curCoolTime -= 1.0f * Time.deltaTime;
             skillState = false;
             int value = (int) curCoolTime;
-            time.text = value.ToString();
+            if (value >= 1.0f)
+            {
+                time.text = value.ToString();
+            }
         }
     }
 

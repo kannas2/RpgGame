@@ -37,9 +37,9 @@ public class UIControl : Singleton<UIControl>
         button.Add(buttonB);
        
         //게임 공지로 사용될 list 밑에 함수에서 update 에서 지속적으로 내용을 확인하여 내용이 있을 경우 게임 화면에 글을 띄어줌.
-        screenText.Add("파비앙! 너에게 꼭 해야할 말이 있어!");
-        screenText.Add("나는 발렌시아 마을 중심가에 있어.");
-        screenText.Add("나를 찾아와줘!");
+        screenText.Add("파비앙! 나 필리아야!");
+        screenText.Add("너에게 꼭 해야할 말이 있어");
+        screenText.Add("나는 발렌시아 마을에 있으니 꼭 찾아와줘!");
     }
 
     void FixedUpdate()

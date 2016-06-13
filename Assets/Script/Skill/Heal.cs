@@ -12,7 +12,7 @@ public class Heal : BaseSkill {
         base.curCoolTime = .0f;
         base.healValue   = 20.0f;
         base.skillState  = true;
-        base.effectpath  = "Prefab/Skill/Heal";
+        base.buffeffectpath  = "Prefab/Skill/Heal";
         base.useMp = 20.0f;
 
         base.GetComponent();
@@ -32,7 +32,7 @@ public class Heal : BaseSkill {
             curCoolTime = 45.0f;
 
             player.curMP -= useMp;
-            base.PaticleEffect(); //파티클 추후 조정예정.
+            base.PaticleEffect(bottomBuffeffectPos,2.5f); //파티클 추후 조정예정.
             PlayerCtrl.instance.anim.SetTrigger("CastSpell"); //모션
             PlayerCtrl.instance.curHP += healValue;
             PlayerCtrl.instance.curMP += healValue;

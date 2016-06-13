@@ -232,7 +232,7 @@ public class Monster : MonoBehaviour
         //모션 전환
         anim.SetTrigger("Heal");
         //파티클 생성
-        GameObject heal = Instantiate(Resources.Load("Prefab/LifeEnchant")) as GameObject;
+        GameObject heal = Instantiate(Resources.Load("Prefab/Skill/LifeEnchant")) as GameObject;
         heal.transform.position = transform.position;
         //몬스터 체력 회복
         curHP += 100;
