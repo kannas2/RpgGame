@@ -21,7 +21,6 @@ public class ProjectileMove : FSM_State<Monster>
         rand = UnityEngine.Random.Range(0, 3);
         //몬스터 공중 idle로 변경 드래곤일 경우.
         monster.anim.SetBool("Fly Idle", true);
-        Debug.Log("Rand :" + rand);
     }
 
     public override void UpdateState(Monster monster)
@@ -45,7 +44,6 @@ public class ProjectileMove : FSM_State<Monster>
             {
                 monster.anim.SetBool("Fly Forward", false);
                 monster.ChangeState(ProjectileAttack.instance);
-                Debug.Log("도착 함");
             }
         }
         else

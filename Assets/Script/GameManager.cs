@@ -3,13 +3,9 @@ using System.Collections;
 
 public class GameManager : Singleton<GameManager>
 {
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+	public void Awake()
+    {
+        Handheld.PlayFullScreenMovie("opening 1.mp4", Color.black, FullScreenMovieControlMode.CancelOnInput);
+        Screen.SetResolution(1280, 800, true);
+    }
 }

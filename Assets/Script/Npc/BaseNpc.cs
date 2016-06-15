@@ -227,16 +227,16 @@ public class BaseNpc : MonoBehaviour
                 currentIndex = textIndex;
             }
 
-            if(success[textIndex] != "null")
+            if (success[textIndex] == "ending")
+            {
+                Application.LoadLevel(2);
+            }
+            else if (success[textIndex] != "null")
             {
                 QwestManager.Instance.qwest[success[textIndex]] = true;
                 MonsterManager.Instance.QwestCodeCheck(success[textIndex], true);
             }
-            else if(success[textIndex] == "ending")
-            {
-                Debug.Log("엔딩 시작");
-            }
-
+            
             //스킬 습득.
             if(skill[textIndex] != "null")
             {
@@ -283,7 +283,6 @@ public class BaseNpc : MonoBehaviour
         else
         {
             textIndex += 1;
-            Debug.Log("not compare");
         }
     }
 

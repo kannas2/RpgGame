@@ -35,8 +35,8 @@ public class PlayerCtrl : BaseCharacter
         base.curExp = .0f;
         base.maxExp = .0f; // 기획서에 경험치 관련된건 없지만 .. 혹시나 해서 .
 
-        base.curHP = 100.0f;
-        base.maxHP = 100.0f;
+        base.curHP = 3000.0f;
+        base.maxHP = 3000.0f;
 
         base.curMP = 100.0f;
         base.maxMP = 100.0f;
@@ -99,6 +99,7 @@ public class PlayerCtrl : BaseCharacter
         if (curHP <= 0)
         {
             curHP = 0;
+            Application.LoadLevel(0);
         }
         else if (curHP >= maxHP)
         {
@@ -165,6 +166,7 @@ public class PlayerCtrl : BaseCharacter
     {
         if (coll.gameObject.CompareTag("Item"))
         {
+            SoundManager.Instance.PlayEffect("Item");
             for (int i = 0; i < itemData.items.Count; i++)
             {
                 if (itemData.items[i].itemName == coll.gameObject.name)
@@ -180,39 +182,44 @@ public class PlayerCtrl : BaseCharacter
                             if (NpcDick.instance.currentValue < NpcDick.instance.qwestValue)
                                 NpcDick.instance.currentValue += 1;
 
-                            UIControl.Instance.screenText.Add(" 메달 A "+NpcDick.instance.currentValue + "/" + NpcDick.instance.qwestValue);
+                            UIControl.Instance.screenText.Add(" 메달 A  "+NpcDick.instance.currentValue + "/" + NpcDick.instance.qwestValue);
                             break;
 
                         case 2:
                             if (NpcDilliseu.instance.currentValue < NpcDilliseu.instance.qwestValue)
                                  NpcDilliseu.instance.currentValue += 1;
 
-                            UIControl.Instance.screenText.Add(" 메달 B " + NpcDilliseu.instance.currentValue + "/" + NpcDilliseu.instance.qwestValue);
+                            UIControl.Instance.screenText.Add(" 메달 B  " + NpcDilliseu.instance.currentValue + "/" + NpcDilliseu.instance.qwestValue);
                             break;
 
                         case 3:
                             if (NpcChase.instance.currentValue < NpcChase.instance.qwestValue)
                                 NpcChase.instance.currentValue += 1;
 
-                            UIControl.Instance.screenText.Add(" 메달 C " + NpcChase.instance.currentValue + "/" + NpcChase.instance.qwestValue);
+                            UIControl.Instance.screenText.Add(" 메달 C  " + NpcChase.instance.currentValue + "/" + NpcChase.instance.qwestValue);
                             break;
 
                         case 4:
                             if (NpcWilter.instance.currentValue < NpcWilter.instance.qwestValue)
                                 NpcWilter.instance.currentValue += 1;
 
-                            UIControl.Instance.screenText.Add(" 드래곤의 뿔 " + NpcWilter.instance.currentValue + "/" + NpcWilter.instance.qwestValue);
+                            UIControl.Instance.screenText.Add(" 드래곤의 뿔  " + NpcWilter.instance.currentValue + "/" + NpcWilter.instance.qwestValue);
                             break;
 
                         case 5:
                             if (NpcFidelio.instance.currentValue < NpcFidelio.instance.qwestValue)
                                 NpcFidelio.instance.currentValue += 1;
 
-                            UIControl.Instance.screenText.Add(" 데모너스의 구슬 " + NpcFidelio.instance.currentValue + "/" + NpcFidelio.instance.qwestValue);
+                            UIControl.Instance.screenText.Add(" 데모너스의 구슬  " + NpcFidelio.instance.currentValue + "/" + NpcFidelio.instance.qwestValue);
                             break;
                     }
                 }
             }
+        }
+
+        if(coll.tag == "Boss")
+        {
+            SoundManager.Instance.PlayBGM(2);
         }
     }
     
@@ -228,8 +235,11 @@ public class PlayerCtrl : BaseCharacter
         }
     }
 
-    //void OnTriggerExit()
-    //{
-    //    attackChk = false;
-    //}
+    void OnTriggerExit(Collider coll)
+    {
+        if (coll.tag == "Boss")
+        {
+            SoundManager.Instance.PlayBGM(1);
+        }
+    }
 }

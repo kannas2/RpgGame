@@ -83,11 +83,13 @@ public class VirtualJoystick : MonoBehaviour, IDragHandler, IPointerUpHandler, I
 
     public void HealSkill()
     {
+        SoundManager.Instance.PlayEffect("Heal");
         Heal.instance.Buff();
     }
 
     public void BranDish()
     {
+        SoundManager.Instance.PlayEffect("Brandish");
         Brandish.instance.Attack();
     }
 
@@ -98,6 +100,7 @@ public class VirtualJoystick : MonoBehaviour, IDragHandler, IPointerUpHandler, I
 
     public void SwordBooster()
     {
+        SoundManager.Instance.PlayEffect("RaisingSword");
         RaisingSword.instance.Buff();
     }
 }

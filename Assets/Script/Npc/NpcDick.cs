@@ -16,7 +16,7 @@ public class NpcDick : BaseNpc
         base.textIndex      = 0;
         base.npcType        = 0;
         base.qwestValue     = 10;       //잡아올 몬스터 값.
-        base.currentValue = 0;
+        base.currentValue = 8;
         base.prevCheckQwest = "ms104";   //퀘스트를 받아야만 클릭이 가능.
 
         //쉐이더

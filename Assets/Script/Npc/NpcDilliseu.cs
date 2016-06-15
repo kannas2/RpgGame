@@ -16,7 +16,7 @@ public class NpcDilliseu : BaseNpc {
         base.textIndex = 0;
         base.npcType = 0;
         base.qwestValue = 20;         //잡아올 몬스터 값.
-        base.currentValue = 0;
+        base.currentValue = 18;
         base.prevCheckQwest = "ms106"; // 이전 퀘스트를 완료해야지만 클릭이가능.
 
         //쉐이더

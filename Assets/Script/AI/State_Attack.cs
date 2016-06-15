@@ -63,7 +63,7 @@ public class State_Attack : FSM_State<Monster>
 
             if (monster.type == Monster.MonsterType.Strong || monster.type == Monster.MonsterType.Boss)
             {
-                if (monster.curHP <= 200.0f && monster.projecttileCoolTime >= 20)
+                if (monster.curHP <= 700.0f && monster.projecttileCoolTime >= 20)
                 {
                     monster.projecttileCoolTime = .0f;
                     monster.ChangeState(ProjectileMove.instance);

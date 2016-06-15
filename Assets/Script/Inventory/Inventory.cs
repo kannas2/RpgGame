@@ -9,7 +9,7 @@ public class Inventory : MonoBehaviour
     public List<GameObject> Slots = new List<GameObject>();
     public List<Item> items = new List<Item>();
 
-    public  GameObject slots;
+    public GameObject slots;
     private ItemDatabase database;
     public GameObject invenimage;
     public GameObject itemDesc;
@@ -59,7 +59,7 @@ public class Inventory : MonoBehaviour
     }
     public void ItemDescOff()
     {
-        if(itemDesc.activeSelf)
+        if (itemDesc.activeSelf)
         {
             itemDesc.SetActive(false);
         }
@@ -83,8 +83,6 @@ public class Inventory : MonoBehaviour
                 addItemAtEmptySlot(item, id);
                 break;
             }
-            else
-                Debug.Log("not find Item");
         }
     }
 
@@ -116,141 +114,4 @@ public class Inventory : MonoBehaviour
             }
         }
     }
-
-    //아이템을 추가할때 기존에 아이템이 있는지 판단여부와 기존에 아이템이 잇을 경우 add value 없을 경우 item add 판정.
-    /*
-        public int slotsX, slotsY;
-        public GUISkin sloat_skin;
-
-        public List<Item> inventory = new List<Item>();
-        public List<Item> slots = new List<Item>();
-
-        private bool showInventory;
-        private Item_Database database;
-        private bool showTooltip;
-        private string tooltip;
-
-        // Use this for initialization
-        void Start ()
-        {
-            slotsX = 5;
-            slotsY = 4;
-
-            for(int idx = 0; idx<slotsX * slotsY; idx++)
-            {
-                slots.Add(new Item());
-                inventory.Add(new Item());
-            }
-
-            if(GameObject.Find("ItemDatabase"))
-            {
-                database = GameObject.Find("ItemDatabase").GetComponent<Item_Database>();
-            }
-
-            //AddItem(0);
-            //Debug.Log("inventory : " + InventoryContains(2));
-            //RemoveItem(0);
-        }
-
-        void Update () {
-            if(Input.GetKeyDown(KeyCode.Mouse0))
-            {
-                showInventory = !showInventory;
-            }
-        }
-
-        void OnGUI()
-        {
-            tooltip = "";
-            GUI.skin = sloat_skin;
-            if(showInventory)
-            {
-                DrawInventory();
-            }
-            if(showTooltip)
-            {
-                GUI.Box(new Rect(Event.current.mousePosition.x, Event.current.mousePosition.y,200,200), tooltip);
-            }
-        }
-
-        void DrawInventory()
-        {
-            int idx = 0;
-            for(int x = 0; x<slotsX; x++)
-            {
-                for(int y= 0; y<slotsY; y++)
-                {
-                    Rect slotRect = new Rect(x * 60, y * 60, 50, 50);
-                    GUI.Box(new Rect(x * 60, y * 60, 50, 50),"",sloat_skin.GetStyle("Sloat"));
-
-                    slots[idx] = inventory[idx];
-
-                    if (slots[idx].itemName != null)
-                    {
-                        //GUI.DrawTexture(slotRect, slots[idx].itemIcon);
-                        if(slotRect.Contains(Event.current.mousePosition))
-                        {
-                            tooltip = CreateTooltip(inventory[idx]);
-                            showTooltip = true;
-                        }
-                    }
-
-                    if(tooltip == "")
-                    {
-                        showTooltip = false;
-                    }
-                    idx++;
-                }
-            }
-        }
-
-        string CreateTooltip(Item item)
-        {
-            tooltip = item.itemName;
-            return tooltip;
-        }
-
-        void RemoveItem(int id)
-        {
-            for(int i=0; i<inventory.Count; i++)
-            {
-                if(inventory[i].itemID == id)
-                {
-                    inventory[i] = new Item();
-                    break;
-                }
-            }
-        }
-        void AddItem(int id)
-        {
-            for(int idx= 0; idx<inventory.Count; idx++)
-            {
-                if(inventory[idx].itemName == null)
-                {
-                    for(int j=0; j<database.items.Count; j++)
-                    {
-                        if(database.items[j].itemID == id)
-                        {
-                            inventory[idx] = database.items[j];
-                        }
-                    }
-                    break;
-                }
-            }
-        }
-
-        bool InventoryContains(int id)
-        {
-            bool result = false;
-            for(int i=0; i<inventory.Count; i++)
-            {
-                result = inventory[i].itemID == id;
-                if(result)
-                {
-                    break;
-                }
-            }
-            return result;
-        }
-        */
-}
+}  

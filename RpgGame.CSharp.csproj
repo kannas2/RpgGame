@@ -100,6 +100,7 @@
     <Compile Include="Assets\Script\AI\State_Move.cs" />
     <Compile Include="Assets\Script\Animation_Check.cs" />
     <Compile Include="Assets\Script\BaseCharacter.cs" />
+    <Compile Include="Assets\Script\Ending.cs" />
     <Compile Include="Assets\Script\GameManager.cs" />
     <Compile Include="Assets\Script\Inventory\Inventory.cs" />
     <Compile Include="Assets\Script\Inventory\Item.cs" />
@@ -116,8 +117,6 @@
     <Compile Include="Assets\Script\Npc\NpcWilter.cs" />
     <Compile Include="Assets\Script\PlayerCtrl.cs" />
     <Compile Include="Assets\Script\QwestManager.cs" />
-    <Compile Include="Assets\Script\Scene\TestMove.cs" />
-    <Compile Include="Assets\Script\Scene\cameratest.cs" />
     <Compile Include="Assets\Script\Singleton.cs" />
     <Compile Include="Assets\Script\Skill\AttackSkill.cs" />
     <Compile Include="Assets\Script\Skill\BaseSkill.cs" />
@@ -130,6 +129,7 @@
     <Compile Include="Assets\Script\Skill\SmallBooster.cs" />
     <Compile Include="Assets\Script\Skill\SmallHast.cs" />
     <Compile Include="Assets\Script\UI\ShakeCamera.cs" />
+    <Compile Include="Assets\Script\UI\SoundManager.cs" />
     <Compile Include="Assets\Script\UI\UIControl.cs" />
     <Compile Include="Assets\Script\UI\UI_Billboard.cs" />
     <Compile Include="Assets\Script\UI\VirtualJoystick.cs" />

@@ -45,11 +45,9 @@ public class Slot : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler
         {
             inventory.ItemDescContent(slotNumber);
         }
-        Debug.Log(transform.name);
     }
 
     public void OnPointerEnter(PointerEventData data)
     {
-        Debug.Log("Tool TIp test");
     }
 }

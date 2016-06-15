@@ -29,13 +29,17 @@ public class UIControl : Singleton<UIControl>
     public List<string> screenText = new List<string>();
     public List<GameObject> button = new List<GameObject>();
     private float ftime;
+    private float clickCoolTime;
+    private bool npcClick;
 
     void Start()
     {
         show_UI = true;
+        npcClick = false;
+        clickCoolTime = .0f;
         button.Add(buttonA);
         button.Add(buttonB);
-       
+
         //게임 공지로 사용될 list 밑에 함수에서 update 에서 지속적으로 내용을 확인하여 내용이 있을 경우 게임 화면에 글을 띄어줌.
         screenText.Add("파비앙! 나 필리아야!");
         screenText.Add("너에게 꼭 해야할 말이 있어");
@@ -44,82 +48,90 @@ public class UIControl : Singleton<UIControl>
 
     void FixedUpdate()
     {
-        //2d raycast
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-        {
-            Vector2 pos = UICamera.ScreenToWorldPoint(Input.mousePosition);
-            Ray2D ray2d = new Ray2D(pos, Vector2.zero);
-            RaycastHit2D hit2d = Physics2D.Raycast(ray2d.origin, ray2d.direction);
+        clickCoolTime += (1.0f * Time.deltaTime);
 
-            if (hit2d.collider != null)
+        if (clickCoolTime >= 1.0f)
+        {
+            //2d raycast
+            if (Input.GetKeyDown(KeyCode.Mouse0))
             {
-                if (hit2d.transform.CompareTag("SelectButton"))
+                clickCoolTime = .0f;
+                Vector2 pos = UICamera.ScreenToWorldPoint(Input.mousePosition);
+                Ray2D ray2d = new Ray2D(pos, Vector2.zero);
+                RaycastHit2D hit2d = Physics2D.Raycast(ray2d.origin, ray2d.direction);
+                SoundManager.Instance.PlayEffect("Touch");
+                if (hit2d.collider != null)
                 {
-                    npc.CompareString(hit2d.transform.name, button);
-                    npc.pick = false;
-                }
-                else if (hit2d.transform.CompareTag("QwestTitle"))
-                {
-                    QwestManager.Instance.CompleteQwest(hit2d.transform.name);
-                    Debug.Log("hit : " + hit2d.transform.name);
+                    if (hit2d.transform.CompareTag("SelectButton"))
+                    {
+                        npc.CompareString(hit2d.transform.name, button);
+                        npc.pick = false;
+                    }
+                    else if (hit2d.transform.CompareTag("QwestTitle"))
+                    {
+                        QwestManager.Instance.CompleteQwest(hit2d.transform.name);
+                    }
                 }
             }
-        }
 
-        //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+            //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 
-        //NPC 클릭 하는 것만 3D.
-        if (Input.GetKeyDown(KeyCode.Mouse0) && show_UI == true)
-        {
-            RaycastHit hit = new RaycastHit();
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-            if (Physics.Raycast(ray.origin, ray.direction, out hit))
+            //NPC 클릭 하는 것만 3D.
+            if (Input.GetKeyDown(KeyCode.Mouse0) && show_UI == true)
             {
-                if (hit.collider != null)
+                clickCoolTime = .0f;
+                RaycastHit hit = new RaycastHit();
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                SoundManager.Instance.PlayEffect("Touch");
+                if (Physics.Raycast(ray.origin, ray.direction, out hit))
                 {
-                    if (hit.collider.tag == "NPC")
+                    if (hit.collider != null)
                     {
-                        npc = hit.transform.GetComponent<BaseNpc>();
-                        
-                        //비어있거나 true일경우에만 npc클릭이 가능하게끔 예외처리. 
-                        bool check = QwestManager.Instance.qwest.ContainsKey(npc.prevCheckQwest);
-                        if (check)
+                        if (hit.collider.tag == "NPC")
                         {
-                            npc.currentIndex = npc.textIndex;
-                            SetSceen(npc);
+                            npc = hit.transform.GetComponent<BaseNpc>();
+
+                            //비어있거나 true일경우에만 npc클릭이 가능하게끔 예외처리. 
+                            bool check = QwestManager.Instance.qwest.ContainsKey(npc.prevCheckQwest);
+                            if (check)
+                            {
+                                npc.currentIndex = npc.textIndex;
+                                SetSceen(npc);
+                            }
                         }
                     }
                 }
             }
-        }
 
-        //NPC대화창이 켜져있을 경우. 퀘스트 선택중 선택창이 떳을 경우 이벤트 예외처리 할것. 클릭에 딜레이좀 줄것 .. 너무 빨라서 더블클릭이 일어남.
-        if (show_UI != true && npc != null)
-        {
-            if (Input.GetKeyDown(KeyCode.Mouse0))
+            //NPC대화창이 켜져있을 경우. 퀘스트 선택중 선택창이 떳을 경우 이벤트 예외처리 할것. 클릭에 딜레이좀 줄것 .. 너무 빨라서 더블클릭이 일어남.
+            if (show_UI != true && npc != null)
             {
-                if (npc.textStory.Count > npc.textIndex && npc.pick != true) // index over 예외처리.
+                if (Input.GetKeyDown(KeyCode.Mouse0))
                 {
-                    if (npc.sceenCut != true)
+                    clickCoolTime = .0f;
+                    SoundManager.Instance.PlayEffect("Touch");
+                    if (npc.textStory.Count > npc.textIndex && npc.pick != true) // index over 예외처리.
                     {
-                        npc.StoryTelling(charImage, charName, story, buttonA, buttonB);
+                        if (npc.sceenCut != true)
+                        {
+                            npc.StoryTelling(charImage, charName, story, buttonA, buttonB);
+                        }
+                        else
+                        {
+                            Screen_switch();
+                            npc.sceenCut = false;
+                        }
                     }
-                    else
-                    {
-                        Screen_switch();
-                        npc.sceenCut = false;
-                    }
+                    //여기 위치가 아닌 raycast 위에 저기다 ray.transform.name를 받아와야하니 여기가 아닌 저 위에 설정할것.
+                    //선택지 선택 하는 함수 생성. 현재 select를 받아와서 그 셀렉트와 선택한 것과 같다면 / 틀리다면을 설정 후 pick false로 변경.
+                    //다음 클릭서 부터는 변경된 이야기로 진행이 됨.
                 }
-                //여기 위치가 아닌 raycast 위에 저기다 ray.transform.name를 받아와야하니 여기가 아닌 저 위에 설정할것.
-                //선택지 선택 하는 함수 생성. 현재 select를 받아와서 그 셀렉트와 선택한 것과 같다면 / 틀리다면을 설정 후 pick false로 변경.
-                //다음 클릭서 부터는 변경된 이야기로 진행이 됨.
-            }
-            //qwestUI State.
-            if (npc.qwestUIState != true)
-            {
-                Screen_switch();
-                npc.qwestUIState = true;
+                //qwestUI State.
+                if (npc.qwestUIState != true)
+                {
+                    Screen_switch();
+                    npc.qwestUIState = true;
+                }
             }
         }
         //게임 스크린 공지 텍스트.

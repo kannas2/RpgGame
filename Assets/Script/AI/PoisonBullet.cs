@@ -7,7 +7,7 @@ public class PoisonBullet : Bullet {
     {
         base.boomDis = 0.5f;
         base.bulletSpeed = 5.0f;
-        base.damage = 100.0f;
+        base.damage = 100;
 
         base.BulletGetComponent();
 
@@ -23,7 +23,7 @@ public class PoisonBullet : Bullet {
     {
         if(coll.CompareTag("Player"))
         {
-            PlayerCtrl.instance.curHP -= damage;
+            PlayerCtrl.instance.OnDamage(damage);
             AttackPlayer();
         }
     }

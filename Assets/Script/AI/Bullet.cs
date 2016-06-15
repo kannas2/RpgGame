@@ -14,7 +14,7 @@ public class Bullet : MonoBehaviour
     public float boomDis;
     public float bulletSpeed;
     public bool  boom;
-    public float damage;
+    public int   damage;
 
     public void BulletGetComponent()
     {
