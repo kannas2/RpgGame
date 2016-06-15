@@ -158,7 +158,7 @@ public class PlayerCtrl : BaseCharacter
         //공격
         if (stateInfo.IsName("Attack01"))
         {
-            anim.speed = curAttackSpeed;
+            anim.speed = AttackSkill.instance.attackSpeed;
         }
 
         if (stateInfo.IsName("Brandish"))

@@ -88,4 +88,9 @@ public class VirtualJoystick : MonoBehaviour, IDragHandler, IPointerUpHandler, I
     {
         HasteBuff.instance.Buff();
     }
+
+    public void SwordBooster()
+    {
+        RaisingSword.instance.Buff();
+    }
 }

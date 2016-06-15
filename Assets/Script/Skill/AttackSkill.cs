@@ -31,13 +31,22 @@ public class AttackSkill : BaseSkill
         if (skillState != false)
         {
             if (boosterAttack)
+            {
                 curCoolTime = .0f;
+                attackSpeed = 2.0f;
+                swordeffectpath = "Prefab/Skill/ArcaneSlash";
+            }
             else
+            {
                 curCoolTime = 1.0f;
-            
+                attackSpeed = 1.0f;
+                swordeffectpath = "Prefab/Skill/StormSlash";
+            }
+
             player.curMP += 2;
             player.curAttackPower = base.RandomDamage(minDamage, maxDamage);
             player.anim.SetTrigger("Attack");
+
             StartCoroutine(SwordEffect(.0f, 1));
             StartCoroutine(player.AttackCount(1));
         }

@@ -51,6 +51,15 @@ public class BaseSkill : MonoBehaviour {
                     player.curMoveSpeed = player.baseMoveSpeed;
                 }
                 break;
+
+            case "Booster":
+                {
+                    SmallBooster.instance.buffTime = 30.0f;
+                    AttackSkill.instance.boosterAttack = true;
+                    yield return new WaitForSeconds(ftime);
+                    AttackSkill.instance.boosterAttack = false;
+                }
+                break;
         }
     }
     public IEnumerator SwordEffect(float sec, int loop)
