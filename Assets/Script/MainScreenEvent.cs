@@ -6,7 +6,7 @@ public class MainScreenEvent : MonoBehaviour {
 
 	void Awake ()
     {
-        Screen.SetResolution(1280, 800, true);
+        Screen.SetResolution(2560, 1334, true);
     }
 
     public void Update()
