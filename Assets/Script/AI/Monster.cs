@@ -240,13 +240,6 @@ public class Monster : MonoBehaviour
         Destroy(heal.gameObject, 1.5f);
     }
 
-    //attack box on/off; 사용 안할 예정 삭제 예정.
-    //public IEnumerator AttackCheckTime()
-    //{
-    //    attack = false;
-    //    yield return new WaitForSeconds(curAttackSpeed);
-    //    attack = true;
-    //}
     public void CreateBullet(string bulletPath, float sec)
     {
         StartCoroutine(BulletAttack(bulletPath, sec));

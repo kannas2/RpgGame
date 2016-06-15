@@ -581,8 +581,8 @@
 		<point>h</point>
 		<character>pidellio</character>
 		<name>피델리오</name>
-		<int_if>null</int_if>
-		<clear_if>ms115</clear_if>
+		<int_if>1</int_if>
+		<clear_if>null</clear_if>
 		<select>null</select>
 		<select_a>null</select_a>
 		<select_b>null</select_b>
@@ -628,7 +628,7 @@
 		<sceen>null</sceen>
 		<restart>null</restart>
 		<code>null</code>
-		<success>null</success>
+		<success>ms115</success>
 		<jump>null</jump>
 		<point>null</point>
 		<character>pidellio</character>
@@ -653,7 +653,7 @@
 		<name>파비앙</name>
 		<int_if>null</int_if>
 		<clear_if>null</clear_if>
-		<select>null</select>
+		<select>a</select>
 		<select_a>수락</select_a>
 		<select_b>거절</select_b>
 		<story>null</story>
@@ -678,7 +678,7 @@
 	</npc>
 	<npc>
 		<sceen>null</sceen>
-		<restart>null</restart>
+		<restart>save</restart>
 		<code>null</code>
 		<success>null</success>
 		<jump>null</jump>
@@ -695,9 +695,9 @@
 	</npc>
 	<npc>
 		<sceen>null</sceen>
-		<restart>save</restart>
+		<restart>null</restart>
 		<code>null</code>
-		<success>null</success>
+		<success>ending</success>
 		<jump>null</jump>
 		<point>end</point>
 		<character>null</character>

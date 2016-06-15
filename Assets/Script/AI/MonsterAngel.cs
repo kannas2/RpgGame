@@ -45,8 +45,11 @@ public class MonsterAngel : Monster {
 	
 	void FixedUpdate()
     {
-        state.Update();
-        base.MonsterUpdateHP();
+        if (attackState == true)
+        {
+            state.Update();
+            base.MonsterUpdateHP();
+        }
 	}
 
     //물리적 충돌X

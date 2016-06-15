@@ -14,6 +14,7 @@ public class Bullet : MonoBehaviour
     public float boomDis;
     public float bulletSpeed;
     public bool  boom;
+    public float damage;
 
     public void BulletGetComponent()
     {
@@ -41,10 +42,19 @@ public class Bullet : MonoBehaviour
                 GameObject damage = Instantiate(Resources.Load(boomPaticlePath)) as GameObject;
                 damage.transform.SetParent(transform);
                 damage.transform.position = transform.position;
+                ShakeCamera.instance.shakeDuration = 0.3f;
                 Destroy(damage.gameObject, 3.0f);
                 Destroy(transform.gameObject, 1.0f);
             }
         }
+    }
+
+    public void AttackPlayer()
+    {
+        GameObject damage = Instantiate(Resources.Load("Prefab/Skill/AirExplode")) as GameObject;
+        damage.transform.SetParent(PlayerCtrl.instance.transform);
+        ShakeCamera.instance.shakeDuration = 0.3f;
+        Destroy(damage, 2.5f);
     }
 
     public float Dis(Transform bullet, Vector3 player)

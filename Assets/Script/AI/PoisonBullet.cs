@@ -7,13 +7,24 @@ public class PoisonBullet : Bullet {
     {
         base.boomDis = 0.5f;
         base.bulletSpeed = 5.0f;
+        base.damage = 100.0f;
+
         base.BulletGetComponent();
 
         base.boomPaticlePath = "Prefab/GroundExplode";
     }
 
-    void Update()
+    void FixedUpdate()
     {
         base.BulletMove();
+    }
+
+    void OnTriggerEnter(Collider coll)
+    {
+        if(coll.CompareTag("Player"))
+        {
+            PlayerCtrl.instance.curHP -= damage;
+            AttackPlayer();
+        }
     }
 }

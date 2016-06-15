@@ -67,7 +67,7 @@
 		<select_a>null</select_a>
 		<select_b>null</select_b>
 		<story>그래도 장로님께서 직접 부탁하셨으니.. 너에게 미션을 하나 주겠다.
-수련용 맵A에 있는 몬스터 아가사를 처치해 증표A를 20개 모아오도록해.</story>
+수련용 맵A에 있는 몬스터 아가사를 처치해 증표A를 10개 모아오도록해.</story>
 		<skill>null</skill>
 	</npc>
 	<npc>
@@ -130,7 +130,7 @@
 		<point>a</point>
 		<character>dick</character>
 		<name>딕</name>
-		<int_if>20</int_if>
+		<int_if>10</int_if>
 		<clear_if>null</clear_if>
 		<select>null</select>
 		<select_a>null</select_a>

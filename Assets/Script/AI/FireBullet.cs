@@ -7,6 +7,7 @@ public class FireBullet : Bullet
     {
         base.boomDis = 0.5f;
         base.bulletSpeed = 5.0f;
+        base.damage = 90.0f;
         base.BulletGetComponent();
 
         base.boomPaticlePath = "Prefab/GroundExplode";
@@ -15,5 +16,14 @@ public class FireBullet : Bullet
     void Update()
     {
         base.BulletMove();
+    }
+
+    void OnTriggerEnter(Collider coll)
+    {
+        if (coll.CompareTag("Player"))
+        {
+            PlayerCtrl.instance.curHP -= damage;
+            AttackPlayer();
+        }
     }
 }

@@ -179,6 +179,19 @@ public class BaseNpc : MonoBehaviour
 
         if (pick != true)
         {
+            //퀘스트 몬스터 잡아오는 뭐 그런거 있을 경우. 지금은 테스트중이니까 숫자가 있는데 나중에는 퀘스트 수락하고 벨류값 초기화 해줄것 !! 0으로 초기화를 해줘야함 꼭!!
+            if (int_if[textIndex] != "null")
+            {
+                if (currentValue >= Int32.Parse(int_if[textIndex]))
+                {
+                    textIndex = FindCount(point, jump[textIndex]);
+                    currentValue = 0;
+                    //return;
+                }
+                else
+                    currentIndex = textIndex;
+            }
+
             if (character[textIndex] != null)
             {
                 npcImage.sprite = Resources.Load<Sprite>("NPC/Sprite/" + character[textIndex]) as Sprite;
@@ -195,6 +208,7 @@ public class BaseNpc : MonoBehaviour
                 {
                     QwestManager.Instance.qwest.Add(currentqwest, false);        //키값이 없으면 추가를 하고 있으면 그냥 pass
                     QwestManager.Instance.CreateQwest(currentqwest);             //코드 추가되면서 퀘스트도 같이 생성.
+                    MonsterManager.Instance.QwestCodeCheck(currentqwest, false);
                 }
             }
 
@@ -206,25 +220,17 @@ public class BaseNpc : MonoBehaviour
             if(success[textIndex] != "null")
             {
                 QwestManager.Instance.qwest[success[textIndex]] = true;
+                MonsterManager.Instance.QwestCodeCheck(success[textIndex], true);
+            }
+            else if(success[textIndex] == "ending")
+            {
+                Debug.Log("엔딩 시작");
             }
 
             //스킬 습득.
             if(skill[textIndex] != "null")
             {
                 ActiveSkill(skill[textIndex]);
-            }
-
-            //퀘스트 몬스터 잡아오는 뭐 그런거 있을 경우. 지금은 테스트중이니까 숫자가 있는데 나중에는 퀘스트 수락하고 벨류값 초기화 해줄것 !! 0으로 초기화를 해줘야함 꼭!!
-            if(int_if[textIndex] != "null")
-            {
-                if (qwestValue >= Int32.Parse(int_if[textIndex]))
-                {
-                    textIndex = FindCount(point, jump[textIndex]);
-                    qwestValue = 0;
-                    return;
-                }
-                else
-                    currentIndex = textIndex;
             }
 
             //특정 순간에 해당퀘스트가 클리어 되어있을 경우 jump  // end 보다 먼저 검사해야함.
@@ -316,6 +322,10 @@ public class BaseNpc : MonoBehaviour
 
             case "Brandish":
                 Debug.Log("브랜디시 스킬 획득");
+                break;
+
+            case "Hest":
+                Debug.Log("헤이스트 스킬 획득");
                 break;
 
             case "Heal":

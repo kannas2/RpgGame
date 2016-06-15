@@ -84,7 +84,7 @@
 		<select>null</select>
 		<select_a>null</select_a>
 		<select_b>null</select_b>
-		<story>수련용 맵B에 있는 머피를 처치해 증표B를 30개 모아오도록해.</story>
+		<story>수련용 맵B에 있는 머피를 처치해 증표B를 20개 모아오도록해.</story>
 		<skill>null</skill>
 	</npc>
 	<npc>
@@ -130,7 +130,7 @@
 		<point>a</point>
 		<character>dilliseu</character>
 		<name>딜리스</name>
-		<int_if>30</int_if>
+		<int_if>20</int_if>
 		<clear_if>null</clear_if>
 		<select>null</select>
 		<select_a>null</select_a>

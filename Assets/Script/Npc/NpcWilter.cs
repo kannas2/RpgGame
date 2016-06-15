@@ -16,7 +16,7 @@ public class NpcWilter : BaseNpc {
         base.textIndex = 0;
         base.npcType = 0;
         base.qwestValue = 1;       //잡아올 몬스터 값.
-        base.currentValue = 1;       //지금은 테스트중이니 이미 잡은걸로.
+        base.currentValue = 0;     //지금은 테스트중이니 이미 잡은걸로.
         base.prevCheckQwest = "ms110";
 
         //쉐이더

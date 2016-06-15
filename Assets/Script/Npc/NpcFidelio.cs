@@ -3,8 +3,11 @@ using System.Collections;
 
 public class NpcFidelio : BaseNpc
 {
+    public static NpcFidelio instance;
+
     void Start()
     {
+        instance = this;
         Init();
         
         base.npcPostion = new Vector3(256.0f, 65.0f, .0f);
@@ -12,7 +15,8 @@ public class NpcFidelio : BaseNpc
         base.textSpeed  = 1.0f;
         base.textIndex  = 0;
         base.npcType    = 0;
-        base.qwestValue = 0;
+        base.qwestValue = 1;
+        base.currentValue = 0;
         base.prevCheckQwest = "ms101";
 
         //쉐이더

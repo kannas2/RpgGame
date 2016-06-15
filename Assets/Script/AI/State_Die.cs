@@ -29,13 +29,12 @@ public class State_Die : FSM_State<Monster>
     public override void UpdateState(Monster monster)
     {
         monster.dieTime += Time.deltaTime;
-        
+
         if (monster.dieTime >= 5.0f)
         {
             monster.dieTime = .0f;
             monster.MonsterDie();
         }
-            
     }
 
     public override void ExitState(Monster _monster)

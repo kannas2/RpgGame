@@ -8,6 +8,7 @@ public class PlayerCtrl : BaseCharacter
     private VirtualJoystick joystick;
 
     public static PlayerCtrl instance;
+    public ItemDatabase itemData;
 
     public Image hp_Image;
     public Image mp_Image;
@@ -23,13 +24,15 @@ public class PlayerCtrl : BaseCharacter
     void Awake()
     {
         instance = this;
+        itemData = ItemDatabase.Instance;
+        Debug.Log("itemData : " + itemData);
         anim = transform.GetComponent<Animator>();
         attackBox = attackBox.GetComponent<BoxCollider>();
     }
 
     void Start()
     {
-        base.playerName = "fabian";
+        base.playerName = "fabien";
         base.curExp = .0f;
         base.maxExp = .0f; // 기획서에 경험치 관련된건 없지만 .. 혹시나 해서 .
 
@@ -112,29 +115,8 @@ public class PlayerCtrl : BaseCharacter
             curMP = maxMP;
         }
     }
-    /*
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "Monster") //이거 나중에 수정할것. 몬스터가 여러마리 될경우 충돌된 몬스터  HP를 까야함.
-        {
-            monster.curHP -= curAttackPower; //공격스킬 마다 어택 데미지가 달라짐.
 
-            GameObject obj = (GameObject)Instantiate(Resources.Load("Particle/Attack")) as GameObject; //공격 스킬마다 파티클 달라지게 할 예정.
-            obj.transform.parent = other.transform;
-
-            obj.transform.localPosition = other.transform.localPosition;
-            Destroy(obj, 0.7f);
-        }
-
-        //아이템 드랍 .
-        if(other.gameObject.tag == "HP_portion")
-        {
-            Inventory.instance.addItem(1);
-            Destroy(other.gameObject);
-        }
-    }
-    */
-    //동작 스피드 컨트롤. anim.Play("animname",speed,streamtime);  //지금 임의로 애니메이터에서 속도 설정해놨음. 나중에 수정할것
+    //동작 스피드 컨트롤. anim.Play("animname",speed,streamtime);
     public override void Character_Anim_Speed()
     {
         AnimatorStateInfo stateInfo = anim.GetCurrentAnimatorStateInfo(0);
@@ -178,67 +160,62 @@ public class PlayerCtrl : BaseCharacter
         Destroy(obj, 0.5f);
     }
 
+    //기존 스위치문을 축소함. 나중에 for문이 아닌 그냥 아이템 먹으면 add코드가 바로 가능하게끔 해보기.
     void OnTriggerEnter(Collider coll)
     {
-        //몬스터에게 맞은경우. 지금 시간이 없어서 이런식으로 하는데 나중에는 아이템을 획득시 인벤토리 쪽으로 보내서 어떤 아이템인가 확인후 추가하는 방식으로.
-        if(coll.gameObject.CompareTag("Item"))
+        if (coll.gameObject.CompareTag("Item"))
         {
-            switch(coll.gameObject.transform.name)
+            for (int i = 0; i < itemData.items.Count; i++)
             {
-                case "medalA":
-                    {
-                        coll.GetComponent<BoxCollider>().enabled = false;
-                        Inventory.instance.addItem(1);
-                        Destroy(coll.gameObject);
-                    }
-                    break;
+                if (itemData.items[i].itemName == coll.gameObject.name)
+                {
+                    coll.GetComponent<BoxCollider>().enabled = false;
+                    Inventory.instance.addItem(i + 1);
+                    Destroy(coll.gameObject);
 
-                case "medalB":
+                    //나중에 수정할것. 지금 당장 방법이 없음..
+                    switch (itemData.items[i].itemID)
                     {
-                        coll.GetComponent<BoxCollider>().enabled = false;
-                        Inventory.instance.addItem(2);
-                        Destroy(coll.gameObject);
-                    }
-                    break;
-                    
-                case "medalC":
-                    {
-                        coll.GetComponent<BoxCollider>().enabled = false;
-                        Inventory.instance.addItem(3);
-                        Destroy(coll.gameObject);
-                    }
-                    break;
+                        case 1:
+                            if (NpcDick.instance.currentValue < NpcDick.instance.qwestValue)
+                                NpcDick.instance.currentValue += 1;
 
-                case "dragonHorn":
-                    {
-                        coll.GetComponent<BoxCollider>().enabled = false;
-                        Inventory.instance.addItem(4);
-                        Destroy(coll.gameObject);
-                    }
-                    break;
+                            UIControl.Instance.screenText.Add(" 메달 A "+NpcDick.instance.currentValue + "/" + NpcDick.instance.qwestValue);
+                            break;
 
-                case "soul":
-                    {
-                        coll.GetComponent<BoxCollider>().enabled = false;
-                        Inventory.instance.addItem(5);
-                        Destroy(coll.gameObject);
-                    }
-                    break;
+                        case 2:
+                            if (NpcDilliseu.instance.currentValue < NpcDilliseu.instance.qwestValue)
+                                 NpcDilliseu.instance.currentValue += 1;
 
-                default:
-                    Debug.Log("해당 아이템이 없습니다.");
-                    break;
+                            UIControl.Instance.screenText.Add(" 메달 B " + NpcDilliseu.instance.currentValue + "/" + NpcDilliseu.instance.qwestValue);
+                            break;
+
+                        case 3:
+                            if (NpcChase.instance.currentValue < NpcChase.instance.qwestValue)
+                                NpcChase.instance.currentValue += 1;
+
+                            UIControl.Instance.screenText.Add(" 메달 C " + NpcChase.instance.currentValue + "/" + NpcChase.instance.qwestValue);
+                            break;
+
+                        case 4:
+                            if (NpcWilter.instance.currentValue < NpcWilter.instance.qwestValue)
+                                NpcWilter.instance.currentValue += 1;
+
+                            UIControl.Instance.screenText.Add(" 드래곤의 뿔 " + NpcWilter.instance.currentValue + "/" + NpcWilter.instance.qwestValue);
+                            break;
+
+                        case 5:
+                            if (NpcFidelio.instance.currentValue < NpcFidelio.instance.qwestValue)
+                                NpcFidelio.instance.currentValue += 1;
+
+                            UIControl.Instance.screenText.Add(" 데모너스의 구슬 " + NpcFidelio.instance.currentValue + "/" + NpcFidelio.instance.qwestValue);
+                            break;
+                    }
+                }
             }
-
-            ////캐릭터 체력 -
-            ////파티클 생성
-            //curHP -= 5.0f; //나중에 충돌체 몬스터의 공격데미지를 얻어와서 깔꺼임.
-            //anim.SetTrigger("TakeDamage");
-            //GameObject obj = (GameObject)Instantiate(Resources.Load("Particle/MonsterAttack")) as GameObject;
-            //obj.transform.position = transform.position;
-            //Destroy(obj, 0.5f);
         }
     }
+    
 
     //collider를 몇번 껏다 킬껀지 공격할때 Enter로 충돌 판정을 하는데 Enter는 처음에만 충돌 체크를 하기 떄문에.
     public IEnumerator AttackCount(int cnt)

@@ -65,7 +65,7 @@
 		<select>null</select>
 		<select_a>null</select_a>
 		<select_b>null</select_b>
-		<story>증표C를 40개를 모으면 나에게 다시 오도록해</story>
+		<story>증표C를 30개를 모으면 나에게 다시 오도록해</story>
 		<skill>null</skill>
 	</npc>
 	<npc>
@@ -111,7 +111,7 @@
 		<point>a</point>
 		<character>chase</character>
 		<name>체이스</name>
-		<int_if>40</int_if>
+		<int_if>30</int_if>
 		<clear_if>null</clear_if>
 		<select>null</select>
 		<select_a>null</select_a>

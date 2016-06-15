@@ -10,7 +10,7 @@ public class Inventory : MonoBehaviour
     public List<Item> items = new List<Item>();
 
     public  GameObject slots;
-    private Item_Database database;
+    private ItemDatabase database;
     public GameObject invenimage;
     public GameObject itemDesc;
 
@@ -23,8 +23,9 @@ public class Inventory : MonoBehaviour
     void Start()
     {
         instance = this;
-        database = GameObject.Find("ItemDatabase").GetComponent<Item_Database>();
-        
+        //database = GameObject.Find("ItemDatabase").GetComponent<ItemDatabase>();
+        database = ItemDatabase.Instance;
+
         for (int i = 0; i < 3; i++)
         {
             for (int k = 0; k < 7; k++)
