@@ -192,6 +192,16 @@ public class BaseNpc : MonoBehaviour
                     currentIndex = textIndex;
             }
 
+            //특정 순간에 해당퀘스트가 클리어 되어있을 경우 jump  // end 보다 먼저 검사해야함.
+            if (clear_if[textIndex] != "null")
+            {
+                string key = clear_if[textIndex];
+                if (ClearQwestCK(key))
+                {
+                    textIndex = FindCount(point, jump[textIndex]);
+                }
+            }
+
             if (character[textIndex] != null)
             {
                 npcImage.sprite = Resources.Load<Sprite>("NPC/Sprite/" + character[textIndex]) as Sprite;
@@ -231,17 +241,6 @@ public class BaseNpc : MonoBehaviour
             if(skill[textIndex] != "null")
             {
                 ActiveSkill(skill[textIndex]);
-            }
-
-            //특정 순간에 해당퀘스트가 클리어 되어있을 경우 jump  // end 보다 먼저 검사해야함.
-            if(clear_if[textIndex] != "null")
-            {
-                string key = clear_if[textIndex];
-                if(ClearQwestCK(key))
-                {
-                    textIndex = FindCount(point, jump[textIndex]);
-                    return;
-                }
             }
 
             //문장이 끝낫거나 퀘스트 씬을 강제적으로 끊을때.
