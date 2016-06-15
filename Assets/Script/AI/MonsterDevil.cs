@@ -5,8 +5,8 @@ public class MonsterDevil : Monster {
 
     void Start()
     {
-        base.curHP = 50.0f;
-        base.maxHP = 50.0f;
+        base.curHP = 300.0f;
+        base.maxHP = 300.0f;
 
         base.minDamage = 15;
         base.maxDamage = 20;

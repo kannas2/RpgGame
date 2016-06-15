@@ -81,7 +81,6 @@ public class UIControl : Singleton<UIControl>
                     if (hit.collider.tag == "NPC")
                     {
                         npc = hit.transform.GetComponent<BaseNpc>();
-                        Debug.Log("npc bool :" + npc.prevCheckQwest);
                         
                         //비어있거나 true일경우에만 npc클릭이 가능하게끔 예외처리. 
                         bool check = QwestManager.Instance.qwest.ContainsKey(npc.prevCheckQwest);

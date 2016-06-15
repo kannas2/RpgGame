@@ -22,6 +22,6 @@ public class SmallBooster : BuffState {
             buffTime = .0f;
         }
 
-        base.BuffSetting();
+        base.BuffSetting(30.0f);
 	}
 }

@@ -5,8 +5,8 @@ public class MonsterLich : Monster
 {
     void Start()
     {
-        base.curHP = 600.0f;
-        base.maxHP = 600.0f;
+        base.curHP = 1800.0f;
+        base.maxHP = 1800.0f;
 
         base.minDamage = 45;
         base.maxDamage = 55;

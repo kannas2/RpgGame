@@ -157,11 +157,11 @@ public class BaseNpc : MonoBehaviour
 
             buttonA.SetActive(true);
             Text text = buttonA.transform.GetComponent<Text>();
-            text.text = selectA[textIndex];
+            text.text = "▶ " + selectA[textIndex];
 
             buttonB.SetActive(true);
             text = buttonB.transform.GetComponent<Text>();
-            text.text = selectB[textIndex];
+            text.text = "▶ " + selectB[textIndex];
             pick = true;
         }
         else
@@ -316,23 +316,28 @@ public class BaseNpc : MonoBehaviour
         switch(skill)
         {
             case "Attack":
-                Debug.Log("기본공격 획득");
+                VirtualJoystick.instance.SkillButtonActive(0);
                 break;
 
             case "Brandish":
-                Debug.Log("브랜디시 스킬 획득");
+                VirtualJoystick.instance.SkillButtonActive(1);
                 break;
 
-            case "Hest":
-                Debug.Log("헤이스트 스킬 획득");
+            case "Hast":
+                VirtualJoystick.instance.SkillButtonActive(2);
                 break;
 
             case "Heal":
-                Debug.Log("힐 스킬 습득.");
+                VirtualJoystick.instance.SkillButtonActive(3);
                 break;
 
             case "RaisingSword":
-                Debug.Log("레이징 스워드 스킬 습득");
+                VirtualJoystick.instance.SkillButtonActive(4);
+                break;
+
+            case "Status":
+                PlayerCtrl.instance.maxHP += 100;
+                PlayerCtrl.instance.maxMP += 100;
                 break;
 
             default:

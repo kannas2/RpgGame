@@ -25,7 +25,6 @@ public class PlayerCtrl : BaseCharacter
     {
         instance = this;
         itemData = ItemDatabase.Instance;
-        Debug.Log("itemData : " + itemData);
         anim = transform.GetComponent<Animator>();
         attackBox = attackBox.GetComponent<BoxCollider>();
     }
@@ -48,8 +47,8 @@ public class PlayerCtrl : BaseCharacter
         base.baseAttackSpeed = 1.0f;
         base.curAttackSpeed = 1.0f;
 
-        base.baseMoveSpeed = 5.0f;
-        base.curMoveSpeed = 5.0f;
+        base.baseMoveSpeed = 4.0f;
+        base.curMoveSpeed = 4.0f;
 
         base.rotSpeed = 100.0f;
         base.isDead = false;
@@ -124,11 +123,11 @@ public class PlayerCtrl : BaseCharacter
         //이동 
         if (stateInfo.IsName("Walk"))
         {
-            anim.speed = baseMoveSpeed;
+            anim.speed = 1.5f;
         }
         else if (stateInfo.IsName("Run"))
         {
-            anim.speed = 2.0f;
+            anim.speed = 3.0f;
         }
 
         //기본상태
@@ -156,7 +155,8 @@ public class PlayerCtrl : BaseCharacter
         GameObject obj = (GameObject)Instantiate(Resources.Load("Particle/MonsterAttack")) as GameObject;
         //anim.SetTrigger("TakeDamage");
         anim.Play("TakeDamage");
-        obj.transform.position = transform.position;
+        Vector3 posAdd = new Vector3(.0f, 0.5f, .0f);
+        obj.transform.position =  transform.position + posAdd;
         Destroy(obj, 0.5f);
     }
 

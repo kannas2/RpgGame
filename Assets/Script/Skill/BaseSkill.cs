@@ -44,11 +44,11 @@ public class BaseSkill : MonoBehaviour {
             case "Hast":
                 {
                     SmallHast.instance.buffTime = 30.0f;
-                    player.curMoveSpeed = player.baseMoveSpeed + 5.0f;
+                    player.curMoveSpeed = 7.0f;
                     player.run = true;
                     yield return new WaitForSeconds(ftime);
                     player.run = false;
-                    player.curMoveSpeed = player.baseMoveSpeed - 5.0f;
+                    player.curMoveSpeed = 4.0f; //나중에 player.baseMoveSpeed로 바꿀것 현재 버그가 있어서 임시로 수정해놓음.
                 }
                 break;
 

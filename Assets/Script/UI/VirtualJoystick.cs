@@ -5,7 +5,9 @@ using System.Collections;
 
 public class VirtualJoystick : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointerDownHandler
 {
-    public VirtualJoystick instance;
+    [SerializeField]
+    private GameObject[] skillButton;
+    public static VirtualJoystick instance;
 
     private Image bgImg;
     private Image joystickImg;
@@ -66,6 +68,11 @@ public class VirtualJoystick : MonoBehaviour, IDragHandler, IPointerUpHandler, I
             return InputVector.z;
         else
             return Input.GetAxis("Vertical");
+    }
+
+    public void SkillButtonActive(int index)
+    {
+        skillButton[index].SetActive(true);
     }
 
     //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ스킬 호출ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ//

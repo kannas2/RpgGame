@@ -5,8 +5,8 @@ public class MonsterDragon : Monster {
 
 	void Start ()
     {
-        base.curHP = 300.0f;
-        base.maxHP = 300.0f;
+        base.curHP = 900.0f;
+        base.maxHP = 900.0f;
 
         base.minDamage = 30;
         base.maxDamage = 40;

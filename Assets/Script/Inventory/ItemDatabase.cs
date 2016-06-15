@@ -1,16 +1,9 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 using System.Xml;
-using System.Text;
 using System;
-using System.IO;
 
 public class ItemDatabase : Singleton<ItemDatabase> {
-
-    //public static ItemDatabase instance;
-
-    List<Dictionary<string, string>> mContainer = new List<Dictionary<string, string>>();
 
     string fileName = "ItemList";
 

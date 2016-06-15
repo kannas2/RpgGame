@@ -5,8 +5,8 @@ public class MonsterBunny : Monster {
 
 	void Start ()
     {
-        base.curHP = 150.0f;
-        base.maxHP = 150.0f;
+        base.curHP = 450.0f;
+        base.maxHP = 450.0f;
 
         base.minDamage = 20;
         base.maxDamage = 25;

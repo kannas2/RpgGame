@@ -5,8 +5,8 @@ public class MonsterAngel : Monster {
 
 	void Start ()
     {
-        base.curHP = 50.0f;
-        base.maxHP = 50.0f;
+        base.curHP = 150.0f;
+        base.maxHP = 150.0f;
 
         base.minDamage = 10;
         base.maxDamage = 15;
