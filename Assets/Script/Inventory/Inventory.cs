@@ -14,7 +14,7 @@ public class Inventory : MonoBehaviour
     public GameObject invenimage;
     public GameObject itemDesc;
 
-    //슬롯 스타트 지점 x,y 나중에 세부 조절이 필요함 망할 UI좌표계 
+    //슬롯 스타트 지점 x,y
     float x = -281.0f;
     float y = 80.0f;
 
@@ -23,9 +23,9 @@ public class Inventory : MonoBehaviour
     void Start()
     {
         instance = this;
-        //database = GameObject.Find("ItemDatabase").GetComponent<ItemDatabase>();
         database = ItemDatabase.Instance;
 
+        //Inven size 3 row 7 col
         for (int i = 0; i < 3; i++)
         {
             for (int k = 0; k < 7; k++)
@@ -54,9 +54,8 @@ public class Inventory : MonoBehaviour
             }
         }
         invenimage.SetActive(false);
-        //아이템 생성 할때 
-        //addItem(1);
     }
+
     public void ItemDescOff()
     {
         if (itemDesc.activeSelf)

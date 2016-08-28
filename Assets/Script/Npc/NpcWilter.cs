@@ -10,13 +10,13 @@ public class NpcWilter : BaseNpc {
         instance = this;
         Init();
 
-        base.npcPostion = new Vector3(256.0f, 65.0f, .0f); //나중에 지울예정 혹시몰라서 일단 대기중인변수.
-        base.npcName = "wilter";
-        base.textSpeed = 1.0f;
-        base.textIndex = 0;
-        base.npcType = 0;
-        base.qwestValue = 1;       //잡아올 몬스터 값.
-        base.currentValue = 0;     //지금은 테스트중이니 이미 잡은걸로.
+        base.npcPostion     = new Vector3(256.0f, 65.0f, .0f);
+        base.npcName        = "wilter";
+        base.textSpeed      = 1.0f;
+        base.textIndex      = 0;
+        base.npcType        = 0;
+        base.qwestValue     = 1;  //잡아올 몬스터 값.
+        base.currentValue   = 0;
         base.prevCheckQwest = "ms110";
 
         //쉐이더

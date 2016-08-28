@@ -18,7 +18,7 @@ public class PlayerCtrl : BaseCharacter
 
     public CharacterState charstate;
 
-    public Animator anim { get; set; }
+    public Animator anim  { get; set; }
     public bool attackChk { get; set; }
 
     void Awake()
@@ -33,7 +33,7 @@ public class PlayerCtrl : BaseCharacter
     {
         base.playerName = "fabien";
         base.curExp = .0f;
-        base.maxExp = .0f; // 기획서에 경험치 관련된건 없지만 .. 혹시나 해서 .
+        base.maxExp = .0f;
 
         base.curHP = 3000.0f;
         base.maxHP = 3000.0f;
@@ -157,16 +157,16 @@ public class PlayerCtrl : BaseCharacter
         //anim.SetTrigger("TakeDamage");
         anim.Play("TakeDamage");
         Vector3 posAdd = new Vector3(.0f, 0.5f, .0f);
-        obj.transform.position =  transform.position + posAdd;
+        obj.transform.position = transform.position + posAdd;
         Destroy(obj, 0.5f);
     }
 
-    //기존 스위치문을 축소함. 나중에 for문이 아닌 그냥 아이템 먹으면 add코드가 바로 가능하게끔 해보기.
     void OnTriggerEnter(Collider coll)
     {
         if (coll.gameObject.CompareTag("Item"))
         {
             SoundManager.Instance.PlayEffect("Item");
+
             for (int i = 0; i < itemData.items.Count; i++)
             {
                 if (itemData.items[i].itemName == coll.gameObject.name)
@@ -175,19 +175,19 @@ public class PlayerCtrl : BaseCharacter
                     Inventory.instance.addItem(i + 1);
                     Destroy(coll.gameObject);
 
-                    //나중에 수정할것. 지금 당장 방법이 없음..
+                    //나중에 수정할것. 지금 당장 방법이 없음.. 
                     switch (itemData.items[i].itemID)
                     {
                         case 1:
                             if (NpcDick.instance.currentValue < NpcDick.instance.qwestValue)
                                 NpcDick.instance.currentValue += 1;
 
-                            UIControl.Instance.screenText.Add(" 메달 A  "+NpcDick.instance.currentValue + "/" + NpcDick.instance.qwestValue);
+                            UIControl.Instance.screenText.Add(" 메달 A  " + NpcDick.instance.currentValue + "/" + NpcDick.instance.qwestValue);
                             break;
 
                         case 2:
                             if (NpcDilliseu.instance.currentValue < NpcDilliseu.instance.qwestValue)
-                                 NpcDilliseu.instance.currentValue += 1;
+                                NpcDilliseu.instance.currentValue += 1;
 
                             UIControl.Instance.screenText.Add(" 메달 B  " + NpcDilliseu.instance.currentValue + "/" + NpcDilliseu.instance.qwestValue);
                             break;
@@ -217,17 +217,16 @@ public class PlayerCtrl : BaseCharacter
             }
         }
 
-        if(coll.tag == "Boss")
+        if (coll.tag == "Boss")
         {
             SoundManager.Instance.PlayBGM(2);
         }
     }
-    
 
     //collider를 몇번 껏다 킬껀지 공격할때 Enter로 충돌 판정을 하는데 Enter는 처음에만 충돌 체크를 하기 떄문에.
     public IEnumerator AttackCount(int cnt)
     {
-        for(int num=0; num< cnt; num++)
+        for (int num = 0; num < cnt; num++)
         {
             attackChk = true;
             yield return new WaitForSeconds(0.2f);

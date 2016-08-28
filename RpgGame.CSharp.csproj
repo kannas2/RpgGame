@@ -99,9 +99,9 @@
     <Compile Include="Assets\Script\AI\State_Machine.cs" />
     <Compile Include="Assets\Script\AI\State_Move.cs" />
     <Compile Include="Assets\Script\Animation_Check.cs" />
+    <Compile Include="Assets\Script\AwakeInit.cs" />
     <Compile Include="Assets\Script\BaseCharacter.cs" />
     <Compile Include="Assets\Script\Ending.cs" />
-    <Compile Include="Assets\Script\GameManager.cs" />
     <Compile Include="Assets\Script\Inventory\Inventory.cs" />
     <Compile Include="Assets\Script\Inventory\Item.cs" />
     <Compile Include="Assets\Script\Inventory\ItemDatabase.cs" />

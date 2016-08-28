@@ -11,8 +11,7 @@ public class ItemDatabase : Singleton<ItemDatabase> {
 
 	void Awake()
     {
-        //instance = this;
-        TextAsset textXml = Resources.Load("XML/"+ fileName, typeof(TextAsset)) as TextAsset; //어차피 한번 읽고 버려질 지역변수.
+        TextAsset textXml = Resources.Load("XML/"+ fileName, typeof(TextAsset)) as TextAsset;
 
         if(textXml != null)
         {
@@ -37,11 +36,5 @@ public class ItemDatabase : Singleton<ItemDatabase> {
             }
             
         }
-        
-        //items.Add(new Item("mp_portion",2, 1, "mp_portion", 1)); //원래는 숫자가아닌 Item.ItemType.Consumable 형식이였는데 XML로 변경하면서 바뀌게되었음.
-
     }
-
-    //예를 들면
-    //뭐.. 기존에 아이템이 존재 하지 않으면 ADD 만약 존재한다면 그 존재하는 숫자 cnt 에 가산을 하여 숫자만 늘리는것.
 }

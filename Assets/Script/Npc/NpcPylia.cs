@@ -11,11 +11,11 @@ public class NpcPylia : BaseNpc {
         instance = this;
         Init();
 
-        base.npcPostion     = new Vector3(256.0f, 65.0f, .0f); //나중에 지울예정 혹시몰라서 일단 대기중인변수.
-        base.npcName        = "pylia";
-        base.textSpeed      = 1.0f; //이것도 시간적 여유가 있다면.. 스토리가 한글자씩 나오게 설정할때 쓰려고 선언해두었던..
-        base.textIndex      = 0;
-        base.npcType        = 0;
+        base.npcPostion      = new Vector3(256.0f, 65.0f, .0f);
+        base.npcName         = "pylia";
+        base.textSpeed       = 1.0f;
+        base.textIndex       = 0;
+        base.npcType         = 0;
         base.qwestValue      = 0;
         base.currentqwest    = null;
         base.prevCheckQwest  = "ms101";

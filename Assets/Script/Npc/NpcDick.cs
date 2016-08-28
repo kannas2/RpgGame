@@ -10,13 +10,13 @@ public class NpcDick : BaseNpc
         instance = this;
         Init();
 
-        base.npcPostion     = new Vector3(256.0f, 65.0f, .0f); //나중에 지울예정 혹시몰라서 일단 대기중인변수.
+        base.npcPostion     = new Vector3(256.0f, 65.0f, .0f);
         base.npcName        = "dick";
         base.textSpeed      = 1.0f;
         base.textIndex      = 0;
         base.npcType        = 0;
-        base.qwestValue     = 10;       //잡아올 몬스터 값.
-        base.currentValue = 8;
+        base.qwestValue     = 10;
+        base.currentValue   = 0;
         base.prevCheckQwest = "ms104";   //퀘스트를 받아야만 클릭이 가능.
 
         //쉐이더
